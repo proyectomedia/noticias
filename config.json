@@ -1,0 +1,11 @@
+{
+    "pages": [
+        {
+            "url": "http://www2.trabajo.gob.pe/prensa/notas-de-prensa/",
+            "selectors": {
+                "posts": "ul.posts-list li",
+                "title": "h2 a"
+            }
+        }
+    ]
+}
