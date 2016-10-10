@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/proyectomedia/noticias#readme",
   "dependencies": {
+    "bluebird": "^3.4.6",
     "cheerio": "^0.22.0",
     "request": "^2.75.0"
   }
