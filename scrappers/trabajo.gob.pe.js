@@ -9,10 +9,11 @@ function scrappData (config, $) {
 
     function doWork() {
 
-        var data = {};
         var promises = [];
 
         $(selectors.posts).each((i, post) => {
+
+            var data = {};
 
             data.institution = $(selectors.institute).attr('content');
             data.url = $(post).find(selectors.link).attr('href');
@@ -25,7 +26,10 @@ function scrappData (config, $) {
 
                     data.title = $("h1.title-post").text();
                     data.subtitle = $("span.sub-title").text();
-                    data.imageUrl = $("figure.main-image img").attr('src');
+                    data.imageUrl = $("figure.main-image img").attr('src')
+                    //data.content = ;
+                    
+                    data.content = "";
 
                     return data;
                 });
