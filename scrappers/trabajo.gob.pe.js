@@ -1,25 +1,20 @@
+var cheerio = require("cheerio");
 var request = require("../lib/requestAsync");
-var cheerio = require('cheerio');
+var generateId = require('../lib/generateId');
 
-function scrappData (config, $) {
+module.exports = function scrapper($, config) {
 
-    var selectors = config.selectors;
+    return $("ul.posts-list li")
+        .slice(0, config.limit)
+        .map((i, post) => {
 
-    return Promise.all(doWork());
+            var data = { config }
 
-    function doWork() {
+            data.institution = "Ministerio del trabajo";
+            data.source = "Ministerio de Trabajo";
+            data.url = $(post).find("h2 a").attr("href");
 
-        var promises = [];
-
-        $(selectors.posts).each((i, post) => {
-
-            var data = {};
-
-            data.institution = $(selectors.institute).attr('content');
-            data.url = $(post).find(selectors.link).attr('href');
-            data.font = "Ministerio de Trabajo";
-
-            var promise = request
+            return request
                 .getAsync(data.url)
                 .then(html => {
 
@@ -32,24 +27,20 @@ function scrappData (config, $) {
 
                     if (match) {
                         
-                        data.date = new Date(match[0])
+                        data.date = new Date(match[0]);
                     }
 
-                    data.imageUrl = $("figure.main-image img").attr('src')
+                    data.imageUrl = $("figure.main-image img").attr("src")
                     data.content = $("div.post-page p").map((i, p) => $(p).text()).get().join(" ").trim();
 
+                    data = generateId(data);
+                    data.config = config;
+
                     return data;
-                });
+                })
+                .catch(console.error);
 
-            promises.push(promise);
-
-        });
-
-        return promises;
-
-    }
+        }).get()
 
 }
-
-module.exports = { scrappData };
 

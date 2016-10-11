@@ -1,27 +1,43 @@
 var cheerio = require('cheerio');
-var requestAsync = require("./lib/requestAsync");
+
+
+var request = require("./lib/requestAsync");
 var config = require("./config");
+var scrapData = require("./lib/scrapData");
 
-config.pages.forEach(configPage => {
+config.pages
+    .filter(page => page.active)
+    .forEach(configPage => {
 
-    requestAsync
-        .getAsync(configPage.url)
-        .then(html => {
+        request
+            .getAsync(configPage.url)
+            .then(html => {
 
-            var $ = cheerio.load(html.body);
-            var scrapper = require(`./scrappers/${configPage.scrapper}`);
-            scrapper
-                .scrappData(configPage, $)
-                .then(data => {
+                var $;
 
-                    console.log(data);
-                });
+                if (configPage.format === 'json') {
 
-        })
-        .catch(err => {
+                    $ = JSON.parse(html.body)
 
-            console.error(err);
+                } else {
 
-        });
+                    $ = cheerio.load(html.body);
+                
+                }
 
-});
+                var scrapper = require(`./scrappers/${configPage.scrapper}`);
+
+                return scrapData(scrapper($, configPage))
+                    .then(data => {
+
+                        console.log(data);
+                    });
+
+            })
+            .catch(err => {
+
+                console.error(err);
+
+            });
+
+    });
