@@ -1,6 +1,7 @@
 var cheerio = require("cheerio");
+
 var request = require("../lib/requestAsync");
-var generateId = require('../lib/generateId');
+var util = require('../lib/util');
 
 module.exports = function scrapper($, config) {
 
@@ -8,7 +9,7 @@ module.exports = function scrapper($, config) {
         .slice(0, config.limit)
         .map((i, post) => {
 
-            var data = { config }
+            var data = {}
 
             data.institution = "Ministerio del trabajo";
             data.source = "Ministerio de Trabajo";
@@ -22,19 +23,9 @@ module.exports = function scrapper($, config) {
 
                     data.title = $("h1.title-post").text();
                     data.subtitle = $("span.sub-title").text();
-
-                    var match = /\d{2}\/\d{2}\/\d{4}/g.exec($("span.published").text());
-
-                    if (match) {
-                        
-                        data.date = new Date(match[0]);
-                    }
-
+                    data.date = util.getDate($("span.published").text().trim(), 'DD/MM/YYYY');
                     data.imageUrl = $("figure.main-image img").attr("src")
                     data.content = $("div.post-page p").map((i, p) => $(p).text()).get().join(" ").trim();
-
-                    data = generateId(data);
-                    data.config = config;
 
                     return data;
                 })
