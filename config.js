@@ -25,6 +25,12 @@ var config = {
         {
             "url": "https://www.inei.gob.pe/prensa/noticias/",
             "scrapper": "04.inei.gob.pe",
+            //"active": true
+        },
+        {
+            "url": "https://www.indecopi.gob.pe/noticias",
+            "scrapper": "05.indecopi.gob.pe",
+            "limit": 2,
             "active": true
         }
         
