@@ -4,6 +4,7 @@ var cheerio = require('cheerio');
 var request = require("./lib/requestAsync");
 var config = require("./config");
 var scrapData = require("./lib/scrapData");
+var generateId = require('./lib/generateId');
 
 config.pages
     .filter(page => page.active)
@@ -29,6 +30,13 @@ config.pages
 
                 return scrapData(scrapper($, configPage))
                     .then(data => {
+
+                        data.forEach(_new => {
+
+                            _new = generateId(_new);
+                            _new.config = configPage;
+
+                        });
 
                         console.log(data);
                     });

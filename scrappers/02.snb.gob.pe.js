@@ -1,7 +1,7 @@
 var cheerio = require("cheerio");
 var url = require('url');
 
-var generateId = require('../lib/generateId');
+
 var util = require('../lib/util');
 
 module.exports = function scrapper($, config) {
@@ -24,9 +24,6 @@ module.exports = function scrapper($, config) {
             data.content = $(childTable).find(".contenido1").text().trim();
             data.files = [ $(childTable).find("a.texto_arial_plomo_x2_11_negrita").attr('href') ]
             data.subtitle = util.extractSummary(data.content);
-
-            data = generateId(data);
-            data.config = config;
 
             return Promise.resolve(data);
 
