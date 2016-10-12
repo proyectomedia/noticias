@@ -51,6 +51,12 @@ var config = {
             "url": "http://www.sernanp.gob.pe/noticias1",
             "scrapper": "08.sernanp.gob.pe",
             "limit": 3,
+            //"active": true
+        },
+        {
+            "url": "http://www.minam.gob.pe/notas-de-prensa/",
+            "scrapper": "09.minam.gob.pe",
+            "limit": 2,
             "active": true
         },
     ]
