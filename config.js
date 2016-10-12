@@ -57,6 +57,12 @@ var config = {
             "url": "http://www.minam.gob.pe/notas-de-prensa/",
             "scrapper": "09.minam.gob.pe",
             "limit": 2,
+            //"active": true
+        },
+        {
+            "url": "http://www.minam.gob.pe/medios/",
+            "scrapper": "09.minam.gob.pe",
+            "limit": 1,
             "active": true
         },
     ]
