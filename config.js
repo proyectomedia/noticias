@@ -45,9 +45,14 @@ var config = {
             "url": "http://www.inaigem.gob.pe/NotasDePrensa",
             "scrapper": "07.inaigem.gob.pe",
             "limit": 2,
+            //"active": true
+        },
+        {
+            "url": "http://www.sernanp.gob.pe/noticias1",
+            "scrapper": "08.sernanp.gob.pe",
+            "limit": 3,
             "active": true
         },
-        
     ]
 }
 
