@@ -36,13 +36,10 @@ var config = {
             //"active": true
         },
         {
-            /*TODO
-                "url": "http://www.cultura.gob.pe/es/comunicacion/noticias",
-                "scrapper": "06.cultura.gob.pe",
-                "limit": 2,
-                //"active": true
-            *
-            */
+            "url": "http://www.cultura.gob.pe/es/comunicacion/noticias",
+            "scrapper": "06.cultura.gob.pe",
+            "limit": 2,
+            "active": true
 
         },
         {
@@ -65,9 +62,9 @@ var config = {
         },
         {
             "url": "http://www.minam.gob.pe/medios/",
-            "scrapper": "10.minam-medios.gob.pe",
+            "scrapper": "09.1.minam-medios.gob.pe",
             "limit": 1,
-            "active": true
+            //"active": true
         },
     ]
 }

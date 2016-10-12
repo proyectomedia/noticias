@@ -5,42 +5,37 @@ var util = require('../lib/util');
 
 module.exports = function scrapper($, config) {
 
-    return [Promise.resolve([])];
-
-    /*
-
-    return $("div.Lista_Noticia")
+    return $("li#categoria-1 div.node-noticia")
         .slice(0, config.limit)
         .map((i, post) => {
 
             var data = {};
-            var titleNew = $(post).find("div.Lst_Not_Title");
+            
+            data.institution = "Ministerio de cultura";
 
-            data.institution = "Instituto Nacional de Defensa de la Competencia y de la Protección de la Propiedad Intelectual";
+            var title = $(post).find('div[property="dc:title"]');
 
-            data.title = titleNew.find('h5').text().trim();
-            data.url = titleNew.find("a").attr("href");
+            data.title = title.text().trim();
+            data.url = util.getAbsoluteUrl(config.url, title.find('a').attr("href"));      
 
             return request
                 .getAsync(data.url)
                 .then(html => {
 
-                    var _new = cheerio.load(html.body)('div.Noticia_Interna');
+                    var _new = cheerio.load(html.body)('div.node-noticia');
                     var $ = cheerio.load(_new.html());
 
-                    data.subtitle = $('div.Noticia_IntIntro').text().trim();
-                    data.date = util.getDate($('div.Noticia_IntDate').text().trim(), 'YYYY/MM/DD');
-                    data.imageUrl = util.getAbsoluteUrl(config.url, $('div.Noticia_Int_ContImag').find('img').attr('src'));
-                    data.source = "INDECOPI";
-                    data.content = $("div.Noticia_IntContenido").html();
+                    data.imageUrl = $('img[typeof="foaf:Image"]').attr("src");
+                    data.subtitle = $('.field-name-field-bajada').text();
+                    data.source = "Ministerio de cultura";
+                    data.date = new Date( $('span[property="dc:date"]').attr('content') ); 
+                    data.content = util.extractContent($('.field-name-body p'));
 
                     return data;
                 })
                 .catch(console.error);
 
-        }).get()
-
-        */
+        }).get() 
 
 }
 
