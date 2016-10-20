@@ -7,7 +7,7 @@ scrap().then(news => {
 
     news.forEach(_new => {
 
-        newsRef.child(_new.id).set(_new);
+        newsRef.child(_new._id).set(_new);
 
     });
 
