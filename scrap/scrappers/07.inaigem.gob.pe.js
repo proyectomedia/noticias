@@ -14,6 +14,9 @@ module.exports = function scrapper($, config) {
 
             data.institution = "Ministerio del Ambiente";
 
+            data.category = config.category;
+            data.priority = config.priority;
+
             data.title = titleNew.find('h3').text().trim();
             data.url = titleNew.find("a").attr("href");
             data.date = util.getDate(titleNew.find('span.meta-data').text(), 'YYYY-MM-DD h:m:s');

@@ -14,6 +14,8 @@ module.exports = function scrapper($, config) {
 
             data.institution = "Instituto Nacional de Defensa de la Competencia y de la Protección de la Propiedad Intelectual";
 
+            data.category = config.category;
+            data.priority = config.priority;
             data.title = titleNew.find('h5').text().trim();
             data.url = titleNew.find("a").attr("href");
 

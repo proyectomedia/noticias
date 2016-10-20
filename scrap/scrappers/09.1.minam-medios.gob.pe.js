@@ -13,6 +13,9 @@ module.exports = function scrapper($, config) {
             
             data.institution = "Ministerio del ambiente";
 
+            data.category = config.category;
+            data.priority = config.priority;
+
             var title = $(post).find('div.span_14 h3');
 
             data.title = title.text().trim();

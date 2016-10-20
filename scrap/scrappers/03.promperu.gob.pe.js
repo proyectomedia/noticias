@@ -11,6 +11,9 @@ module.exports = function scrapper($, config) {
             var data = {};
 
             data.institution = "Comisión de Promoción del Perú para la Exportación y el Turismo";
+            
+            data.category = config.category;
+            data.priority = config.priority;
             data.source = "Comisión de Promoción del Perú para la Exportación y el Turismo";
             data.imageUrl = util.getAbsoluteUrl(config.url, "Repos", rawData.url_imagen);
             data.title = rawData.titulo;

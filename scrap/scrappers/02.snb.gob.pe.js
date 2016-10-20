@@ -17,6 +17,8 @@ module.exports = function scrapper($, config) {
             var data = {};
 
             data.institution = "Ministerio de vivienda, construcción y saneamiento";
+            data.category = config.category;
+            data.priority = config.priority;
             data.source = "Ministerio de vivienda, construcción y saneamiento";
             data.imageUrl = $(table).find("img.TABLE_border4").attr('src');
             data.title = $(childTable).find(".texto_arial_plomo_n_11").text().trim();

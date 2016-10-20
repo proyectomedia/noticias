@@ -13,6 +13,9 @@ module.exports = function scrapper($, config) {
             
             data.institution = "Ministerio de cultura";
 
+            data.category = config.category;
+            data.priority = config.priority;
+
             var title = $(post).find('div[property="dc:title"]');
 
             data.title = title.text().trim();

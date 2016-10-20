@@ -14,6 +14,8 @@ module.exports = function scrapper($, config) {
             var aTitle = titleNew.find('a');
 
             data.institution = "Instituto Nacional de Estadística e Informática";
+            data.category = config.category;
+            data.priority = config.priority;
 
             data.title = aTitle.text().trim();
             data.subtitle = $(post).find('.noticia').children().remove().end().text().trim();

@@ -1,11 +1,13 @@
 var config = {
     "global": {
         "limit": 2,
-        "active": false
+        "active": false,
+        "category": "economia",
+        "priority": 0
     },
     "pages": [
         {
-            "url": "http://www2.trabajo.gob.pe/prensa/notas-de11-prensa/",
+            "url": "http://www2.trabajo.gob.pe/prensa/notas-de-prensa/",
             "scrapper": "01.trabajo.gob.pe",
             "limit": 3,
             "active": true

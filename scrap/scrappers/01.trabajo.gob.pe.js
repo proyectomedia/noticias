@@ -13,6 +13,8 @@ module.exports = function scrapper($, config) {
 
             data.institution = "Ministerio del trabajo";
             data.source = "Ministerio de Trabajo";
+            data.category = config.category;
+            data.priority = config.priority;
             data.url = $(post).find("h2 a").attr("href");
 
             return request

@@ -13,6 +13,9 @@ module.exports = function scrapper($, config) {
             
             data.institution = "Servicio Nacional de Áreas Naturales Protegidas por el Estado";
 
+            data.category = config.category;
+            data.priority = config.priority;
+
             data.subtitle = $(post).find('.textonoticia').text().trim();
             data.date = util.getDate($(post).find('.fecha').text().trim(), 'MMMM DD, YYYY');
             data.url = util.getAbsoluteUrl(config.url, $(post).find('.fecha').next().attr("href"));
