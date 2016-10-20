@@ -1,51 +1,13 @@
-var cheerio = require('cheerio');
+var scrap = require('./scrap');
 
+scrap().then(news => {
 
-var request = require("./lib/requestAsync");
-var config = require("./config");
-var scrapData = require("./lib/scrapData");
-var generateId = require('./lib/generateId');
+    news;
+    process.exit();
 
-config.pages
-    .filter(page => page.active)
-    .forEach(configPage => {
+}).catch(err => {
 
-        request
-            .getAsync(configPage.url)
-            .then(html => {
+    console.error(err);
+    process.exit(1);
 
-                var $;
-
-                if (configPage.format === 'json') {
-
-                    $ = JSON.parse(html.body)
-
-                } else {
-
-                    $ = cheerio.load(html.body);
-                
-                }
-
-                var scrapper = require(`./scrappers/${configPage.scrapper}`);
-
-                return scrapData(scrapper($, configPage))
-                    .then(data => {
-
-                        data.forEach(_new => {
-
-                            _new = generateId(_new);
-                            _new.config = configPage;
-
-                        });
-
-                        console.log(data);
-                    });
-
-            })
-            .catch(err => {
-
-                console.error(err);
-
-            });
-
-    });
+});

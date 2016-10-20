@@ -1,0 +1,48 @@
+var cheerio = require('cheerio');
+var Promise = require('bluebird');
+
+var request = require("../lib/requestAsync");
+var config = require("../config");
+var scrapData = require("../lib/scrapData");
+var generateId = require('../lib/generateId');
+
+
+module.exports = function() {
+    
+    var promises = [];
+
+    var pages = config.pages.filter(page => page.active);
+
+    return Promise.map(pages, configPage => {
+
+        return request
+            .getAsync(configPage.url)
+            .then(html => {
+
+                var $;
+
+                if (configPage.format === 'json') {
+
+                    $ = JSON.parse(html.body)
+
+                } else {
+
+                    $ = cheerio.load(html.body);
+                
+                }
+
+                var scrapper = require(`./scrappers/${configPage.scrapper}`);
+
+                return scrapData(scrapper($, configPage))
+                    .then(data => data.map(generateId));
+
+            })
+            .catch(console.error);
+
+    })
+    .then(newsPerPage => 
+        newsPerPage
+        .reduce((news, pageNews) => news.concat(pageNews ? pageNews : []) , [])
+    );
+
+}

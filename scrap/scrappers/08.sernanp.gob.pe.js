@@ -1,7 +1,7 @@
 var cheerio = require("cheerio");
 
-var request = require("../lib/requestAsync");
-var util = require('../lib/util');
+var request = require("../../lib/requestAsync");
+var util = require('../../lib/util');
 
 module.exports = function scrapper($, config) {
 

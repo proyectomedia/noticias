@@ -1,6 +1,6 @@
 var cheerio = require("cheerio");
 
-var util = require('../lib/util');
+var util = require('../../lib/util');
 
 module.exports = function scrapper($, config) {
 
