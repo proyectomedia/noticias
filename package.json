@@ -22,6 +22,7 @@
     "cheerio": "^0.22.0",
     "firebase": "^3.5.1",
     "moment": "^2.15.1",
+    "node-schedule": "^1.2.0",
     "request": "^2.75.0",
     "sha1": "^1.1.1"
   }

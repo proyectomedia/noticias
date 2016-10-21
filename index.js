@@ -1,22 +1,20 @@
-var scrap = require('./scrap');
+var schedule = require('node-schedule');
 
+var scrap = require('./scrap');
 var firebaseApp = require('./lib/db');
 var newsRef = firebaseApp.database().ref('news');
 
-scrap().then(news => {
+//CADA 12 HORAS
+// '0 0 */12 * * *'
 
-    news.forEach(_new => {
+schedule.scheduleJob('*/10 * * * * *', () => {
 
-        newsRef.child(_new._id).set(_new);
+    scrap()
+        .then(news => news.forEach(_new => newsRef.child(_new._id).set(_new)))
+        .catch(err => {
 
-    });
+            console.error(err);
 
-    process.exit();
-
-}).catch(err => {
-
-    console.error(err);
-    process.exit(1);
+        });
 
 });
-
