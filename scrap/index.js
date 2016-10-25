@@ -8,7 +8,7 @@ var generateId = require('../lib/generateId');
 
 
 module.exports = function() {
-    
+
     var promises = [];
 
     var pages = config.pages.filter(page => page.active);
@@ -28,7 +28,7 @@ module.exports = function() {
                 } else {
 
                     $ = cheerio.load(html.body);
-                
+
                 }
 
                 var scrapper = require(`./scrappers/${configPage.scrapper}`);
@@ -40,7 +40,7 @@ module.exports = function() {
             .catch(console.error);
 
     })
-    .then(newsPerPage => 
+    .then(newsPerPage =>
         newsPerPage
         .reduce((news, pageNews) => news.concat(pageNews ? pageNews : []) , [])
     );
