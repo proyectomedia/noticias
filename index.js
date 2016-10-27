@@ -7,8 +7,12 @@ var newsRef = firebaseApp.database().ref('news');
 //CADA 12 HORAS
 // '0 0 */12 * * *'
 
-schedule.scheduleJob('*/10 * * * * *', () => {
+scrap().then(news => {
+    news;
+});
 
+//schedule.scheduleJob('*/10 * * * * *', () => {
+/*
     scrap()
         .then(news => news.forEach(_new => {
 
@@ -29,19 +33,16 @@ schedule.scheduleJob('*/10 * * * * *', () => {
 
 });
 
-<<<<<<< HEAD
-schedule.scheduleJob('*/10 * * * * *', () => {
+*/
 
-    scrap()
-        .then(news => news.forEach(_new => newsRef.child(_new._id).set(_new)))
-        .catch(err => {
+schedule.scheduleJob('*/0 * * * * *', () => {
 
-            console.error(err);
-
-        });
-
+    newsRef.once('child_added', snap => {
+        console.log("Added " + snap.key);
+    });
+    
 });
-=======
+/*
 newsRef.on('child_added', snap => {
     console.log("Added " + snap.key);
 });
@@ -53,4 +54,4 @@ newsRef.on('child_changed', snap => {
 newsRef.on('child_removed', snap => {
     console.log("Removed " + snap.key);
 });
->>>>>>> 1d3c9f96ce34cbe88e91c054aacb0ddfd34cbbd8
+*/

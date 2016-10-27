@@ -1,8 +1,7 @@
 var config = {
     "global": {
         "limit": 2,
-        "active": true,
-        "category": "economia",
+        "active": false,
         "priority": 0
     },
     "pages": [
@@ -67,6 +66,48 @@ var config = {
             "scrapper": "09.1.minam-medios.gob.pe",
             "limit": 1,
             //"active": true
+        },
+        {
+            "url": "http://www.elperuano.pe/seccion.aspx?sec=1",
+            "scrapper": "10.elperuano.pe",
+            "limit": 9,
+            //"active": true,
+            "category": "politica"
+        },
+        {
+            "url": "http://www.elperuano.pe/seccion.aspx?sec=3",
+            "scrapper": "10.elperuano.pe",
+            "limit": 9,
+            //"active": true,
+            "category": "economia"
+        },
+        {
+            "url": "http://www.elperuano.pe/seccion.aspx?sec=7",
+            "scrapper": "10.elperuano.pe",
+            "limit": 8,
+            //"active": true,
+            "category": "actualidad"
+        },
+        {
+            "url": "http://www.elperuano.pe/seccion.aspx?sec=2",
+            "scrapper": "10.elperuano.pe",
+            "limit": 8,
+            //"active": true,
+            "category": "actualidad"
+        },
+        {
+            "url": "http://www.elperuano.pe/seccion.aspx?sec=5",
+            "scrapper": "10.elperuano.pe",
+            "limit": 6,
+            //"active": true,
+            "category": "actualidad"
+        },
+        {
+            "url": "http://www.elperuano.pe/seccion.aspx?sec=4",
+            "scrapper": "10.elperuano.pe",
+            "limit": 3,
+            //"active": true,
+            "category": "actualidad"
         }
     ]
 }
