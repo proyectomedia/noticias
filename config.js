@@ -2,7 +2,8 @@ var config = {
     "global": {
         "limit": 2,
         "active": false,
-        "priority": 0
+        "priority": 0,
+        "verb": "get"
     },
     "pages": [
         {
@@ -108,7 +109,14 @@ var config = {
             "limit": 3,
             //"active": true,
             "category": "actualidad"
-        }
+        },
+        {
+            "url": "http://diariooficial.elperuano.pe/Normas",
+            "scrapper": "11.elperuanonormas.pe",
+            "limit": 3,
+            "active": true,
+            "category": "politica"
+        },
     ]
 }
 

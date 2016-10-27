@@ -15,8 +15,9 @@ module.exports = function() {
 
     return Promise.map(pages, configPage => {
 
-        return request
-            .getAsync(configPage.url)
+        var method = configPage.verb.toLowerCase() + "Async";
+
+        return request[method](configPage.url)
             .then(html => {
 
                 var $;
