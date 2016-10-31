@@ -33,10 +33,10 @@ module.exports = function scrapper($, config) {
 
                 var title = $(post).find('h5 a');
 
-                data.title = title.text();
+                data.title = title.text().trim();
                 data.url = title.attr('href');
                 data.date = util.getDate($(post).find('p b').first().text().trim(), 'DD/MM/YYYY');
-                data.subtitle = $(post).find('p').last().text();
+                data.subtitle = $(post).find('p').last().text().trim();
 
                 return data;
 

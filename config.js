@@ -107,13 +107,28 @@ var config = {
             "url": "http://www.elperuano.pe/seccion.aspx?sec=4",
             "scrapper": "10.elperuano.pe",
             "limit": 3,
-            "active": true,
+            //"active": true,
             "category": "actualidad"
         },
         {
             "url": "http://diariooficial.elperuano.pe/Normas",
             "scrapper": "11.elperuanonormas.pe",
             "limit": 3,
+            //"active": true,
+            "category": "politica",
+            "img": "https://k60.kn3.net/E/7/5/D/2/8/ABC.png"
+        },
+        {
+            "url": "http://www.pcm.gob.pe/seccion/noticias/notas-de-prensa/",
+            "scrapper": "12.pcm.gob.pe",
+            "limit": 1,
+            "active": true,
+            "category": "politica"
+        },
+        {
+            "url": "http://www.presidencia.gob.pe/lista-notas-prensa",
+            "scrapper": "13.presidencia.gob.pe",
+            "limit": 1,
             "active": true,
             "category": "politica"
         },
