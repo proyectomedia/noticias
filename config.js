@@ -122,16 +122,41 @@ var config = {
             "url": "http://www.pcm.gob.pe/seccion/noticias/notas-de-prensa/",
             "scrapper": "12.pcm.gob.pe",
             "limit": 1,
-            "active": true,
+            //"active": true,
             "category": "politica"
         },
         {
             "url": "http://www.presidencia.gob.pe/lista-notas-prensa",
             "scrapper": "13.presidencia.gob.pe",
             "limit": 1,
+            //"active": true,
+            "category": "politica"
+        },
+        {
+            "url": "http://www.andina.com.pe/agencia/seccion-politica-17.aspx?sec=17",
+            "scrapper": "14.andina.com.pe",
             "active": true,
             "category": "politica"
         },
+        {
+            "url": "http://www.andina.com.pe/agencia/seccion-economia-2.aspx",
+            "scrapper": "14.andina.com.pe",
+            "active": true,
+            "category": "economia"
+        },
+        {
+            "url": "http://www.andina.com.pe/agencia/seccion-locales-3.aspx",
+            "scrapper": "14.andina.com.pe",
+            "active": true,
+            "category": "actualidad"
+        },
+        {
+            "url": "http://www.andina.com.pe/agencia/seccion-regionales-4.aspx",
+            "scrapper": "14.andina.com.pe",
+            "active": true,
+            "category": "departamentos"
+        },
+        
     ]
 }
 
