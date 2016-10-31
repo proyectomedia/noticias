@@ -1,5 +1,6 @@
 var cheerio = require('cheerio');
 var Promise = require('bluebird');
+var _ = require('lodash');
 
 var request = require("../lib/requestAsync");
 var config = require("../config");
@@ -43,7 +44,7 @@ module.exports = function() {
     })
     .then(newsPerPage =>
         newsPerPage
-        .reduce((news, pageNews) => news.concat(pageNews ? pageNews : []) , [])
+        .reduce((news, pageNews) => news.concat(pageNews ? _.flatten(pageNews) : []) , [])
     );
 
 }

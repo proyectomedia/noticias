@@ -107,7 +107,7 @@ var config = {
             "url": "http://www.elperuano.pe/seccion.aspx?sec=4",
             "scrapper": "10.elperuano.pe",
             "limit": 3,
-            //"active": true,
+            "active": true,
             "category": "actualidad"
         },
         {

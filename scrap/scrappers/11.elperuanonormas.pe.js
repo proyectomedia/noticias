@@ -1,12 +1,13 @@
 var cheerio = require("cheerio");
 var moment = require('moment');
+var Promise = require('bluebird');
 
 var request = require("../../lib/requestAsync");
 var util = require('../../lib/util');
 
 module.exports = function scrapper($, config) {
 
-    var promise = request.postAsync({
+    return [request.postAsync({
             url: `${config.url}/Filtro`,
             form: {
                 cddesde: moment().format('DD/MM/YYYY'),
@@ -17,65 +18,31 @@ module.exports = function scrapper($, config) {
 
             $ = cheerio.load(html.body);
 
+            var elements = $('article.edicionesoficiales_articulos')
+                .slice(0, config.limit)
+                .get();
 
-            $;
+            return Promise.map(elements, post => {
 
-        });
+                var data = {};
 
-    return [promise];
+                data.institution = "El Peruano";
 
-    /*
+                data.category = config.category;
+                data.priority = config.priority;
 
-    return $("div.seccionportada h1 a, ul li.marco a")
-        .slice(0, config.limit)
-        .map((i, link) => {
+                var title = $(post).find('h5 a');
 
-            var data = {};
+                data.title = title.text();
+                data.url = title.attr('href');
+                data.date = util.getDate($(post).find('p b').first().text().trim(), 'DD/MM/YYYY');
+                data.subtitle = $(post).find('p').last().text();
 
-            data.institution = "El Peruano";
+                return data;
 
-            data.category = config.category;
-            data.priority = config.priority;
+            })
 
-            data.title = $(link).text().trim();
-            data.url = util.getAbsoluteUrl(config.url, $(link).attr('href'));
-
-            return request
-                .getAsync(data.url)
-                .then(html => {
-
-                    var $ = cheerio.load(html.body);
-
-                    var portada = $('div.seccionportada');
-
-                    data.imageUrl = portada.find('img').attr('src');
-                    data.source = "El Peruano";
-
-                    data.subtitle = portada.find('p').text().trim();
-
-                    var texto = $('article.notatexto');
-
-                    data.date = util.getDate(texto.find('p').first().text().trim(), 'DD/MM/YYYY');
-                    
-
-                    data.content = texto
-                        .find('p, .sumilla')
-                        .map((i, p) => {
-                            if (i > 0) {
-                                return $(p).text().trim();
-                            }
-                        })
-                        .get()
-                        .filter(t => t)
-                        .join("\n\n");
-
-                    return data;
-                })
-                .catch(console.error);
-
-        }).get()
-
-*/
+        })];
 
 }
 
