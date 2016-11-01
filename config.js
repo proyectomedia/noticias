@@ -135,28 +135,34 @@ var config = {
         {
             "url": "http://www.andina.com.pe/agencia/seccion-politica-17.aspx?sec=17",
             "scrapper": "14.andina.com.pe",
-            "active": true,
+            //"active": true,
             "category": "politica"
         },
         {
             "url": "http://www.andina.com.pe/agencia/seccion-economia-2.aspx",
             "scrapper": "14.andina.com.pe",
-            "active": true,
+            //"active": true,
             "category": "economia"
         },
         {
             "url": "http://www.andina.com.pe/agencia/seccion-locales-3.aspx",
             "scrapper": "14.andina.com.pe",
-            "active": true,
+            //"active": true,
             "category": "actualidad"
         },
         {
             "url": "http://www.andina.com.pe/agencia/seccion-regionales-4.aspx",
             "scrapper": "14.andina.com.pe",
-            "active": true,
+            //"active": true,
             "category": "departamentos"
         },
-        
+        {
+            "url": "http://www.rree.gob.pe/noticias/Paginas/Notas_de_Prensa.aspx",
+            "scrapper": "15.rree.gob.pe",
+            "limit": 1,
+            "active": true,
+            "category": "politica"
+        },
     ]
 }
 
