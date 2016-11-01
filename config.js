@@ -197,9 +197,16 @@ var config = {
             "url": "http://www.minjus.gob.pe/categoria/ultimas-noticias/",
             "scrapper": "18.minjus.gob.pe",
             "limit": 2,
-            "active": true,
+            //"active": true,
             "category": "actualidad",
             "priority": 1
+        },
+        {
+            "url": "http://portal.osce.gob.pe/osce/noticias",
+            "scrapper": "19.osce.gob.pe",
+            "limit": 1,
+            "active": true,
+            "category": "actualidad"
         }
     ]
 }
