@@ -160,9 +160,16 @@ var config = {
             "url": "http://www.rree.gob.pe/noticias/Paginas/Notas_de_Prensa.aspx",
             "scrapper": "15.rree.gob.pe",
             "limit": 1,
-            "active": true,
+            //"active": true,
             "category": "politica"
         },
+        {
+            "url": "https://www.ositran.gob.pe/publicaciones1/notas-de-prensa.html",
+            "scrapper": "16.ositran.gob.pe",
+            "limit": 1,
+            "active": true,
+            "category": "actualidad"
+        }
     ]
 }
 

@@ -27,7 +27,9 @@ module.exports = function scrapper($, config) {
                     data.source = data.institution;
                     data.title = $('div#ctl00_PlaceHolderMain_RichHtmlField1__ControlWrapper_RichHtmlField').text().trim();
                     var date = $('div#ctl00_PlaceHolderMain_ctl02__ControlWrapper_RichHtmlField').text().trim();
-                    data.date = util.getDate(date.split("-")[1].trim(), 'DD/MM/YYYY');
+                    try {
+                        data.date = util.getDate(date.split("-")[1].trim(), 'DD/MM/YYYY');
+                    } catch (e) {}
                     data.subtitle = util.extractSummary($('div#ctl00_PlaceHolderMain_RichHtmlField2__ControlWrapper_RichHtmlField p').slice(1, -1).text().trim());
 
                     return data;
