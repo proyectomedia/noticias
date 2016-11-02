@@ -205,9 +205,17 @@ var config = {
             "url": "http://portal.osce.gob.pe/osce/noticias",
             "scrapper": "19.osce.gob.pe",
             "limit": 1,
-            "active": true,
+            //"active": true,
             "category": "actualidad"
-        }
+        },
+        {
+            "url": "http://www.midis.gob.pe/index.php/es/centro-de-informacion",
+            "scrapper": "20.midis.gob.pe",
+            "limit": 2,
+            "active": true,
+            "category": "politica"
+        },
+        
     ]
 }
 
