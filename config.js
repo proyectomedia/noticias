@@ -219,8 +219,15 @@ var config = {
             "url": "http://www.minsa.gob.pe/index.asp?op=5#Prensa",
             "scrapper": "21.minsa.gob.pe",
             "limit": 6,
-            "active": true,
+            //"active": true,
             "category": "salud"
+        },
+        {
+            "url": "http://policiaperu.tumblr.com/",
+            "scrapper": "22.policiaperu.tumblr.com",
+            "limit": 1,
+            "active": true,
+            "category": "seguridad"
         },
         
     ]
