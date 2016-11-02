@@ -226,6 +226,13 @@ var config = {
             "url": "http://policiaperu.tumblr.com/",
             "scrapper": "22.policiaperu.tumblr.com",
             "limit": 1,
+            //"active": true,
+            "category": "seguridad"
+        },
+        {
+            "url": "https://www.mininter.gob.pe/vista-listado-de-noticias",
+            "scrapper": "23.mininter.gob.pe",
+            "limit": 4,
             "active": true,
             "category": "seguridad"
         },
