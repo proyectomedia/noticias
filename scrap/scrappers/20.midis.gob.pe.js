@@ -30,7 +30,19 @@ module.exports = function scrapper($, config) {
 
                     var $ = cheerio.load(html.body);
 
-                    data.content = $('div.item-page p').text().trim();
+                    $('div.item-page p').get().some(p => {
+
+                        try {
+
+                            var text = $(p).text().trim();
+
+                            if (/\d{2} de (enero|febrero|marzo|abril|mayo|junio|julio|agosto|septiembre|octubre|noviembre|diciembre) de \d{4}$/gi.test(text)) {
+                                data.date = util.getDate(text.split(',')[1], 'DD [de] MMMM de YYYY');
+                                return true;
+                            }
+
+                        } catch(e) {}
+                    });
 
                     return data;
                 })

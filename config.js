@@ -212,8 +212,15 @@ var config = {
             "url": "http://www.midis.gob.pe/index.php/es/centro-de-informacion",
             "scrapper": "20.midis.gob.pe",
             "limit": 2,
-            "active": true,
+            //"active": true,
             "category": "politica"
+        },
+        {
+            "url": "http://www.minsa.gob.pe/index.asp?op=5#Prensa",
+            "scrapper": "21.minsa.gob.pe",
+            "limit": 6,
+            "active": true,
+            "category": "salud"
         },
         
     ]
