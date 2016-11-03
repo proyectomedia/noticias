@@ -233,9 +233,16 @@ var config = {
             "url": "https://www.mininter.gob.pe/vista-listado-de-noticias",
             "scrapper": "23.mininter.gob.pe",
             "limit": 4,
-            "active": true,
+            //"active": true,
             "category": "seguridad"
         },
+        {
+            "url": "http://www.inpe.gob.pe/contenidosprensa_all.php?direccion=1",
+            "scrapper": "24.inpe.gob.pe",
+            "limit": 4,
+            "active": true,
+            "category": "seguridad"
+        }
         
     ]
 }
