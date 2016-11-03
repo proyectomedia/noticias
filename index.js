@@ -1,47 +1,42 @@
 var schedule = require('node-schedule');
 
 var scrap = require('./scrap');
+var f = require('./facebook/index');
+var fb= require("./facebook/fbpages");
 var firebaseApp = require('./lib/db');
 var newsRef = firebaseApp.database().ref('news');
-
+var FB = require('fb');
 //CADA 12 HORAS
 // '0 0 */12 * * *'
+//.then(news => news.forEach(_new => newsRef.child(_new._id).set(_new)))
 
-schedule.scheduleJob('*/10 * * * * *', () => {
+// schedule.scheduleJob('*/10 * * * * *', () => {
+//
+//     scrap()
+//         .then(news => news.forEach(_new => {
+//
+//             newsRef.orderByKey().equalTo(_new._id).once('value', snap => {
+//
+//                 if (!snap.val()) {
+//                     newsRef.child(_new._id).set(_new);
+//                 }
+//
+//             })
+//
+//         }))
+//         .catch(err => {
+//
+//             console.error(err);
+//
+//         });
+//
+// });
 
-    scrap()
-        .then(news => news.forEach(_new => {
 
-            newsRef.orderByKey().equalTo(_new._id).once('value', snap => {
 
-                if (!snap.val()) {
-                    newsRef.child(_new._id).set(_new);
-                }
 
-            })
 
-        }))
-        .catch(err => {
 
-            console.error(err);
-
-        });
-
-});
-
-<<<<<<< HEAD
-schedule.scheduleJob('*/10 * * * * *', () => {
-
-    scrap()
-        .then(news => news.forEach(_new => newsRef.child(_new._id).set(_new)))
-        .catch(err => {
-
-            console.error(err);
-
-        });
-
-});
-=======
 newsRef.on('child_added', snap => {
     console.log("Added " + snap.key);
 });
@@ -53,4 +48,3 @@ newsRef.on('child_changed', snap => {
 newsRef.on('child_removed', snap => {
     console.log("Removed " + snap.key);
 });
->>>>>>> 1d3c9f96ce34cbe88e91c054aacb0ddfd34cbbd8

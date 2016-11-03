@@ -20,8 +20,7 @@ module.exports = function() {
             .then(html => {
 
                 var $;
-
-                if (configPage.format === 'json') {
+              if (configPage.format === 'json') {
 
                     $ = JSON.parse(html.body)
 
