@@ -1,5 +1,6 @@
 var cheerio = require('cheerio');
 var Promise = require('bluebird');
+var _ = require('lodash');
 
 var request = require("../lib/requestAsync");
 var config = require("../config");
@@ -15,8 +16,9 @@ module.exports = function() {
 
     return Promise.map(pages, configPage => {
 
-        return request
-            .getAsync(configPage.url)
+        var method = configPage.verb.toLowerCase() + "Async";
+
+        return request[method](configPage.url)
             .then(html => {
 
                 var $;
@@ -33,7 +35,11 @@ module.exports = function() {
                 var scrapper = require(`./scrappers/${configPage.scrapper}`);
 
                 return scrapData(scrapper($, configPage))
-                    .then(data => data.map(generateId));
+                    .then(data => data.map(_new => {
+                        _new.imageUrl = _new.imageUrl || configPage.defaultImageUrl || null;
+                        _new.category = configPage.category || null;
+                        return generateId(_new);
+                    }))
 
             })
             .catch(console.error);
@@ -41,7 +47,7 @@ module.exports = function() {
     })
     .then(newsPerPage =>
         newsPerPage
-        .reduce((news, pageNews) => news.concat(pageNews ? pageNews : []) , [])
+        .reduce((news, pageNews) => news.concat(pageNews ? _.flatten(pageNews) : []) , [])
     );
 
 }
