@@ -1,7 +1,7 @@
 var config = {
     "global": {
         "limit": 2,
-        "active": false,
+        "active": true,
         "priority": 0,
         "verb": "get"
     },
@@ -10,7 +10,7 @@ var config = {
             "url": "http://www2.trabajo.gob.pe/prensa/notas-de-prensa/",
             "scrapper": "01.trabajo.gob.pe",
             "limit": 3,
-            //"active": true
+            "active": true
         },
         {
             "url": "http://www.sbn.gob.pe/noticias_hist.php",
@@ -240,9 +240,10 @@ var config = {
             "url": "http://www.inpe.gob.pe/contenidosprensa_all.php?direccion=1",
             "scrapper": "24.inpe.gob.pe",
             "limit": 4,
-            "active": true,
+            //"active": true,
             "category": "seguridad"
         }
+        
         
     ]
 }

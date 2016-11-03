@@ -36,7 +36,11 @@ module.exports = function() {
                 var scrapper = require(`./scrappers/${configPage.scrapper}`);
 
                 return scrapData(scrapper($, configPage))
-                    .then(data => data.map(generateId));
+                    .then(data => data.map(_new => {
+                        _new.imageUrl = _new.imageUrl || configPage.defaultImageUrl || null;
+                        _new.category = configPage.category || null;
+                        return generateId(_new);
+                    }))
 
             })
             .catch(console.error);
