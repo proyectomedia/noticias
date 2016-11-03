@@ -11,7 +11,7 @@ function sacarpostyguardar(paginas){
   var ide;
   //alert(paginas.le);
   for (i in paginas){
-    console.log(i);
+
        ide=paginas[i].id.toString();
 
 
@@ -35,7 +35,7 @@ function sacarpostyguardar(paginas){
                data.source=response.posts.data[0].caption;
 
           if (response.posts.data[0].description ){
-               console.log("description");
+
                  data.description=response.posts.data[0].description};
 
 
@@ -85,9 +85,9 @@ function sacarpostyguardar(paginas){
 
             if (data.category!=" "){
 
-               console.log("base de datos");
+               console.log("periodico : "+data.username+" -> noticia con categoria guardada en base de datos");
                console.log(" ");
-               console.log(" ");
+               
                newsRef.orderByKey().equalTo(data._id).once('value', snap => {
 
                                if (!snap.val()) {
@@ -103,7 +103,7 @@ function sacarpostyguardar(paginas){
            .catch(function(err){
               console.log("error");
            });
-      console.log("llego");
+      //console.log("llego");
 
       });
 
