@@ -24,7 +24,9 @@
     "lodash": "^4.16.5",
     "moment": "^2.15.1",
     "moment-timezone": "^0.5.7",
+    "mongodb": "^2.2.11",
     "node-schedule": "^1.2.0",
+    "q": "^1.4.1",
     "request": "^2.75.0",
     "sha1": "^1.1.1"
   }

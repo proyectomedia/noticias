@@ -1,4 +1,5 @@
 var config = {
+    "mongouri": 'mongodb://news:123456789@ds025419.mlab.com:25419/news',
     "global": {
         "limit": 2,
         "active": true,
@@ -10,7 +11,7 @@ var config = {
             "url": "http://www2.trabajo.gob.pe/prensa/notas-de-prensa/",
             "scrapper": "01.trabajo.gob.pe",
             "limit": 3,
-            "active": true
+            //"active": true
         },
         {
             "url": "http://www.sbn.gob.pe/noticias_hist.php",
@@ -233,14 +234,14 @@ var config = {
             "url": "https://www.mininter.gob.pe/vista-listado-de-noticias",
             "scrapper": "23.mininter.gob.pe",
             "limit": 4,
-            //"active": true,
+            "active": true,
             "category": "seguridad"
         },
         {
             "url": "http://www.inpe.gob.pe/contenidosprensa_all.php?direccion=1",
             "scrapper": "24.inpe.gob.pe",
             "limit": 4,
-            //"active": true,
+            "active": true,
             "category": "seguridad"
         }
         

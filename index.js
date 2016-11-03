@@ -5,6 +5,48 @@ var firebaseApp = require('./lib/db');
 var newsRef = firebaseApp.database().ref('news');
 var _ = require('lodash');
 
+var promisifyAll = require('bluebird').promisifyAll;
+var spawn = require('q').spawn;
+
+var mongodb = require("mongodb");
+var MongoClient = mongodb.MongoClient;
+
+var mongodb = promisifyAll(require("mongodb"));
+var MongoClient = promisifyAll(mongodb.MongoClient);
+var mongouri = require('./config').mongouri;
+
+spawn(function*() {
+
+    try {
+
+        var db = yield MongoClient.connectAsync(mongouri);
+
+        var news = yield scrap();
+
+        var collection = yield db.collectionAsync('news');
+
+        for (i in news) {
+
+            var _new = news[i];
+
+            var exists = yield collection.findOneAsync({ _id: _new._id });
+
+            if (!exists) {
+
+                yield collection.insertAsync(_new);
+            }
+        }
+
+    }
+    catch (err) {
+
+        console.error(err);
+    }
+
+});
+
+
+
 //CADA 12 HORAS
 // '0 0 */12 * * *'
 
@@ -14,6 +56,8 @@ var _ = require('lodash');
 */
 
 //schedule.scheduleJob('*/60 * * * * *', () => {
+
+/*
 
     scrap()
         .then(news => {
@@ -46,7 +90,7 @@ var _ = require('lodash');
 
 //});
 
-schedule.scheduleJob('*/0 * * * * *', () => {
+schedule.scheduleJob('*\/0 * * * * *', () => {
 
     newsRef.once('child_added', snap => {
         console.log("Added " + snap.key);
