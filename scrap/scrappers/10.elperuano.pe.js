@@ -35,6 +35,8 @@ module.exports = function scrapper($, config) {
                     var texto = $('article.notatexto');
 
                     data.date = util.getDate(texto.find('p').first().text().trim(), 'DD/MM/YYYY');
+
+                    if (data.date === 'Invalid Date') data.date = util.getDate(texto.find('p').first().text().trim(), 'D/MM/YYYY');
                     
 
                     data.content = texto
