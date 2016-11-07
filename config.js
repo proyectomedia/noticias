@@ -1,27 +1,61 @@
 var config = {
     "global": {
         "limit": 2,
-        "active": true,
+        "active": false,
         "priority": 0,
-        "verb": "get"
+        "verb": "get",
+        "debug": true
     },
     "pages": [
         {
             "url": "http://www2.trabajo.gob.pe/prensa/notas-de-prensa/",
             "scrapper": "01.trabajo.gob.pe",
-            "limit": 3,
-            "active": true
+            "limit": 1,
+            "defaults": {
+                "category": "politica",
+                "categories": ["politica"],
+                "priority": 1,
+                "type": "link",
+                "source": "Ministerio Del trabajo",
+                "source_website": "http://www2.trabajo.gob.pe/",
+                "fb_id": "",
+                "fb_source_username": "",
+                "imageUrl": ""
+            },
+            //"active": true
         },
         {
             "url": "http://www.sbn.gob.pe/noticias_hist.php",
             "scrapper": "02.snb.gob.pe",
             "limit": 2,
+            "defaults": {
+                "category": "politica",
+                "categories": ["politica", "obras"],
+                "priority": 1,
+                "type": "link",
+                "source": "Superintendencia Nacional de Bienes Estatales",
+                "source_website": "http://www.sbn.gob.pe/",
+                "fb_id": "",
+                "fb_source_username": "",
+                "imageUrl": ""
+            },
             //"active": true
         },
         {
             "url": "http://www.promperu.gob.pe/services/ListarNovedadesEspanol.aspx",
             "scrapper": "03.promperu.gob.pe",
             "limit": 1,
+            "defaults": {
+                "category": "empresas",
+                "categories": ["empresas"],
+                "priority": 1,
+                "type": "link",
+                "source": "Comisión de Promoción del Perú para la Exportación y el Turismo",
+                "source_website": "http://www.promperu.gob.pe/",
+                "fb_id": "",
+                "fb_source_username": "",
+                "imageUrl": ""
+            },
             "format": "json",
             //"active": true
         },
@@ -29,13 +63,35 @@ var config = {
             "url": "https://www.inei.gob.pe/prensa/noticias/",
             "scrapper": "04.inei.gob.pe",
             "limit": 2,
+            "defaults": {
+                "category": "actualidad",
+                "categories": ["actualidad"],
+                "priority": 1,
+                "type": "link",
+                "source": "Instituto Nacional de Estadística e Informática",
+                "source_website": "https://www.inei.gob.pe/",
+                "fb_id": "",
+                "fb_source_username": "",
+                "imageUrl": ""
+            },
             //"active": true
         },
         {
             "url": "https://www.indecopi.gob.pe/noticias",
             "scrapper": "05.indecopi.gob.pe",
             "limit": 1,
-            //"active": true
+            "defaults": {
+                "category": "actualidad",
+                "categories": ["actualidad"],
+                "priority": 1,
+                "type": "link",
+                "source": "Instituto Nacional de Defensa de la Competencia y de la Protección de la Propiedad Intelectual",
+                "source_website": "https://www.indecopi.gob.pe/",
+                "fb_id": "",
+                "fb_source_username": "",
+                "imageUrl": ""
+            },
+            "active": true
         },
         {
             "url": "http://www.cultura.gob.pe/es/comunicacion/noticias",

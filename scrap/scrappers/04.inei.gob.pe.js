@@ -1,3 +1,7 @@
+/*
+    Review Date: 2016-11-07
+    Reviewer: Kellerman Rivero.
+*/
 var cheerio = require("cheerio");
 
 var request = require("../../lib/requestAsync");
@@ -9,41 +13,37 @@ module.exports = function scrapper($, config) {
         .slice(0, config.limit)
         .map((i, post) => {
 
-            var data = {};
+            var news = {};
             var titleNew = $(post).find("div.titulonoticias");
             var aTitle = titleNew.find('a');
+            var postUrl = util.resolveUrl(config.url, aTitle.attr("href"));
 
-            data.institution = "Instituto Nacional de Estadística e Informática";
-            data.category = config.category;
-            data.priority = config.priority;
-
-            data.title = aTitle.text().trim();
-            data.subtitle = $(post).find('.noticia').children().remove().end().text().trim();
-            data.date = util.getDate(titleNew.find('span[style]').text().trim(), 'DD/MM/YYYY');
-            data.url = util.getAbsoluteUrl(config.url, aTitle.attr("href"));
+            news.title = aTitle.text().trim();
+            news.subtitle = $(post).find('.noticia').children().remove().end().text().trim();
+            news.date = util.getDate(titleNew.find('span[style]').text().trim(), 'DD/MM/YYYY');
+            news.url = postUrl;
 
             return request
-                .getAsync(data.url)
+                .getAsync(postUrl)
                 .then(html => {
 
                     var $ = cheerio.load(html.body);
 
-                    var content = $("<div></div>");
+                    var content = "";
 
                     $("div#contenido")
                         .find("p[style='text-align: justify;']")
                         .each(function() {
-                            content.append(this);
+                            content += $(this).text() + "\n";
                         })
                     
-                    data.content = content.html();
-                    data.files = [ util.getAbsoluteUrl(config.url, $("div#contenido").find('a.more').attr('href')) ]
+                    news.content = content;
+                    news.files = [ util.resolveUrl(config.url, $("div#contenido").find('a.more').attr('href')) ]
 
-                    return data;
+                    return news;
                 })
                 .catch(console.error);
 
         }).get()
-
 }
 
