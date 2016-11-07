@@ -9,41 +9,36 @@ module.exports = function scrapper($, config) {
         .slice(0, config.limit)
         .map((i, post) => {
 
-            var data = {};
-            var titleNew = $(post).find("header.post-title");
-
-            data.institution = "Ministerio del Ambiente";
-
-            data.category = config.category;
-            data.priority = config.priority;
-
-            data.title = titleNew.find('h3').text().trim();
-            data.url = titleNew.find("a").attr("href");
-            data.date = util.getDate(titleNew.find('span.meta-data').text(), 'YYYY-MM-DD h:m:s');
-            data.subtitle = $('.post-content').find('.col-md-8 p').first().text().trim();
+            var postUrl = $(post).find("header.post-title").find("a").attr("href");
 
             return request
-                .getAsync(data.url)
+                .getAsync(postUrl)
                 .then(html => {
 
-                    var _new = cheerio.load(html.body)('article.post-content');
-                    var $ = cheerio.load(_new.html());
+                    var $ = cheerio.load(html.body);
 
-                    data.categoryNew = $('span.meta-data span').last().find('a').text().trim();
-                    data.imageUrl = $('div.featured-image').find('img').attr('src');
-                    data.source = "INAIGEM";
+                    var news = {};
 
-                    var content = $("<div></div>");
+                    news.title = $(".post-title").text().trim();
+                    news.date = util.getDate($(".post-content").find('span.meta-data').text(), 'YYYY-MM-DD h:m:s');
+                    news.imageUrl = $('div.featured-image').find('img').attr('src');
+                    news.url = postUrl;
+
+                    var content = "";
 
                     $('p')
                         .not('.r-texto')
                         .each(function() {
-                            content.append(this);
+                            content += $(this).text() + '\n';
                         });
                     
-                    data.content = content.html();
+                    news.content = content;
+                    news.subtitle = util.extractSummary(content);
+                    news.files = [];
+                    //news.categoryNew = $('span.meta-data span').last().find('a').text().trim();
+                    
 
-                    return data;
+                    return news;
                 })
                 .catch(console.error);
 

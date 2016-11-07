@@ -20,6 +20,7 @@ module.exports = function scrapper($, config) {
             news.content = rawData.descripcion.trim();
             news.files = [ util.getAbsoluteUrl(config.url, "Repos", rawData.link) ]
             news.subtitle = util.extractSummary(news.content);
+            news.url = util.getAbsoluteUrl(config.url, "Repos", rawData.link);
 
             return Promise.resolve(news);
         });

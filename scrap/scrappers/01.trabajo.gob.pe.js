@@ -31,7 +31,8 @@ module.exports = function scrapper($, config) {
                     news.imageUrl = $("figure.main-image img").attr("src");    
                     news.url = postUrl;
                     news.content = $("div.post-page p").map((i, p) => $(p).text()).get().join(" ").trim();                    
-
+                    news.files = [];
+                    
                     return news;
                 })
                 .catch(console.error);

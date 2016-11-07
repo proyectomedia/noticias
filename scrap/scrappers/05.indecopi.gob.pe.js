@@ -27,6 +27,8 @@ module.exports = function scrapper($, config) {
                     news.date = util.getDate($('div.Noticia_IntDate').text().trim(), 'YYYY/MM/DD');
                     news.imageUrl = util.getAbsoluteUrl(config.url, $('div.Noticia_Int_ContImag').find('img').attr('src'));
                     news.content = $("div.Noticia_IntContenido").html();
+                    news.files = [];
+                    news.url = postUrl;
 
                     return news;
                 })

@@ -38,6 +38,7 @@ module.exports = function scrapper($, config) {
                         })
                     
                     news.content = content;
+                    news.imageUrl = "";
                     news.files = [ util.resolveUrl(config.url, $("div#contenido").find('a.more').attr('href')) ]
 
                     return news;

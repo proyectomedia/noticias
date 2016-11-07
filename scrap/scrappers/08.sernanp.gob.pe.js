@@ -9,36 +9,32 @@ module.exports = function scrapper($, config) {
         .slice(0, config.limit)
         .map((i, post) => {
 
-            var data = {};
-            
-            data.institution = "Servicio Nacional de Áreas Naturales Protegidas por el Estado";
+            var postUrl = util.getAbsoluteUrl(config.url, $(post).find('.fecha').next().attr("href"));            
+            var news = {};
 
-            data.category = config.category;
-            data.priority = config.priority;
+            news.date = util.getDate($(post).find('.fecha').text().trim(), 'MMMM DD, YYYY');
 
-            data.subtitle = $(post).find('.textonoticia').text().trim();
-            data.date = util.getDate($(post).find('.fecha').text().trim(), 'MMMM DD, YYYY');
-            data.url = util.getAbsoluteUrl(config.url, $(post).find('.fecha').next().attr("href"));
-            data.imageUrl = $(post).find('div.contendor-img-noticia img').attr('src');
-            data.source = "SERNANP";         
 
             return request
-                .getAsync(data.url)
+                .getAsync(postUrl)
                 .then(html => {
 
-                    var _new = cheerio.load(html.body)('div.cont-noticia-mas');
-                    var $ = cheerio.load(_new.html());
-
-                    data.title = $('div.cont-titulo-mas').text().trim();
-
-                    data.content = $('div.cont-descripcion-mas-1')
+                    var $ = cheerio.load(html.body);
+                    
+                    news.title = $('div.cont-titulo-mas').text().trim();                    
+                    news.imageUrl = $("div.cont-descripcion-mas-1 img").attr("src");
+                    news.content = $('div.cont-descripcion-mas-1')
                         .find('p')
                         .map((i, p) => $(p).text().trim())
                         .get()
                         .filter(t => t)
                         .join("\n\n");
 
-                    return data;
+                    news.url = postUrl;
+                    news.subtitle = util.extractSummary(news.content);
+                    news.files = []; 
+
+                    return news;
                 })
                 .catch(console.error);
 

@@ -9,32 +9,25 @@ module.exports = function scrapper($, config) {
         .slice(0, config.limit)
         .map((i, post) => {
 
-            var data = {};
-            
-            data.institution = "Ministerio de cultura";
-
-            data.category = config.category;
-            data.priority = config.priority;
-
-            var title = $(post).find('div[property="dc:title"]');
-
-            data.title = title.text().trim();
-            data.url = util.getAbsoluteUrl(config.url, title.find('a').attr("href"));      
+            var postUrl = util.resolveUrl(config.url,  $(post).find("div[property='dc:title']").find('a').attr("href"));      
 
             return request
-                .getAsync(data.url)
+                .getAsync(postUrl)
                 .then(html => {
 
-                    var _new = cheerio.load(html.body)('div.node-noticia');
-                    var $ = cheerio.load(_new.html());
+                    var $ = cheerio.load(html.body);
 
-                    data.imageUrl = $('img[typeof="foaf:Image"]').attr("src");
-                    data.subtitle = $('.field-name-field-bajada').text();
-                    data.source = "Ministerio de cultura";
-                    data.date = new Date( $('span[property="dc:date"]').attr('content') ); 
-                    data.content = util.extractContent($('.field-name-body p'));
+                    var news = {};
 
-                    return data;
+                    news.title = $("div[property='dc:title']").text().trim();
+                    news.subtitle = $('.field-name-field-bajada').text();
+                    news.date = new Date( $('span[property="dc:date"]').attr('content') ); 
+                    news.imageUrl = $('img[typeof="foaf:Image"]').attr("src");
+                    news.content = util.extractContent($('.field-name-body p'));
+                    news.files = [];
+                    news.url = postUrl;
+
+                    return news;
                 })
                 .catch(console.error);
 

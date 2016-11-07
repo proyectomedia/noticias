@@ -91,26 +91,58 @@ var config = {
                 "fb_source_username": "",
                 "imageUrl": ""
             },
-            "active": true
+            //"active": true
         },
         {
             "url": "http://www.cultura.gob.pe/es/comunicacion/noticias",
             "scrapper": "06.cultura.gob.pe",
             "limit": 2,
+            "defaults": {
+                "category": "politica",
+                "categories": ["politica"],
+                "priority": 1,
+                "type": "link",
+                "source": "Ministerio de Cultura",
+                "source_website": "http://www.cultura.gob.pe/",
+                "fb_id": "",
+                "fb_source_username": "",
+                "imageUrl": ""
+            },
             //"active": true
-
         },
         {
             "url": "http://www.inaigem.gob.pe/NotasDePrensa",
             "scrapper": "07.inaigem.gob.pe",
             "limit": 2,
+            "defaults": {
+                "category": "politica",
+                "categories": ["politica"],
+                "priority": 1,
+                "type": "link",
+                "source": "Instituto Nacional de Investigación en Glaciares y Ecosistemas de Montaña",
+                "source_website": "http://www.inaigem.gob.pe/",
+                "fb_id": "",
+                "fb_source_username": "",
+                "imageUrl": ""
+            },
             //"active": true
         },
         {
             "url": "http://www.sernanp.gob.pe/noticias1",
             "scrapper": "08.sernanp.gob.pe",
             "limit": 3,
-            //"active": true
+            "defaults": {
+                "category": "politica",
+                "categories": ["politica"],
+                "priority": 1,
+                "type": "link",
+                "source": "Servicio Nacional de Áreas Naturales Protegidas por el Estado",
+                "source_website": "http://www.sernanp.gob.pe/",
+                "fb_id": "",
+                "fb_source_username": "",
+                "imageUrl": ""
+            },
+            "active": true
         },
         {
             "url": "http://www.minam.gob.pe/notas-de-prensa/",
