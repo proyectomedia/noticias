@@ -9,41 +9,33 @@ module.exports = function scrapper($, config) {
         .slice(0, config.limit)
         .map((i, post) => {
 
-            var data = {};
-            
-            data.institution = "Ministerio del ambiente";
-
-            data.category = config.category;
-            data.priority = config.priority;
-
-            var title = $(post).find('div.span_14 h3');
-
-            data.title = title.text().trim();
-            data.url = title.find('a').attr("href");
-            data.subtitle = title.nextAll('p').text().trim();        
+            var postUrl = $(post).find('div.span_14 h3 a').attr("href");
 
             return request
-                .getAsync(data.url)
+                .getAsync(postUrl)
                 .then(html => {
 
                     var _new = cheerio.load(html.body)('div.box_post');
                     var $ = cheerio.load(_new.html());
-
+                    
+                    var news = {};
                     var fecha = $('#fecha');
 
-                    data.date = util.getDate(fecha.text().trim(), 'YYYY-MM-DD');
-            
-                    data.videoUrl = $("iframe[src*='youtube']").attr("src");
-                    data.source = "MINAM";
-
-                    data.content = fecha
+                    news.title = $("h1").text().trim();
+                    news.date = util.getDate(fecha.text().trim(), 'YYYY-MM-DD');
+                    news.videoUrl = $("iframe[src*='youtube']").attr("src");
+                    news.content = fecha
                         .nextAll('p[style]')
                         .map((i, p) => $(p).text().trim())
                         .get()
                         .filter(t => t)
                         .join("\n\n");
 
-                    return data;
+                    news.subtitle = util.extractSummary(news.content, 50);
+                    news.url = postUrl;
+                    news.files = [];
+
+                    return news;
                 })
                 .catch(console.error);
 

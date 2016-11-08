@@ -142,27 +142,58 @@ var config = {
                 "fb_source_username": "",
                 "imageUrl": ""
             },
-            "active": true
+            //"active": true
         },
         {
             "url": "http://www.minam.gob.pe/notas-de-prensa/",
             "scrapper": "09.minam.gob.pe",
             "limit": 2,
+            "defaults": {
+                "category": "politica",
+                "categories": ["politica"],
+                "priority": 1,
+                "type": "link",
+                "source": "Ministerio del Ambiente",
+                "source_website": "http://www.minam.gob.pe/",
+                "fb_id": "",
+                "fb_source_username": "",
+                "imageUrl": ""
+            },
             //"active": true
         },
         {
             "url": "http://www.minam.gob.pe/medios/",
             "scrapper": "09.1.minam-medios.gob.pe",
-            "limit": 1,
+            "limit": 4,
+            "defaults": {
+                "category": "politica",
+                "categories": ["politica"],
+                "priority": 1,
+                "type": "link",
+                "source": "Ministerio del Ambiente",
+                "source_website": "http://www.minam.gob.pe/",
+                "fb_id": "",
+                "fb_source_username": "",
+                "imageUrl": ""
+            },
             //"active": true
         },
         {
             "url": "http://www.elperuano.pe/seccion.aspx?sec=1",
             "scrapper": "10.elperuano.pe",
             "limit": 9,
-            //"active": true,
-            "category": "politica",
-            "priority": 2
+            "defaults": {
+                "category": "politica",
+                "categories": ["politica"],
+                "priority": 2,
+                "type": "link",
+                "source": "El Peruano",
+                "source_website": "http://www.elperuano.pe/",
+                "fb_id": "",
+                "fb_source_username": "",
+                "imageUrl": ""
+            },
+            "active": true
         },
         {
             "url": "http://www.elperuano.pe/seccion.aspx?sec=3",

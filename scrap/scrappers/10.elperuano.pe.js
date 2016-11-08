@@ -9,37 +9,31 @@ module.exports = function scrapper($, config) {
         .slice(0, config.limit)
         .map((i, link) => {
 
-            var data = {};
-
-            data.institution = "El Peruano";
-
-            data.category = config.category;
-            data.priority = config.priority;
-
-            data.title = $(link).text().trim();
-            data.url = util.getAbsoluteUrl(config.url, $(link).attr('href'));
+            var postUrl = util.getAbsoluteUrl(config.url, encodeURIComponent($(link).attr('href').replace(/(\r\n|\n|\r)/gm,"")));
 
             return request
-                .getAsync(data.url)
+                .getAsync(postUrl)
                 .then(html => {
-
                     var $ = cheerio.load(html.body);
 
                     var portada = $('div.seccionportada');
 
-                    data.imageUrl = portada.find('img').attr('src');
-                    data.source = "El Peruano";
+                    var news = {};
 
-                    data.subtitle = portada.find('p').text().trim();
+                    news.title = $("h1").text().trim();
+                    news.imageUrl = portada.find('img').attr('src');
+                    news.subtitle = portada.find('p').text().trim();
 
                     var texto = $('article.notatexto');
 
-                    data.date = util.getDate(texto.find('p').first().text().trim(), 'DD/MM/YYYY');
+                    news.date = util.getDate(texto.find('p').first().text().trim(), 'DD/MM/YYYY');
 
-                    if (data.date === 'Invalid Date') data.date = util.getDate(texto.find('p').first().text().trim(), 'D/MM/YYYY');
+                    if (news.date === 'Invalid Date') 
+                    {
+                        news.date = util.getDate(texto.find('p').first().text().trim(), 'D/MM/YYYY');
+                    }
                     
-
-                    data.content = texto
+                    news.content = texto
                         .find('p, .sumilla')
                         .map((i, p) => {
                             if (i > 0) {
@@ -50,7 +44,10 @@ module.exports = function scrapper($, config) {
                         .filter(t => t)
                         .join("\n\n");
 
-                    return data;
+                    news.url = postUrl;
+                    news.files = [];
+
+                    return news;
                 })
                 .catch(console.error);
 
