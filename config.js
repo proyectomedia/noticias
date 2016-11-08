@@ -193,56 +193,109 @@ var config = {
                 "fb_source_username": "",
                 "imageUrl": ""
             },
-            "active": true
+            //"active": true
         },
         {
             "url": "http://www.elperuano.pe/seccion.aspx?sec=3",
             "scrapper": "10.elperuano.pe",
             "limit": 9,
-            //"active": true,
-            "category": "economia",
-            "priority": 2
+            "defaults": {
+                "category": "economia",
+                "categories": ["economia"],
+                "priority": 2,
+                "type": "link",
+                "source": "El Peruano",
+                "source_website": "http://www.elperuano.pe/",
+                "fb_id": "",
+                "fb_source_username": "",
+                "imageUrl": ""
+            },
+            //"active": true
         },
         {
             "url": "http://www.elperuano.pe/seccion.aspx?sec=7",
             "scrapper": "10.elperuano.pe",
             "limit": 8,
-            //"active": true,
-            "category": "actualidad",
-            "priority": 2
+            "defaults": {
+                "category": "actualidad",
+                "categories": ["actualidad"],
+                "priority": 2,
+                "type": "link",
+                "source": "El Peruano",
+                "source_website": "http://www.elperuano.pe/",
+                "fb_id": "",
+                "fb_source_username": "",
+                "imageUrl": ""
+            },
+            "active": true
         },
         {
             "url": "http://www.elperuano.pe/seccion.aspx?sec=2",
             "scrapper": "10.elperuano.pe",
             "limit": 8,
-            //"active": true,
-            "category": "actualidad",
-            "priority": 2
+            "defaults": {
+                "category": "actualidad",
+                "categories": ["actualidad"],
+                "priority": 2,
+                "type": "link",
+                "source": "El Peruano",
+                "source_website": "http://www.elperuano.pe/",
+                "fb_id": "",
+                "fb_source_username": "",
+                "imageUrl": ""
+            },
+            //"active": true
         },
         {
             "url": "http://www.elperuano.pe/seccion.aspx?sec=5",
             "scrapper": "10.elperuano.pe",
             "limit": 6,
-            //"active": true,
-            "category": "actualidad",
-            "priority": 2
+            "defaults": {
+                "category": "actualidad",
+                "categories": ["actualidad"],
+                "priority": 2,
+                "type": "link",
+                "source": "El Peruano",
+                "source_website": "http://www.elperuano.pe/",
+                "fb_id": "",
+                "fb_source_username": "",
+                "imageUrl": ""
+            },
+            //"active": true
         },
         {
             "url": "http://www.elperuano.pe/seccion.aspx?sec=4",
             "scrapper": "10.elperuano.pe",
             "limit": 3,
-            //"active": true,
-            "category": "actualidad",
-            "priority": 2
+            "defaults": {
+                "category": "actualidad",
+                "categories": ["actualidad"],
+                "priority": 2,
+                "type": "link",
+                "source": "El Peruano",
+                "source_website": "http://www.elperuano.pe/",
+                "fb_id": "",
+                "fb_source_username": "",
+                "imageUrl": ""
+            },
+            //"active": true
         },
         {
             "url": "http://diariooficial.elperuano.pe/Normas",
             "scrapper": "11.elperuanonormas.pe",
             "limit": 3,
-            //"active": true,
-            "category": "politica",
-            "img": "https://k60.kn3.net/E/7/5/D/2/8/ABC.png",
-            "priority": 2
+            "defaults": {
+                "category": "politica",
+                "categories": ["politica"],
+                "priority": 2,
+                "type": "link",
+                "source": "El Peruano",
+                "source_website": "http://diariooficial.elperuano.pe/",
+                "fb_id": "",
+                "fb_source_username": "",
+                "imageUrl": "https://k60.kn3.net/E/7/5/D/2/8/ABC.png"
+            },
+            "active": true
         },
         {
             "url": "http://www.pcm.gob.pe/seccion/noticias/notas-de-prensa/",

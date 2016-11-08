@@ -24,21 +24,18 @@ module.exports = function scrapper($, config) {
 
             return Promise.map(elements, post => {
 
-                var data = {};
-
-                data.institution = "El Peruano";
-
-                data.category = config.category;
-                data.priority = config.priority;
+                var news = {};
 
                 var title = $(post).find('h5 a');
 
-                data.title = title.text().trim();
-                data.url = title.attr('href');
-                data.date = util.getDate($(post).find('p b').first().text().trim(), 'DD/MM/YYYY');
-                data.subtitle = $(post).find('p').last().text().trim();
+                news.title =  $(post).find("h4").text() + ": " + title.text().trim();
+                news.url = title.attr('href');
+                news.date = util.getDate($(post).find('p b').first().text().trim(), 'DD/MM/YYYY');
+                news.subtitle = $(post).find('p').last().text().trim();
+                news.content = "";
+                news.files = [ $(".ediciones_botones ul li a").first().attr("href"), $(".ediciones_botones ul li a").last().attr("href") ];
 
-                return data;
+                return news;
 
             })
 

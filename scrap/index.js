@@ -35,19 +35,33 @@ module.exports = function() {
                 var scrapper = require(`./scrappers/${configPage.scrapper}`);
 
                 return scrapData(scrapper($, configPage))
-                    .then(data => data.map(newsItem => {
-                        
-                        //Assign default properties
-                        newsItem = generateId(Object.assign((configPage.defaults || {}),  newsItem));
-                        
-                        //Debugging mode
-                        if(configPage.debug) 
-                        {
-                            console.log(newsItem);
-                        }
+                    .then(data => data
+                                    .reduce((news, pageNews) => {
 
-                        return newsItem;
-                    }))
+                                        if(pageNews.length) //Array of news
+                                        {
+                                            news = news.concat(pageNews);
+                                        }
+                                        else //Single news
+                                        {
+                                            news.push(pageNews);
+                                        } 
+
+                                        return news;                                       
+                                    }, [])
+                                    .map(newsItem => {
+                        
+                                        //Assign default properties
+                                        newsItem = generateId(Object.assign((configPage.defaults || {}),  newsItem));
+                                        
+                                        //Debugging mode
+                                        if(configPage.debug) 
+                                        {
+                                            console.log(newsItem);
+                                        }
+
+                                        return newsItem;
+                                    }));
 
             })
             .catch(console.error);
@@ -55,7 +69,7 @@ module.exports = function() {
     })
     .then(newsPerPage =>
         newsPerPage
-        .reduce((news, pageNews) => news.concat(pageNews ? _.flatten(pageNews) : []) , [])
+        
     );
 
 }
