@@ -1,8 +1,7 @@
 var schedule = require('node-schedule');
 
 var scrap = require('./scrap');
-var firebaseApp = require('./lib/db');
-var newsRef = firebaseApp.database().ref('news');
+var dbConfig = require('./lib/db');
 var _ = require('lodash');
 
 var promisifyAll = require('bluebird').promisifyAll;
@@ -11,32 +10,27 @@ var spawn = require('q').spawn;
 var mongodb = require("mongodb");
 var MongoClient = mongodb.MongoClient;
 
-var mongodb = promisifyAll(require("mongodb"));
-var MongoClient = promisifyAll(mongodb.MongoClient);
-var mongouri = require('./config').mongouri;
-
 spawn(function*() {
 
     try {
 
-        var db = yield MongoClient.connectAsync(mongouri);
+        var db = yield MongoClient.connect(dbConfig.mongoUri);
+        console.log("Connected correctly to server");
 
-        var news = yield scrap();
+        // Get the updates collection
+        var collection = db.collection('news');
 
-        var collection = yield db.collectionAsync('news');
+        scrap()
+            .then(news => {
+                news.forEach(newsItem => {
+                    var result = yield collection.updateOne({ _id: newsItem._id }, newsItem, { upsert: true });
+                    console.log(["Result:", result]);
+                    console.log("Document: " + newsItem._id + " successfully added / updated");
+                })
+            })
+            .catch(console.error);
 
-        for (i in news) {
-
-            var _new = news[i];
-
-            var exists = yield collection.findOneAsync({ _id: _new._id });
-
-            if (!exists) {
-
-                yield collection.insertAsync(_new);
-            }
-        }
-
+        db.close();
     }
     catch (err) {
 
