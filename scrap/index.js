@@ -34,7 +34,7 @@ module.exports = function() {
 
                 var scrapper = require(`./scrappers/${configPage.scrapper}`);
 
-                return scrapData(scrapper($, configPage))
+                return scrapData(scrapper($, configPage, html.body))
                     .then(data => data
                                     .reduce((news, pageNews) => {
 

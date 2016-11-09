@@ -312,15 +312,24 @@ var config = {
                 "fb_source_username": "",
                 "imageUrl": ""
             },
-            "active": true
+            //"active": true
         },
         {
             "url": "http://www.presidencia.gob.pe/lista-notas-prensa",
             "scrapper": "13.presidencia.gob.pe",
             "limit": 1,
-            //"active": true,
-            "category": "politica",
-            "priority": 2
+            "defaults": {
+                "category": "politica",
+                "categories": ["politica"],
+                "priority": 2,
+                "type": "link",
+                "source": "Presidencia",
+                "source_website": "http://www.presidencia.gob.pe/",
+                "fb_id": "",
+                "fb_source_username": "",
+                "imageUrl": ""
+            },
+            "active": true
         },
         {
             "url": "http://www.andina.com.pe/agencia/seccion-politica-17.aspx?sec=17",
