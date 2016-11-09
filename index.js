@@ -1,18 +1,15 @@
 var schedule = require('node-schedule');
 
+var _ = require('lodash');
 var scrap = require('./scrap');
 var dbConfig = require('./lib/db');
-var _ = require('lodash');
-
-var promisifyAll = require('bluebird').promisifyAll;
-var spawn = require('q').spawn;
+var bluebird = require('bluebird');
 
 var mongodb = require("mongodb");
 var MongoClient = mongodb.MongoClient;
 
-spawn(function*() {
-
-    try {
+console.log("Begin");
+function* FetchAndSave() {
 
         var db = yield MongoClient.connect(dbConfig.mongoUri);
         console.log("Connected correctly to server");
@@ -20,25 +17,27 @@ spawn(function*() {
         // Get the updates collection
         var collection = db.collection('news');
 
-        scrap()
-            .then(news => {
-                news.forEach(newsItem => {
-                    var result = yield collection.updateOne({ _id: newsItem._id }, newsItem, { upsert: true });
-                    console.log(["Result:", result]);
-                    console.log("Document: " + newsItem._id + " successfully added / updated");
-                })
-            })
-            .catch(console.error);
+        var news = _.flatten(yield scrap());
+
+        for(var i = 0; i < news.length; i++)
+        {
+            var newsItem = news[i];
+            var operation = yield collection.updateOne({ _id: newsItem._id }, newsItem, { upsert: true });
+
+            if(operation.result.ok > 0) 
+            {
+                console.log("Document: " + newsItem._id + " successfully " + (operation.result.nModified > 0 ? "updated" : "added"));
+            }
+            else 
+            {
+                console.log("Document: " + newsItem._id + " cannot be saved in DB");
+            }
+        }
 
         db.close();
-    }
-    catch (err) {
+}
 
-        console.error(err);
-    }
-
-});
-
+bluebird.coroutine(FetchAndSave)();
 
 
 //CADA 12 HORAS
