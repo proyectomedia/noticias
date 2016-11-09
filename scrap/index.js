@@ -35,8 +35,7 @@ module.exports = function() {
                 var scrapper = require(`./scrappers/${configPage.scrapper}`);
 
                 return scrapData(scrapper($, configPage, html.body))
-                    .then(data => data
-                                    .reduce((news, pageNews) => {
+                    .then(data => data.reduce((news, pageNews) => {
 
                                         if(pageNews.length) //Array of news
                                         {
@@ -52,7 +51,7 @@ module.exports = function() {
                                     .map(newsItem => {
                         
                                         //Assign default properties
-                                        newsItem = generateId(Object.assign((configPage.defaults || {}),  newsItem));
+                                        newsItem = generateId(Object.assign(newsItem, configPage.defaults || {}));
                                         
                                         //Debugging mode
                                         if(configPage.debug) 
@@ -60,15 +59,11 @@ module.exports = function() {
                                             console.log(newsItem);
                                         }
 
-                                        //return newsItem;
-                                    }));
+                                        return newsItem;
+                                     }));
 
             })
             .catch(console.error);
 
-    })
-    .then(newsPerPage => { 
-        console.log(newsPerPage); 
     });
-
 }
