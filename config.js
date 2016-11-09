@@ -329,14 +329,23 @@ var config = {
                 "fb_source_username": "",
                 "imageUrl": ""
             },
-            "active": true
+            //"active": true
         },
         {
             "url": "http://www.andina.com.pe/agencia/seccion-politica-17.aspx?sec=17",
             "scrapper": "14.andina.com.pe",
-            //"active": true,
-            "category": "politica",
-            "priority": 1
+            "defaults": {
+                "category": "politica",
+                "categories": ["politica"],
+                "priority": 1,
+                "type": "link",
+                "source": "Andina",
+                "source_website": "http://www.andina.com.pe/",
+                "fb_id": "",
+                "fb_source_username": "",
+                "imageUrl": ""
+            },
+            "active": true,
         },
         {
             "url": "http://www.andina.com.pe/agencia/seccion-economia-2.aspx",

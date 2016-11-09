@@ -17,7 +17,8 @@ function* FetchAndSave() {
         // Get the updates collection
         var collection = db.collection('news');
 
-        var news = _.flatten(yield scrap());
+        var newsArray = yield scrap();
+        var news = _.flatten(newsArray);
 
         for(var i = 0; i < news.length; i++)
         {

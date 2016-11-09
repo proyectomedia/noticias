@@ -60,16 +60,15 @@ module.exports = function() {
                                             console.log(newsItem);
                                         }
 
-                                        return newsItem;
+                                        //return newsItem;
                                     }));
 
             })
             .catch(console.error);
 
     })
-    .then(newsPerPage =>
-        newsPerPage
-        
-    );
+    .then(newsPerPage => { 
+        console.log(newsPerPage); 
+    });
 
 }

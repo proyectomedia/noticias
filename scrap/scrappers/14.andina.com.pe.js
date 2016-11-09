@@ -8,33 +8,38 @@ module.exports = function scrapper($, config) {
     return $("article.seccion, article.seccion5")
         .map((i, post) => {
 
-            var data = {};
-
-            data.institution = "Andina";
-
-            data.category = config.category;
-            data.priority = config.priority;
-
-            var title = $(post).find('h2 a, h3 a').first();
-            var subtitle = $(post).find('h4');
-
-            date = subtitle.children().text().replace(/\.[^,]+/i, "");
-
-            data.title = title.text().trim();
-            data.url = util.getAbsoluteUrl(config.url, 'agencia', title.attr('href'));
-            data.subtitle = subtitle.text().slice(subtitle.children().text().length).trim();
-            data.date = util.getDate(date, 'HH:mm, MMM DD.');
+            var postUrl = util.getAbsoluteUrl(config.url, 'agencia', $(post).find('h2 a, h3 a').first().attr('href'));
 
             return request
-                .getAsync(data.url)
+                .getAsync(postUrl)
                 .then(html => {
 
                     var $ = cheerio.load(html.body);
 
-                    data.imageUrl = $('article.fotoportada img').attr('src');
-                    data.source = $('div.fotoleyenda font').text().trim();
+                    var news = {};
 
-                    return data;
+                    news.title =  $('h1').text().trim();
+                    news.subtitle = $('h1 ~ h4').text().trim();
+                    news.imageUrl = $('article.fotoportada img').attr('src');
+                    news.date = util.getDate($('section.cuerpo_cont section font').text().trim(), 'HH:mm, MMM DD.');
+                    news.url = postUrl;
+
+                    news.content = $('section.cuerpo_cont section div:not(.social-detalle)')                        
+                        .map((i, div) => {
+
+                            if(($(div).find('div, br').length == 0) && ($(div).text().trim().length > 0)) 
+                            {
+                                return $(div).text().trim()
+                            }
+                            return "";
+                        })                        
+                        .get()
+                        .filter(t => t)
+                        .join("\n\n");
+
+                    news.files = [];
+
+                    return news;
                 })
                 .catch(console.error);
 
