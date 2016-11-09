@@ -9,30 +9,32 @@ module.exports = function scrapper($, config) {
         .slice(0, config.limit)
         .map((i, post) => {
 
-            var data = {};
+            var news = {};
+            var postUrl = $(post).find('h2.title a').attr('href');
 
-            data.institution = "PCM";
-
-            data.category = config.category;
-            data.priority = config.priority;
-
-            var title = $(post).find('h2.title a');
-
-            data.title = title.attr('title');
-            data.url = title.attr('href');
-            data.date = util.getDate($(post).find('div.excerpt.radius-bottom small').first().text().trim(), 'MMMM D, YYYY');
-            data.imageUrl = $('a.feature-img img').attr('src');
-            data.source = data.institution;
+            news.date = util.getDate($(post).find('div.excerpt.radius-bottom small').first().text().trim(), 'MMMM D, YYYY');            
 
             return request
-                .getAsync(data.url)
+                .getAsync(postUrl)
                 .then(html => {
 
                     var $ = cheerio.load(html.body);
 
-                    data.subtitle = $('ul li strong').first().text().trim();
+                    news.title = $("h1.headline").text().trim();
+                    //news.date = util.getDate($(".icon-time").parent().text().trim());
+                    news.imageUrl = $('div.feature-img img').attr('src');
+                    news.url = postUrl;  
+                    news.content = $('div.postarea')
+                        .find('p')
+                        .map((i, p) => $(p).text().trim())
+                        .get()
+                        .filter(t => t)
+                        .join("\n\n");
+                        
+                    news.subtitle = util.extractSummary(news.content);
+                    news.files = [];
 
-                    return data;
+                    return news;
                 })
                 .catch(console.error);
 

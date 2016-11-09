@@ -227,7 +227,7 @@ var config = {
                 "fb_source_username": "",
                 "imageUrl": ""
             },
-            "active": true
+            //"active": true
         },
         {
             "url": "http://www.elperuano.pe/seccion.aspx?sec=2",
@@ -295,15 +295,24 @@ var config = {
                 "fb_source_username": "",
                 "imageUrl": "https://k60.kn3.net/E/7/5/D/2/8/ABC.png"
             },
-            "active": true
+            //"active": true
         },
         {
             "url": "http://www.pcm.gob.pe/seccion/noticias/notas-de-prensa/",
             "scrapper": "12.pcm.gob.pe",
             "limit": 1,
-            //"active": true,
-            "category": "politica",
-            "priority": 2
+            "defaults": {
+                "category": "politica",
+                "categories": ["politica"],
+                "priority": 2,
+                "type": "link",
+                "source": "Presidencia del consejo de ministros",
+                "source_website": "http://www.pcm.gob.pe/",
+                "fb_id": "",
+                "fb_source_username": "",
+                "imageUrl": ""
+            },
+            "active": true
         },
         {
             "url": "http://www.presidencia.gob.pe/lista-notas-prensa",

@@ -33,6 +33,7 @@ module.exports = function scrapper($, config) {
                 news.date = util.getDate($(post).find('p b').first().text().trim(), 'DD/MM/YYYY');
                 news.subtitle = $(post).find('p').last().text().trim();
                 news.content = "";
+                news.imageUrl = "";
                 news.files = [ $(".ediciones_botones ul li a").first().attr("href"), $(".ediciones_botones ul li a").last().attr("href") ];
 
                 return news;
