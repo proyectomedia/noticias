@@ -22,7 +22,11 @@ var config = {
                 "fb_source_username": "",
                 "imageUrl": ""
             },
-            //"active": true
+            "schedule": {
+                "hour": 6,
+                "minute": 4             
+            }, 
+            "active": true
         },
         {
             "url": "http://www.sbn.gob.pe/noticias_hist.php",
