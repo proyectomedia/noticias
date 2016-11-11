@@ -46,42 +46,42 @@ var page =[
 {
 "id":"909439029189405",
 "tipo":"actualidad",
-"schedule":  { hour: 4 }
+"schedule":  { minute: 4 }
 },
 {
 "id":"909439029189405",
 "tipo":"politica",
-"schedule":  { hour: 4 }
+"schedule":  { minute: 7 }
 },
 {
 "id":"909439029189405",
 "tipo":"economia",
-"schedule":  { hour: 4 }
+"schedule":  { minute: 8 }
 },
 {
 "id":"909439029189405",
 "tipo":"empresas",
-"schedule":  { hour: 4 }
+"schedule":  { minute: 15 }
 },
 {
 "id":"909439029189405",
 "tipo":"tec",
-"schedule":  { hour: 4 }
+"schedule":  { minute: 15 }
 },
 {
 "id":"909439029189405",
 "tipo":"denuncias",
-"schedule":  { hour: 4 }
+"schedule":  { minute: 30 }
 },
 {
 "id":"909439029189405",
 "tipo":"obras",
-"schedule":  { hour: 4 }
+"schedule":  { minute: 30 }
 },
 {
 "id":"909439029189405",
 "tipo":"gastronomia",
-"schedule":  { hour: 4 }
+"schedule":  { minute: 40 }
 }
 ];
 

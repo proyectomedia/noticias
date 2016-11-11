@@ -71,7 +71,7 @@ var config = {
             },
             "format": "json",
             "schedule": [
-                { hour: 13 }, //Runs at 12pm
+                { hour: 13 } //Runs at 12pm
             ]
         },
         {
@@ -324,7 +324,7 @@ var config = {
             "defaults": {
                 "category": "politica",
                 "categories": ["politica"],
-                "priority": 2,
+                "priority": 0,
                 "type": "link",
                 "source": "El Peruano",
                 "source_website": "http://diariooficial.elperuano.pe/",
@@ -386,7 +386,8 @@ var config = {
                 "fb_id": "",
                 "fb_source_username": ""
             },
-            "schedule": [ "*/10 * * * *" ]            ,
+            "schedule": [ "*/20 * * * *" ] //cada media hora porque es un periodico
+
         },
         {
             "url": "http://www.andina.com.pe/agencia/seccion-economia-2.aspx",
