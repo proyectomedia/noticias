@@ -10,7 +10,7 @@ var config = {
         {
             "url": "http://www2.trabajo.gob.pe/prensa/notas-de-prensa/",
             "scrapper": "01.trabajo.gob.pe",
-            "limit": 1,
+            "limit": 3,
             "defaults": {
                 "category": "politica",
                 "categories": ["politica"],
@@ -23,9 +23,8 @@ var config = {
                 "imageUrl": ""
             },
             "schedule": {
-                "hour": 6,
-                "minute": 4             
-            }, 
+                "rule":'*/5 * * * * *'
+            },
             "active": true
         },
         {
@@ -43,6 +42,10 @@ var config = {
                 "fb_source_username": "",
                 "imageUrl": ""
             },
+            "schedule": {
+                "rule":'*/5 * * * * *'
+            },
+            "active": true
             //"active": true
         },
         {
@@ -446,8 +449,8 @@ var config = {
             //"active": true,
             "category": "seguridad"
         }
-        
-        
+
+
     ]
 }
 

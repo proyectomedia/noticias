@@ -29,7 +29,7 @@ function invokeScrapper(scrapperId) {
         console.log("[Scrapping] Running scrapper: '" + scrapperId + "'");
         return request[method](configPage.url)
             .then(html => {
-                
+
                 console.log("[Scrapping] Response received for: '" + scrapperId + "' (" + configPage.url + ")");
                 var $;
 
@@ -55,17 +55,17 @@ function invokeScrapper(scrapperId) {
                                         else //Single news
                                         {
                                             news.push(pageNews);
-                                        } 
+                                        }
 
-                                        return news;                                       
+                                        return news;
                                     }, [])
                                     .map(newsItem => {
-                        
+
                                         //Assign default properties
                                         newsItem = generateId(Object.assign(newsItem, configPage.defaults || {}));
-                                        
+
                                         //Debugging mode
-                                        if(configPage.debug) 
+                                        if(configPage.debug)
                                         {
                                             console.log(newsItem);
                                         }
@@ -79,7 +79,7 @@ function invokeScrapper(scrapperId) {
     });
 }
 
-function* getRecentNews(limit) 
+function* getRecentNews(limit)
 {
         limit = limit || 5;
 
@@ -87,7 +87,7 @@ function* getRecentNews(limit)
 
         // Get the news collection
         var collection = db.collection('news');
-        
+
         var news = yield collection
                         .find({
                             $or: [ { published: 0}, { published: { $exists: false } }]
@@ -106,7 +106,7 @@ function* markAsPublished(news) {
 
         // Get the news collection
         var collection = db.collection('news');
-        
+
         var publishedCount = (news.published || 0) + 1;
         var operation = yield collection.updateOne({ _id: news._id }, { $set: { published: publishedCount }});
 
@@ -133,11 +133,11 @@ function* fetchAndSave(scrapperId) {
 
             var operation = yield collection.updateOne({ _id: newsItem._id }, mongoEntity, { upsert: true });
 
-            if(operation.result.ok > 0) 
+            if(operation.result.ok > 0)
             {
                 console.log("[FetchAndSave] Scrapper: " + scrapperId + ", Document: " + newsItem._id + " successfully " + (operation.result.nModified > 0 ? "updated" : "added"));
             }
-            else 
+            else
             {
                 console.log("[FetchAndSave] Scrapper: " + scrapperId + ", Document: " + newsItem._id + " cannot be saved in DB");
             }
