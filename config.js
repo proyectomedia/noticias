@@ -51,7 +51,7 @@ var config = {
 
             "schedule": [
 
-                { hour: 17 }  //Runs at 5pm
+                { hour: 13 }  //Runs at 5pm
             ]
 
         },

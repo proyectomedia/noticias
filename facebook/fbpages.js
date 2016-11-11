@@ -29,7 +29,7 @@ var paginas60minutos =[{id:1105050716183235, urlface:"https://www.facebook.com/s
                     {id:293890978996, urlface:"https://www.facebook.com/IDLReporteros",url:"https://idl-reporteros.pe",pais:"Peru",nombre:"IDL-Reporteros", hastag:"@IDL-Reporteros", username:"IDLReporteros" },//cada dia
                     {id:561717720516148, urlface:"https://www.facebook.com/ASBANCPeru",url:"http://www.asbanc.com.pe",pais:"Peru",nombre:"Asbanc", hastag:"@Asbanc - Asociación de Bancos del Perú", username:"ASBANCPeru" },//cada hora
                     {id:611091235574314, urlface:"https://www.facebook.com/RumboEconomicoGlobal",url:"http://rumboeconomico.com",pais:"Peru",nombre:"Rumbo Economico", hastag:"@Rumbo Económico", username:"RumboEconomicoGlobal" } //por verse
-                  
+
 
                   ];
 //module.exports.
@@ -41,6 +41,53 @@ var page =[{id:909439029189405,tipo:"actualidad"},
 {id:909439029189405,tipo:"denuncias"},
 {id:909439029189405,tipo:"obras"},
 {id:909439029189405,tipo:"gastronomia"}];
+
+var page =[
+{
+"id":"909439029189405",
+"tipo":"actualidad",
+"schedule":  { hour: 4 }
+},
+{
+"id":"909439029189405",
+"tipo":"politica",
+"schedule":  { hour: 4 }
+},
+{
+"id":"909439029189405",
+"tipo":"economia",
+"schedule":  { hour: 4 }
+},
+{
+"id":"909439029189405",
+"tipo":"empresas",
+"schedule":  { hour: 4 }
+},
+{
+"id":"909439029189405",
+"tipo":"tec",
+"schedule":  { hour: 4 }
+},
+{
+"id":"909439029189405",
+"tipo":"denuncias",
+"schedule":  { hour: 4 }
+},
+{
+"id":"909439029189405",
+"tipo":"obras",
+"schedule":  { hour: 4 }
+},
+{
+"id":"909439029189405",
+"tipo":"gastronomia",
+"schedule":  { hour: 4 }
+}
+];
+
+
+
+
 
 module.exports.page=page;
 module.exports.paginas5minutos=paginas5minutos;

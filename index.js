@@ -10,8 +10,7 @@ var scraperfacebook=require('./facebook/index');
 
 
 
-
-//facebook scrapers-funcionan
+//facebook extaer noticias-> funcionan ok
  schedule.scheduleJob('0 */5 * * * *',()=>{
    console.log("");
    console.log("Entro a 5minutos");
@@ -45,6 +44,14 @@ var scraperfacebook=require('./facebook/index');
  // pages.forEach(page => {
  //     page.schedule.forEach(pageSchedule => schedule.scheduleJob(pageSchedule, () => scrapping.fetchAndSave(page.scrapper)))
  // });
+
+ //Scraper web gustavo - aqui solo se crea un schedule que revisa busca en todas las pages active , a las 13:00 y a las 18 horas todos los dias
+//  var pages = config.pages.filter(page => page.active);
+//   schedule.scheduleJob('0 0 13,18 * * *', () => {
+//
+//    pages.forEach(page =>  scrapping.fetchAndSave(page.scrapper));
+// )};
+
 
 
 // scrapping.fetchAndSave("https://www.ositran.gob.pe/publicaciones1/notas-de-prensa.html");
