@@ -16,21 +16,21 @@ var dot = require('mongo-dot-notation');
 var flatten = dot.flatten;
 var op = dot.Operators;
 
-function invokeScrapper(scrapperId) {
+function invokeScrapper(url) {
 
     var promises = [];
 
-    var pages = config.pages.filter(page => page.active && (scrapperId ? (page.scrapper == scrapperId) : true));
+    var pages = config.pages.filter(page => page.active && (url ? (page.url == url) : true));
 
     return Promise.map(pages, configPage => {
 
         var method = configPage.verb.toLowerCase() + "Async";
 
-        console.log("[Scrapping] Running scrapper: '" + scrapperId + "'");
+        console.log("[Scrapping] Running scrapper: '" + url + "'");
         return request[method](configPage.url)
             .then(html => {
                 
-                console.log("[Scrapping] Response received for: '" + scrapperId + "' (" + configPage.url + ")");
+                console.log("[Scrapping] Response received for: '" + configPage.scrapper + "' (" + configPage.url + ")");
                 var $;
 
                 if (configPage.format === 'json') {

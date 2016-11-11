@@ -10,6 +10,7 @@ module.exports = function scrapper($, config) {
         .map((i, link) => {
 
             var postUrl = util.getAbsoluteUrl(config.url, encodeURIComponent($(link).attr('href').replace(/(\r\n|\n|\r)/gm,"")));
+            var defaultImageUrl = "https://s16.postimg.org/rhbcuwdud/image.png";
 
             return request
                 .getAsync(postUrl)
@@ -21,7 +22,7 @@ module.exports = function scrapper($, config) {
                     var news = {};
 
                     news.title = $("h1").text().trim();
-                    news.imageUrl = portada.find('img').attr('src');
+                    news.imageUrl = portada.find('img').attr('src') || defaultImageUrl;
                     news.subtitle = portada.find('p').text().trim();
 
                     var texto = $('article.notatexto');
