@@ -6,6 +6,7 @@ var util = require('../../lib/util');
 module.exports = function scrapper($, config) {
 
     return $("article.seccion, article.seccion5")
+        .slice(0, config.limit)
         .map((i, post) => {
 
             var postUrl = util.getAbsoluteUrl(config.url, 'agencia', $(post).find('h2 a, h3 a').first().attr('href'));

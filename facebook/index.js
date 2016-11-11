@@ -86,15 +86,16 @@ function* sacarpostyguardar(paginas){
          if (data.category!=" "){
 
             console.log("News : "+data.source+" -> with category: "+ data.category);
-            console.log(" ");
+
 
             var db = yield MongoClient.connect(dbConfig.mongoUri);
             var collection = db.collection('news');
             data.published = op.$setOnInsert(0);
-            console.log(data.published);
+
             var news = flatten(data);
-            console.log(news.published);
+
             var operation =yield collection.updateOne({ _id: data._id }, news, { upsert: true });
+
             if(operation.result.ok > 0)
             {
                 console.log(" Facebook_: " + data._id + " successfully " + (operation.result.nModified > 0 ? "updated" : "added"));

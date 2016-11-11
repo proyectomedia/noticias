@@ -17,7 +17,8 @@ var paginas15minutos =[{id:97984508920, urlface:"https://www.facebook.com/Diario
                       {id:611091235574314, urlface:"https://www.facebook.com/SEMANAeconomica",url:"http://semanaeconomica.com",pais:"Peru",nombre:"Semana Economica", hastag:"@SEMANAeconómica", username:"SEMANAeconomica" },
                       {id:146810535483511, urlface:"https://www.facebook.com/canalnoficial",url:"http://canaln.pe/",pais:"Peru",nombre:"Canal N", hastag:"@canalnoficial", username:"canalnoficial" },
                       {id:148121412020962, urlface:"https://www.facebook.com/atvmasnoticias",url:"http://www.atv.pe/",pais:"Peru",nombre:"ATV+", hastag:"@atvmasnoticias", username:"atvmasnoticias" },
-                      {id:106446289403815, urlface:"https://www.facebook.com/capital967",url:"http://www.capital.com.pe/",pais:"Peru",nombre:"capital", hastag:"@Acapital967", username:"capital967" }
+                      {id:106446289403815, urlface:"https://www.facebook.com/capital967",url:"http://www.capital.com.pe/",pais:"Peru",nombre:"capital", hastag:"@Acapital967", username:"capital967" },
+                        {id:109939959032422, urlface:"https://www.facebook.com/agenciandina/",url:"http://www.andina.com.pe",pais:"Peru",nombre:"Andina", hastag:"@Agencia de Noticias Andina", username:"agenciandina" }
                       ];
 
 var paginas60minutos =[{id:1105050716183235, urlface:"https://www.facebook.com/seriestv.peliculas",url:"http://laprensa.peru.com",pais:"Peru",nombre:"La Prensa.pe", hastag:"@Series y Peliculas", username:"seriestv.peliculas" },//cada hora 9am 12pm
@@ -27,8 +28,8 @@ var paginas60minutos =[{id:1105050716183235, urlface:"https://www.facebook.com/s
                     {id:671367792939507, urlface:"https://www.facebook.com/OjoPublico",url:"http://ojo-publico.com",pais:"Peru",nombre:"Ojo Público", hastag:"@OjoPúblico", username:"OjoPublico" },//cada dia
                     {id:293890978996, urlface:"https://www.facebook.com/IDLReporteros",url:"https://idl-reporteros.pe",pais:"Peru",nombre:"IDL-Reporteros", hastag:"@IDL-Reporteros", username:"IDLReporteros" },//cada dia
                     {id:561717720516148, urlface:"https://www.facebook.com/ASBANCPeru",url:"http://www.asbanc.com.pe",pais:"Peru",nombre:"Asbanc", hastag:"@Asbanc - Asociación de Bancos del Perú", username:"ASBANCPeru" },//cada hora
-                    {id:611091235574314, urlface:"https://www.facebook.com/RumboEconomicoGlobal",url:"http://rumboeconomico.com",pais:"Peru",nombre:"Rumbo Economico", hastag:"@Rumbo Económico", username:"RumboEconomicoGlobal" }, //por verse
-                    {id:109939959032422, urlface:"https://www.facebook.com/agenciandina/",url:"http://www.andina.com.pe",pais:"Peru",nombre:"Andina", hastag:"@Agencia de Noticias Andina", username:"agenciandina" }
+                    {id:611091235574314, urlface:"https://www.facebook.com/RumboEconomicoGlobal",url:"http://rumboeconomico.com",pais:"Peru",nombre:"Rumbo Economico", hastag:"@Rumbo Económico", username:"RumboEconomicoGlobal" } //por verse
+                  
 
                   ];
 //module.exports.

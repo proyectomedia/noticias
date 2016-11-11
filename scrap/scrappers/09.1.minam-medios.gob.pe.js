@@ -10,6 +10,7 @@ module.exports = function scrapper($, config) {
         .map((i, post) => {
 
             var postUrl = $(post).find('div.span_14 h3 a').attr("href");
+            var imageUrl = $(post).find('div.box_img a img').attr('src');
 
             return request
                 .getAsync(postUrl)
@@ -24,6 +25,7 @@ module.exports = function scrapper($, config) {
                     news.title = $("h1").text().trim();
                     news.date = util.getDate(fecha.text().trim(), 'YYYY-MM-DD');
                     news.videoUrl = $("iframe[src*='youtube']").attr("src");
+                    news.imageUrl = imageUrl || util.getDefaultYoutubeVideoThumbnail(util.extractYoutubeVideoIdFromUrl(news.videoUrl));
                     news.content = fecha
                         .nextAll('p[style]')
                         .map((i, p) => $(p).text().trim())
@@ -40,8 +42,5 @@ module.exports = function scrapper($, config) {
                 .catch(console.error);
 
         }).get()
-
-        
-
 }
 

@@ -8,54 +8,56 @@ var fbApi = require('./lib/apiFace');
 var f=require('./facebook/fbpages');
 var scraperfacebook=require('./facebook/index');
 
-// var pages = config.pages.filter(page => page.active && page.schedule);
-// console.log(pages);
-// pages.forEach(page => schedule.scheduleJob(page.schedule, () =>
-// {console.log("entro");scrapping.fetchAndSave(page.scrapper)}));
 
-// schedule.scheduleJob({ minute: 1 }, () => {
-//
-// //  For()
-//   console.log("10 segundos lee opcion 1");
-//     scrapping
-//             .getRecentNews(1)
-//             .then(news => {
-//                  news.forEach(newsItem => {
-//                      fbApi.postNews("909439029189405", newsItem, (n) => scrapping.markAsPublished(n))
-//                  })
-//             });
-// });
-//
-// schedule.scheduleJob('0 */1 * * * *', () => {
-//   console.log("cada minuto lee opcion 2");
-// //  For()
-//     scrapping
-//             .getRecentNews(1)
-//             .then(news => {
-//               if(!news==""){
-//                 console.log("entro" +news);
-//                  news.forEach(newsItem => {
-//                      fbApi.postNews("909439029189405", newsItem, (n) => scrapping.markAsPublished(n))
-//                  })
-//                }else{
-//                  console.log("no saco noticias recientes");
-//                }
-//             });
-// });
 
-//facebook scrapers
-// schedule.scheduleJob('0 */5 * * * *',()=>{
-   var a=scraperfacebook.sacarpostyguardar(f.paginas5minutos);
-    // a.next();
 
-  // scraperfacebook.sacarpostyguardar.next();
-// });
-// schedule.scheduleJob('0 */15 * * * *',()=>{
-//   scraperfacebook.sacarpostyguardar(f.paginas5minutos);
-//
-// });
-//
-// schedule.scheduleJob('0 0 */1 * * *',()=>{
-//   scraperfacebook.sacarpostyguardar(f.paginas5minutos);
-//
-// });
+//facebook scrapers-funcionan
+ schedule.scheduleJob('0 */5 * * * *',()=>{
+   console.log("");
+   console.log("Entro a 5minutos");
+   scraperfacebook.sacarpostyguardar(f.paginas5minutos)
+   .catch(function (err) {
+     console.log("Error:"+ err)
+    })
+ });
+
+ schedule.scheduleJob('0 */15 * * * *',()=>{
+   console.log("");
+   console.log("Entro a 15minutos");
+   scraperfacebook.sacarpostyguardar(f.paginas15minutos)
+   .catch(function (err) {
+     console.log("Error:"+ err)
+    })
+ });
+
+ schedule.scheduleJob('0 0 */1 * * *',()=>{
+   console.log("");
+   console.log("Entro a 60minutos");
+   scraperfacebook.sacarpostyguardar(f.paginas60minutos)
+   .catch(function (err) {
+     console.log("Error:"+ err)
+    })
+ });
+
+
+//Scraper web
+ // var pages = config.pages.filter(page => page.active && page.schedule);
+ // pages.forEach(page => {
+ //     page.schedule.forEach(pageSchedule => schedule.scheduleJob(pageSchedule, () => scrapping.fetchAndSave(page.scrapper)))
+ // });
+
+
+// scrapping.fetchAndSave("https://www.ositran.gob.pe/publicaciones1/notas-de-prensa.html");
+
+
+//Publicar noticias
+
+schedule.scheduleJob({ minute: 7 }, () => {
+    scrapping
+            .getRecentNews(1)
+            .then(news => {
+                 news.forEach(newsItem => {
+                     fbApi.postNews("909439029189405", newsItem, (n) => scrapping.markAsPublished(n))
+                 })
+            });
+});
