@@ -1,5 +1,6 @@
 var cheerio = require("cheerio");
 
+var _ = require('lodash');
 var request = require("../../lib/requestAsync");
 var util = require('../../lib/util');
 
@@ -9,8 +10,13 @@ module.exports = function scrapper($, config) {
         .slice(0, config.limit)
         .map((i, link) => {
 
+            if(!config.images || !config.images.length)
+            {
+                config.images = [];
+            }
+
             var postUrl = util.getAbsoluteUrl(config.url, encodeURIComponent($(link).attr('href').replace(/(\r\n|\n|\r)/gm,"")));
-            var defaultImageUrl = "https://s16.postimg.org/rhbcuwdud/image.png";
+            var defaultImageUrl = config.images[_.random(config.images.length - 1)]
 
             return request
                 .getAsync(postUrl)

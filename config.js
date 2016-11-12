@@ -213,6 +213,11 @@ var config = {
             "url": "http://www.elperuano.pe/seccion.aspx?sec=1",
             "scrapper": "10.elperuano.pe",
             "limit": 9,
+            "images": [
+                "http://subirimagen.me/uploads/20161110132358.png",
+                "https://s18.postimg.org/ne7iteoix/87_t2_Gv2_Iz9_Og3_Et2_A.png",
+                "https://s16.postimg.org/rhbcuwdud/image.png"
+            ],
             "defaults": {
                 "category": "politica",
                 "categories": ["politica"],
@@ -231,6 +236,11 @@ var config = {
             "url": "http://www.elperuano.pe/seccion.aspx?sec=3",
             "scrapper": "10.elperuano.pe",
             "limit": 9,
+            "images": [
+                "http://subirimagen.me/uploads/20161110132358.png",
+                "https://s18.postimg.org/ne7iteoix/87_t2_Gv2_Iz9_Og3_Et2_A.png",
+                "https://s16.postimg.org/rhbcuwdud/image.png"
+            ],
             "defaults": {
                 "category": "economia",
                 "categories": ["economia"],
@@ -249,6 +259,11 @@ var config = {
             "url": "http://www.elperuano.pe/seccion.aspx?sec=7",
             "scrapper": "10.elperuano.pe",
             "limit": 8,
+            "images": [
+                "http://subirimagen.me/uploads/20161110132358.png",
+                "https://s18.postimg.org/ne7iteoix/87_t2_Gv2_Iz9_Og3_Et2_A.png",
+                "https://s16.postimg.org/rhbcuwdud/image.png"
+            ],
             "defaults": {
                 "category": "actualidad",
                 "categories": ["actualidad"],
@@ -267,6 +282,11 @@ var config = {
             "url": "http://www.elperuano.pe/seccion.aspx?sec=2",
             "scrapper": "10.elperuano.pe",
             "limit": 8,
+            "images": [
+                "http://subirimagen.me/uploads/20161110132358.png",
+                "https://s18.postimg.org/ne7iteoix/87_t2_Gv2_Iz9_Og3_Et2_A.png",
+                "https://s16.postimg.org/rhbcuwdud/image.png"
+            ],
             "defaults": {
                 "category": "actualidad",
                 "categories": ["actualidad"],
@@ -285,6 +305,11 @@ var config = {
             "url": "http://www.elperuano.pe/seccion.aspx?sec=5",
             "scrapper": "10.elperuano.pe",
             "limit": 6,
+            "images": [
+                "http://subirimagen.me/uploads/20161110132358.png",
+                "https://s18.postimg.org/ne7iteoix/87_t2_Gv2_Iz9_Og3_Et2_A.png",
+                "https://s16.postimg.org/rhbcuwdud/image.png"
+            ],
             "defaults": {
                 "category": "actualidad",
                 "categories": ["actualidad"],
@@ -303,6 +328,11 @@ var config = {
             "url": "http://www.elperuano.pe/seccion.aspx?sec=4",
             "scrapper": "10.elperuano.pe",
             "limit": 3,
+            "images": [
+                "http://subirimagen.me/uploads/20161110132358.png",
+                "https://s18.postimg.org/ne7iteoix/87_t2_Gv2_Iz9_Og3_Et2_A.png",
+                "https://s16.postimg.org/rhbcuwdud/image.png"
+            ],
             "defaults": {
                 "category": "actualidad",
                 "categories": ["actualidad"],
@@ -321,6 +351,7 @@ var config = {
             "url": "http://diariooficial.elperuano.pe/Normas",
             "scrapper": "11.elperuanonormas.pe",
             "limit": 3,
+            "images": ["http://subirimagen.me/uploads/20161110132221.PNG", "https://s22.postimg.org/5cxpfbj69/Captura.png"],
             "defaults": {
                 "category": "politica",
                 "categories": ["politica"],
@@ -525,8 +556,8 @@ var config = {
                 "categories": ["politica"],
                 "priority": 1,
                 "type": "link",
-                "source": "Organismo Supervisor de las Contrataciones del Estado",
-                "source_website": "http://portal.osce.gob.pe/",
+                "source": "Ministerio de Desarrollo e Inclusión Social",
+                "source_website": "http://www.midis.gob.pe/",
                 "fb_id": "",
                 "fb_source_username": ""
             },
