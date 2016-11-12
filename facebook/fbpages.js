@@ -33,14 +33,14 @@ var paginas60minutos =[{id:1105050716183235, urlface:"https://www.facebook.com/s
 
                   ];
 //module.exports.
-var page =[{id:909439029189405,tipo:"actualidad"},
-{id:909439029189405,tipo:"politica"},
-{id:909439029189405,tipo:"economia"},
-{id:909439029189405,tipo:"empresas"},
-{id:909439029189405,tipo:"tec"},
-{id:909439029189405,tipo:"denuncias"},
-{id:909439029189405,tipo:"obras"},
-{id:909439029189405,tipo:"gastronomia"}];
+// var page =[{id:909439029189405,tipo:"actualidad"},
+// {id:909439029189405,tipo:"politica"},
+// {id:909439029189405,tipo:"economia"},
+// {id:909439029189405,tipo:"empresas"},
+// {id:909439029189405,tipo:"tec"},
+// {id:909439029189405,tipo:"denuncias"},
+// {id:909439029189405,tipo:"obras"},
+// {id:909439029189405,tipo:"gastronomia"}];
 
 var page =[
 {

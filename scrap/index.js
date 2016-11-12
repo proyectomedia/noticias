@@ -84,9 +84,10 @@ function invokeScrapper(url) {
     });
 }
 
-function* getRecentNews(limit)
+function* getRecentNews(limit, category)
 {
         limit = limit || 5;
+        category = category || "politica";
 
         var db = yield MongoClient.connect(dbConfig.mongoUri);
 
@@ -95,7 +96,12 @@ function* getRecentNews(limit)
 
         var news = yield collection
                         .find({
-                            $or: [ { published: 0}, { published: { $exists: false } }]
+                            /*$and: [
+                                { categories: { $in: [ category ]}},
+                                { */
+                                    $or: [ { published: { $lte: 3 }}, { published: { $exists: false } }] 
+                                /* }
+                            ]*/
                         })
                         .sort({ date : -1 })
                         .limit(limit)
@@ -135,6 +141,7 @@ function* fetchAndSave(scrapperId) {
             newsItem.published = op.$setOnInsert(0);
 
             var mongoEntity = flatten(newsItem);
+            console.log(mongoEntity);
 
             var operation = yield collection.updateOne({ _id: newsItem._id }, mongoEntity, { upsert: true });
 
