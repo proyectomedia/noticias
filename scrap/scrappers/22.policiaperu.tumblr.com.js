@@ -9,32 +9,42 @@ module.exports = function scrapper($, config) {
         .slice(0, config.limit)
         .map((i, post) => {
 
-            var data = {};
-
-            data.institution = "Policia Nacional";
-
-            data.category = config.category;
-            data.priority = config.priority;
+            var news = {};
 
             //data.date = util.getDate(imgDate.last().text().trim(), 'dddd, D [de] MMMM [del] YYYY');
 
             var title = $(post).find('h2.post-title');
-            data.title = title.text().trim();
+            news.title = title.text().trim();
             var date = title.next()
             try {
-                data.date = util.getDate(date.text().trim().split(',')[1], 'DD [de] MMMM [del] YYYY')
+                news.date = util.getDate(date.text().trim().split(',')[1], 'DD [de] MMMM [del] YYYY')
             }catch(e) {}
 
-            data.subtitle = date.next().find('b').text().trim();
+            news.subtitle = date.next().find('b').text().trim();
+            news.content = $(post).find('div.copy p')                
+                        .map((i, p) => {
 
-            if (!data.subtitle) {
+                            if(($(p).text().trim() != $(date).text().trim()) && $(p).text().trim().length > 0) 
+                            {
+                                return $(p).text().trim()
+                            }
+                            return "";
+                        })                        
+                        .get()
+                        .filter(t => t)
+                        .join("\n\n");
 
-                data.subtitle = util.extractSummary(date.next().text().trim())
+
+            if (!news.subtitle) {
+
+                news.subtitle = util.extractSummary(news.content);
             }
 
-            data.url = $(post).find('.meta-list a').first().attr('href');
+            news.url = $(post).find('.meta-list a').first().attr('href');
+            news.imageUrl = "";
+            news.files = [];
 
-            return data;       
+            return news;       
 
         }).get()
 
