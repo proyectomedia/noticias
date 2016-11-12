@@ -90,16 +90,19 @@ function* getRecentNews(limit, category)
         // Get the news collection
         var collection = db.collection(dbConfig.collection);
 
+        var categoriesQueryClause = { categories: { $in: [ category ]}};
+
+        var publishedQueryClause = { };
+        publishedQueryClause['published.' + category] = { $lte: 3 };
+
         var news = yield collection
                         .find({
                             $and: [
-                                { categories: { $in: [ category ]}},
-                                {
-                                    $or: [ { published: { $lte: 3 }}, { published: { $exists: false } }]
-                                }
+                                categoriesQueryClause,
+                                publishedQueryClause                                
                             ]
                         })
-                        .sort({ date : -1 })
+                        .sort({ date : -1, priority: -1 })
                         .limit(limit)
                         .toArray();
 
