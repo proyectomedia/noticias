@@ -9,27 +9,30 @@ module.exports = function scrapper($, config) {
         .slice(0, config.limit)
         .map((i, post) => {
 
-            var data = {};
-
-            data.institution = "Ministerio de Salud";
-
-            data.category = config.category;
-            data.priority = config.priority;
-
+            var news = {};
             var trs = $(post).find('tr');
             var imgDate = trs.first().find('td');
-
-            data.date = util.getDate(imgDate.last().text().trim(), 'dddd, D [de] MMMM [del] YYYY');
-
             var title = $(trs[1]).find('a');
-            data.title = title.text().trim();
-            data.imageUrl = imgDate.find('td img').first().attr('src');
-            data.source = data.institution;
-            
-            data.subtitle = $(trs[2]).text().trim();
-            data.url = util.getAbsoluteUrl(config.url, title.attr('href'));
+            var postUrl = util.getAbsoluteUrl(config.url, title.attr('href'))
 
-            return data;       
+            news.imageUrl = imgDate.find('td img').first().attr('src');
+
+            return request
+                .getAsync(postUrl)
+                .then(html => {
+
+                    var $ = cheerio.load(html.body);
+
+                    news.title = $("div.conten div.txt1").text().trim();
+                    news.subtitle = $("div.conten div.txt2").text().trim();                    
+                    news.date = util.getDate($("div.fecha").text().trim(), 'dddd, D [de] MMMM [del] YYYY');
+                    news.url = postUrl;
+                    news.content = $('div.cont_not').text().trim();
+                    news.files = [];
+
+                    return news;
+                })
+                .catch(console.error); 
 
         }).get()
 
