@@ -9,30 +9,39 @@ module.exports = function scrapper($, config) {
         .slice(0, config.limit)
         .map((i, post) => {
 
-            var data = {};
+            var news = {};
 
-            data.institution = "Ministerio del Interior";
-
-            data.category = config.category;
-            data.priority = config.priority;
-
-            data.date = $(post).find('span[property="dc:date"]').attr('content')
+            news.date = $(post).find('span[property="dc:date"]').attr('content')
 
             var title = $(post).find('span.title-list-note a');
-            data.title = title.text().trim();
-            data.url = util.getAbsoluteUrl(config.url, title.attr('href'));
-            data.subtitle = $(post).find('div.content-list-note p').text().trim();
+
+            news.title = title.text().trim();
+            news.url = util.getAbsoluteUrl(config.url, title.attr('href'));
+            news.subtitle = $(post).find('div.content-list-note p').text().trim();
             
             return request
-                .getAsync(data.url)
+                .getAsync(news.url)
                 .then(html => {
 
                     var $ = cheerio.load(html.body);
 
-                    data.imageUrl = $('section#post-content img').first().attr('src');
-                    data.source = data.institution;
+                    news.imageUrl = $('section#post-content img').first().attr('src'); 
+                    news.content = $('div.content div.field-item.even p')                      
+                        .map((i, p) => {
 
-                    return data;
+                            if($(p).text().trim().length > 0) 
+                            {
+                                return $(p).text().trim()
+                            }
+                            return "";
+                        })                        
+                        .get()
+                        .filter(t => t)
+                        .join("\n\n");
+
+                    news.files = [];
+
+                    return news;
                 })
                 .catch(console.error);   
 
