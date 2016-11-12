@@ -90,6 +90,11 @@ function* getRecentNews(limit, category)
         // Get the news collection
         var collection = db.collection(dbConfig.collection);
 
+        var sortIndex = { priority: -1, date: -1  };
+        sortIndex['published.' + category] = 1;
+
+        collection.createIndex(sortIndex);
+
         var categoriesQueryClause = { categories: { $in: [ category ]}};
 
         var publishedQueryClause = { };
@@ -102,7 +107,7 @@ function* getRecentNews(limit, category)
                                 publishedQueryClause                                
                             ]
                         })
-                        .sort({ date : -1, priority: -1 })
+                        .sort(sortIndex)
                         .limit(limit)
                         .toArray();
 

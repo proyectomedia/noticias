@@ -9,23 +9,16 @@ module.exports = function scrapper($, config) {
         .slice(0, config.limit)
         .map((i, post) => {
 
-            var data = {};
-
-            data.institution = "Ministerio de educación";
-
-            data.category = config.category;
-            data.priority = config.priority;
-
+            var news = {};
             var title = $(post).find('h2 a');
-            data.title = title.text().trim();
-            data.imageUrl = util.getAbsoluteUrl(config.url, $(post).find('p img').first().attr('src'));
-            data.source = data.institution;
-            
-            data.subtitle = $(post).find('p.readmore').prev().text().trim();
-            data.url = util.getAbsoluteUrl(config.url, title.attr('href'));
+
+            news.title = title.text().trim();
+            news.imageUrl = util.getAbsoluteUrl(config.url, $(post).find('p img').first().attr('src'));
+            news.subtitle = $(post).find('p.readmore').prev().text().trim();
+            news.url = util.getAbsoluteUrl(config.url, title.attr('href'));
 
             return request
-                .getAsync(data.url)
+                .getAsync(news.url)
                 .then(html => {
 
                     var $ = cheerio.load(html.body);
@@ -37,14 +30,29 @@ module.exports = function scrapper($, config) {
                             var text = $(p).text().trim();
 
                             if (/\d{2} de (enero|febrero|marzo|abril|mayo|junio|julio|agosto|septiembre|octubre|noviembre|diciembre) de \d{4}$/gi.test(text)) {
-                                data.date = util.getDate(text.split(',')[1], 'DD [de] MMMM de YYYY');
+                                news.date = util.getDate(text.split(',')[1], 'DD [de] MMMM de YYYY');
                                 return true;
                             }
 
                         } catch(e) {}
                     });
 
-                    return data;
+                     news.content = $('div.item-page p')                
+                        .map((i, p) => {
+
+                            if($(p).text().trim().length > 0) 
+                            {
+                                return $(p).text().trim()
+                            }
+                            return "";
+                        })                        
+                        .get()
+                        .filter(t => t)
+                        .join("\n\n");
+
+                    news.files = [];
+
+                    return news;
                 })
                 .catch(console.error);         
 
