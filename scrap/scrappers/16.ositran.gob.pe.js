@@ -23,7 +23,7 @@ module.exports = function scrapper($, config) {
             news.title = post.title.text().trim();
             news.date = util.getDate(post.date.text().replace(/[\r\n]/g, " ").trim(), "DD MM YY");
             news.imageUrl = util.getAbsoluteUrl(config.url, post.img.find('img').attr('src'));
-            news.url = config.url;
+            news.url = post.img.find('a').attr('href');
 
             try {
                 var content = post.content.text().trim()

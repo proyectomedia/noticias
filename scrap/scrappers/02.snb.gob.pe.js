@@ -25,7 +25,7 @@ module.exports = function scrapper($, config) {
             news.imageUrl = $(table).find("img.TABLE_border4").attr('src');
             news.files = [ util.resolveUrl(config.url, $(childTable).find("a.texto_arial_plomo_x2_11_negrita").attr('href')) ];       
             news.subtitle = util.extractSummary(news.content);
-            news.url = config.url;
+            news.url = util.resolveUrl(config.url, $(childTable).find("a.texto_arial_plomo_x2_11_negrita").attr('href'));
 
             return Promise.resolve(news);
 

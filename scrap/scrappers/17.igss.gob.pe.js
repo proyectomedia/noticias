@@ -9,29 +9,27 @@ module.exports = function scrapper($, config) {
         .slice(0, config.limit)
         .map((i, post) => {
 
-            var data = {};
+            var news = {};
 
-            data.institution = "IGSS";
-
-            data.category = config.category;
-            data.priority = config.priority;
             var title = $(post).find('td a').last();
-            data.title = title.text().trim();
-            data.url = util.getAbsoluteUrl(config.url, title.attr('href'));
+            news.title = title.text().trim();
+            news.url = util.getAbsoluteUrl(config.url, title.attr('href'));
 
             return request
-                .getAsync(data.url)
+                .getAsync(news.url)
                 .then(html => {
 
                     var $ = cheerio.load(html.body);
 
                     var content = $('article div.contenidoportal');
 
-                    data.imageUrl = util.getAbsoluteUrl(config.url, content.find('img').first().attr('src'));
-                    data.source = data.institution;
-                    data.subtitle = content.find('p span strong').first().text().trim();
+                    news.date = new Date(); //CHANGE THIS TO EXTRACT DATE IF POSIBLE
+                    news.imageUrl = util.getAbsoluteUrl(config.url, content.find('img').first().attr('src'));                    
+                    news.subtitle = content.find('p span strong').first().text().trim();
+                    news.content = content.text();
+                    news.files = [];
 
-                    return data;
+                    return news;
                 })
                 .catch(console.error);         
 
