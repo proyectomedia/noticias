@@ -9,33 +9,40 @@ module.exports = function scrapper($, config) {
         .slice(0, config.limit)
         .map((i, post) => {
 
-            var data = {};
-
-            data.institution = "Organismo de Contrataciones del Estado";
-
-            data.category = config.category;
-            data.priority = config.priority;
+            var news = {};
 
             var title = $(post).find('a');
-            data.title = title.text().trim();
-            data.date = util.getDate($(post).find('td.views-field-created').text().trim(), 'DD/MM/YYYY');
-            //data.subtitle = ps.last().text().trim();
-            data.url = util.getAbsoluteUrl(config.url, title.attr('href'));
-            //data.source = data.institution
+            news.title = title.text().trim();
+            news.date = util.getDate($(post).find('td.views-field-created').text().trim(), 'DD/MM/YYYY');
+            news.url = util.getAbsoluteUrl(config.url, title.attr('href'));
 
             return request
-                .getAsync(data.url)
+                .getAsync(news.url)
                 .then(html => {
 
                     var $ = cheerio.load(html.body);
 
                     var  content = $('div.content.clearfix')
 
-                    data.imageUrl = content.find('img').first().attr('src');
-                    data.source = data.institution;
-                    data.subtitle = content.find('[property="content:encoded"] ul li').text().trim()
+                    news.imageUrl = content.find('img').first().attr('src');
+                    news.subtitle = content.find('[property="content:encoded"] ul li').text().trim();
 
-                    return data;
+                    news.content = content.find("p")                
+                        .map((i, p) => {
+
+                            if($(p).text().trim().length > 0) 
+                            {
+                                return $(p).text().trim()
+                            }
+                            return "";
+                        })                        
+                        .get()
+                        .filter(t => t)
+                        .join("\n\n");
+
+                    news.files = [];
+
+                    return news;
                 })
                 .catch(console.error);         
 

@@ -30,10 +30,6 @@ function invokeScrapper(url) {
         return request[method](configPage.url)
             .then(html => {
 
-
-
-
-
                 console.log("[Scrapping] Response received for: '" + configPage.scrapper + "' (" + configPage.url + ")");
 
                 var $;
