@@ -38,26 +38,26 @@ var scraperfacebook=require('./facebook/index');
 
 
 //Scraper web
- // var pages = config.pages.filter(page => page.active && page.schedule);
- // pages.forEach(page => {
- //     page.schedule.forEach(pageSchedule => schedule.scheduleJob(pageSchedule, () => scrapping.fetchAndSave(page.url)))
- // });
+ var pages = config.pages.filter(page => page.active && page.schedule);
+ pages.forEach(page => {
+     page.schedule.forEach(pageSchedule => schedule.scheduleJob(pageSchedule, () => scrapping.fetchAndSave(page.url)))
+ });
 
 
 
 
 //Publicar noticias
-//  f.page.forEach(page => {
-//   schedule.scheduleJob(page.schedule, () => {
-//       scrapping
-//               .getRecentNews(1, page.tipo)
-//               .then(news => {
-//                   news.forEach(newsItem => {
-//                        fbApi.postNews(page.id, newsItem, (n) => scrapping.markAsPublished(n, page.tipo))
-//                    })
-//               });
-//   });
-// })
+ f.page.forEach(page => {
+  schedule.scheduleJob(page.schedule, () => {
+      scrapping
+              .getRecentNews(1, page.tipo)
+              .then(news => {
+                  news.forEach(newsItem => {
+                       fbApi.postNews(page.id, newsItem, (n) => scrapping.markAsPublished(n, page.tipo))
+                   })
+              });
+  });
+})
 
 //Pruebas aca abajo
 
