@@ -92,8 +92,10 @@ function* sacarpostyguardar(paginas){
 
 
             var db = yield MongoClient.connect(dbConfig.mongoUri);
-            var collection = db.collection('news');
-            data.published = op.$setOnInsert(0);
+            var collection = db.collection(dbConfig.collection);
+            data.published = {};
+            data.categories.forEach(e => data.published[e] = op.$setOnInsert(0));
+          //  data.published = op.$setOnInsert(0);
 
             var news = flatten(data);
 

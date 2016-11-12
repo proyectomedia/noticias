@@ -96,12 +96,12 @@ function* getRecentNews(limit, category)
 
         var news = yield collection
                         .find({
-                            /*$and: [
+                            $and: [
                                 { categories: { $in: [ category ]}},
-                                { */
+                                {
                                     $or: [ { published: { $lte: 3 }}, { published: { $exists: false } }]
-                                /* }
-                            ]*/
+                                }
+                            ]
                         })
                         .sort({ date : -1 })
                         .limit(limit)
@@ -112,14 +112,23 @@ function* getRecentNews(limit, category)
         return news;
 }
 
-function* markAsPublished(news) {
+function* markAsPublished(news, category) {
         var db = yield MongoClient.connect(dbConfig.mongoUri);
 
         // Get the news collection
         var collection = db.collection(dbConfig.collection);
 
-        var publishedCount = (news.published || 0) + 1;
-        var operation = yield collection.updateOne({ _id: news._id }, { $set: { published: publishedCount }});
+        var updateObject = {
+            published: {
+
+            }
+        };
+
+        updateObject.published[category] = (news.published && news.published[category]) ? (news.published[category] + 1) : 0;
+
+        var query = flatten(updateObject);
+
+        var operation = yield collection.updateOne({ _id: news._id }, query);
 
         db.close();
 }
@@ -138,12 +147,12 @@ function* fetchAndSave(scrapperId) {
         {
             var newsItem = news[i];
 
-            newsItem.published = op.$setOnInsert(0);
+            newsItem.published = {};
+            newsItem.categories.forEach(e => newsItem.published[e] = op.$setOnInsert(0));
 
             var mongoEntity = flatten(newsItem);
-            // console.log(mongoEntity);
 
-            var operation = yield collection.updateOne({ _id: newsItem._id }, mongoEntity, { upsert: true });
+           var operation = yield collection.updateOne({ _id: newsItem._id }, mongoEntity, { upsert: true });
 
             if(operation.result.ok > 0)
             {
@@ -156,6 +165,7 @@ function* fetchAndSave(scrapperId) {
         }
 
         db.close();
+        return news;
 }
 
 
