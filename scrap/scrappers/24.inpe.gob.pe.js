@@ -10,38 +10,47 @@ module.exports = function scrapper($, config) {
         .slice(0, config.limit)
         .map((i, post) => {
 
-            var data = {};
-
-            data.institution = "Ministerio del Interior";
-
-            data.category = config.category;
-            data.priority = config.priority;
+            var news = {};
 
             var day = $(post).find('div.noticia_fecha_dia').text().trim();
             var month = $(post).find('div.noticia_fecha_mes__').text().trim();
 
-            data.date = util.getDate(`${day}-${getMonth(month)}-${moment().year()}`.toLowerCase(), 'DD-MM-YYYY');
-            data.subtitle = $(post).find('div.noticia_fecha_mes_').text().trim();
+            news.date = util.getDate(`${day}-${getMonth(month)}-${moment().year()}`.toLowerCase(), 'DD-MM-YYYY');
+            news.subtitle = $(post).find('div.noticia_fecha_mes_').text().trim();
 
             var title = $(post).find('div.link_noticia');
-            data.title = title.text().trim();
+            news.title = title.text().trim();
             try {
                 var url = /href='(.*)'/gi.exec(title.attr('onclick'))[1];
-                data.url = util.getAbsoluteUrl(config.url, url);
+                news.url = util.getAbsoluteUrl(config.url, url);
             } catch(e) {
                 return Promise.resolve();
             }
             
             return request
-                .getAsync(data.url)
+                .getAsync(news.url)
                 .then(html => {
 
                     var $ = cheerio.load(html.body);
 
-                    data.imageUrl = $('td[align="center"] img').first().attr('src');
-                    data.source = data.institution;
+                    news.imageUrl = $('td[align="center"] img').first().attr('src');
 
-                    return data;
+                    news.content = $('td.AnotasPrensa p')                
+                        .map((i, p) => {
+
+                            if($(p).text().trim().length > 0) 
+                            {
+                                return $(p).text().trim()
+                            }
+                            return "";
+                        })                        
+                        .get()
+                        .filter(t => t)
+                        .join("\n\n");
+
+                    news.files = [];
+
+                    return news;
                 })
                 .catch(console.error);   
 
