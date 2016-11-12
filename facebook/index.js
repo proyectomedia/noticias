@@ -40,6 +40,8 @@ function* sacarpostyguardar(paginas){
                data.content="";
                data.imageUrl=response.posts.data[0].full_picture;
                data.source_website=response.posts.data[0].caption;
+               data.files=[];
+
 
           if (response.posts.data[0].description ){data.description=response.posts.data[0].description};
 
@@ -62,6 +64,7 @@ function* sacarpostyguardar(paginas){
           };
 
           data.category=categoria;
+           data.categories=[categoria];
           data._id=sha1(data.url);
 
          //  console.log(" ");
@@ -89,8 +92,10 @@ function* sacarpostyguardar(paginas){
 
 
             var db = yield MongoClient.connect(dbConfig.mongoUri);
-            var collection = db.collection('news');
-            data.published = op.$setOnInsert(0);
+            var collection = db.collection(dbConfig.collection);
+            data.published = {};
+            data.categories.forEach(e => data.published[e] = op.$setOnInsert(0));
+          //  data.published = op.$setOnInsert(0);
 
             var news = flatten(data);
 

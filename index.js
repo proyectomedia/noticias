@@ -43,6 +43,9 @@ var scraperfacebook=require('./facebook/index');
      page.schedule.forEach(pageSchedule => schedule.scheduleJob(pageSchedule, () => scrapping.fetchAndSave(page.url)))
  });
 
+
+
+
 //Publicar noticias
  f.page.forEach(page => {
   schedule.scheduleJob(page.schedule, () => {
@@ -58,8 +61,10 @@ var scraperfacebook=require('./facebook/index');
 
 //Pruebas aca abajo
 
+
 //crapping.fetchAndSave("http://www.sbn.gob.pe/noticias_hist.php");
          //.then(news => news.forEach(n => scrapping.markAsPublished(n, 'politica')));
+
 
 //scrapping.getRecentNews(1, "politica")
 //                .then(news => {
@@ -67,5 +72,3 @@ var scraperfacebook=require('./facebook/index');
 
 
 //Publicar noticias
-
-
