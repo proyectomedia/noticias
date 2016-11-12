@@ -38,16 +38,14 @@ var scraperfacebook=require('./facebook/index');
 
 
 //Scraper web
- // var pages = config.pages.filter(page => page.active && page.schedule);
- // pages.forEach(page => {
- //     page.schedule.forEach(pageSchedule => schedule.scheduleJob(pageSchedule, () => scrapping.fetchAndSave(page.scrapper)))
- // });
-
- 
+ var pages = config.pages.filter(page => page.active && page.schedule);
+ pages.forEach(page => {
+     page.schedule.forEach(pageSchedule => schedule.scheduleJob(pageSchedule, () => scrapping.fetchAndSave(page.url)))
+ });
 
 
 
-scrapping.fetchAndSave("http://www.sbn.gob.pe/noticias_hist.php");
+
 
 // scrapping.getRecentNews(1, "politica")
 //                .then(news => {

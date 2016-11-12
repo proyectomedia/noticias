@@ -40,6 +40,8 @@ function* sacarpostyguardar(paginas){
                data.content="";
                data.imageUrl=response.posts.data[0].full_picture;
                data.source_website=response.posts.data[0].caption;
+               data.files=[];
+
 
           if (response.posts.data[0].description ){data.description=response.posts.data[0].description};
 
@@ -62,6 +64,7 @@ function* sacarpostyguardar(paginas){
           };
 
           data.category=categoria;
+           data.categories=[categoria];
           data._id=sha1(data.url);
 
          //  console.log(" ");

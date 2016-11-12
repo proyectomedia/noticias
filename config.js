@@ -27,7 +27,7 @@ var config = {
             "active": true,
 
             "schedule": [
-                { hour: 13 }, //Runs at 12pm
+                "0 */1 * * * *"  
             ]
 
         },

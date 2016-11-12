@@ -92,14 +92,14 @@ function* getRecentNews(limit, category)
         var db = yield MongoClient.connect(dbConfig.mongoUri);
 
         // Get the news collection
-        var collection = db.collection('news');
+        var collection = db.collection(dbConfig.collection);
 
         var news = yield collection
                         .find({
                             /*$and: [
                                 { categories: { $in: [ category ]}},
                                 { */
-                                    $or: [ { published: { $lte: 3 }}, { published: { $exists: false } }] 
+                                    $or: [ { published: { $lte: 3 }}, { published: { $exists: false } }]
                                 /* }
                             ]*/
                         })
@@ -116,7 +116,7 @@ function* markAsPublished(news) {
         var db = yield MongoClient.connect(dbConfig.mongoUri);
 
         // Get the news collection
-        var collection = db.collection('news');
+        var collection = db.collection(dbConfig.collection);
 
         var publishedCount = (news.published || 0) + 1;
         var operation = yield collection.updateOne({ _id: news._id }, { $set: { published: publishedCount }});
@@ -128,7 +128,7 @@ function* fetchAndSave(scrapperId) {
         var db = yield MongoClient.connect(dbConfig.mongoUri);
 
         // Get the news collection
-        var collection = db.collection('news');
+        var collection = db.collection(dbConfig.collection);
 
         console.log("[FetchAndSave] Scrapper: " + scrapperId);
         var newsArray = yield invokeScrapper(scrapperId);
@@ -141,7 +141,7 @@ function* fetchAndSave(scrapperId) {
             newsItem.published = op.$setOnInsert(0);
 
             var mongoEntity = flatten(newsItem);
-            console.log(mongoEntity);
+            // console.log(mongoEntity);
 
             var operation = yield collection.updateOne({ _id: newsItem._id }, mongoEntity, { upsert: true });
 
