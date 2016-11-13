@@ -4,14 +4,14 @@ var config = {
         "active": true,
         "priority": 0,
         "verb": "get",
-        "debug": true,
+        "debug": false,
         "schedule": []
     },
     "pages": [
         {
             "url": "http://www2.trabajo.gob.pe/prensa/notas-de-prensa/",
             "scrapper": "01.trabajo.gob.pe",
-            "limit": 3,
+            "limit": 1,
             "defaults": {
                 "category": "politica",
                 "categories": ["politica"],
@@ -27,14 +27,14 @@ var config = {
             "active": true,
 
             "schedule": [
-                "0 */1 * * * *"  
+                "0 */1 * * * *"
             ]
 
         },
         {
             "url": "http://www.sbn.gob.pe/noticias_hist.php",
             "scrapper": "02.snb.gob.pe",
-            "limit": 2,
+            "limit": 3,
             "defaults": {
                 "category": "politica",
                 "categories": ["politica", "obras"],
@@ -46,7 +46,7 @@ var config = {
                 "fb_source_username": ""
             },
 
-            "active": true,
+            "active": false,
             //"active": true
 
             "schedule": [
@@ -485,6 +485,7 @@ var config = {
                 "fb_id": "",
                 "fb_source_username": ""
             },
+            "schedule": ['0 0 13,18 * * *']
         },
         {
             "url": "http://www.minjus.gob.pe/categoria/ultimas-noticias/",
