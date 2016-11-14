@@ -20,20 +20,21 @@ module.exports = function scrapper($, config) {
                     var news = {};
 
                     news.title =  $('h1').text().trim();
-                    news.subtitle = $('h1 ~ h4').text().trim();
+                    var string = $('h1 ~ h4').text().trim();
+                    news.subtitle = string+ "...";
                     news.imageUrl = $('article.fotoportada img').attr('src');
                     news.date = util.getDate($('section.cuerpo_cont section font').text().trim(), 'HH:mm, MMM DD.');
                     news.url = postUrl;
 
-                    news.content = $('section.cuerpo_cont section div:not(.social-detalle)')                        
+                    news.content = $('section.cuerpo_cont section div:not(.social-detalle)')
                         .map((i, div) => {
 
-                            if(($(div).find('div, br').length == 0) && ($(div).text().trim().length > 0)) 
+                            if(($(div).find('div, br').length == 0) && ($(div).text().trim().length > 0))
                             {
                                 return $(div).text().trim()
                             }
                             return "";
-                        })                        
+                        })
                         .get()
                         .filter(t => t)
                         .join("\n\n");
@@ -47,4 +48,3 @@ module.exports = function scrapper($, config) {
         }).get()
 
 }
-

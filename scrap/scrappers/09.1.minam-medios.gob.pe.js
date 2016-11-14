@@ -18,7 +18,7 @@ module.exports = function scrapper($, config) {
 
                     var _new = cheerio.load(html.body)('div.box_post');
                     var $ = cheerio.load(_new.html());
-                    
+
                     var news = {};
                     var fecha = $('#fecha');
 
@@ -33,7 +33,11 @@ module.exports = function scrapper($, config) {
                         .filter(t => t)
                         .join("\n\n");
 
-                    news.subtitle = util.extractSummary(news.content, 50);
+                    string = util.extractSummary(news.content, 30);
+
+                    var parts=[];
+                    parts= string.split(".");
+                   news.subtitle =parts[1]+"...";
                     news.url = postUrl;
                     news.files = [];
 
@@ -43,4 +47,3 @@ module.exports = function scrapper($, config) {
 
         }).get()
 }
-

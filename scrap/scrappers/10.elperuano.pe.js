@@ -1,5 +1,6 @@
 var cheerio = require("cheerio");
 
+var _ = require('lodash');
 var request = require("../../lib/requestAsync");
 var util = require('../../lib/util');
 
@@ -9,8 +10,13 @@ module.exports = function scrapper($, config) {
         .slice(0, config.limit)
         .map((i, link) => {
 
+            if(!config.images || !config.images.length)
+            {
+                config.images = [];
+            }
+
             var postUrl = util.getAbsoluteUrl(config.url, encodeURIComponent($(link).attr('href').replace(/(\r\n|\n|\r)/gm,"")));
-            var defaultImageUrl = "https://s16.postimg.org/rhbcuwdud/image.png";
+            var defaultImageUrl = config.images[_.random(config.images.length - 1)]
 
             return request
                 .getAsync(postUrl)
@@ -23,17 +29,19 @@ module.exports = function scrapper($, config) {
 
                     news.title = $("h1").text().trim();
                     news.imageUrl = portada.find('img').attr('src') || defaultImageUrl;
-                    news.subtitle = portada.find('p').text().trim();
+                    var string = portada.find('p').text().trim();
+                     
+                    news.subtitle =  util.extractSummary(string);
 
                     var texto = $('article.notatexto');
 
                     news.date = util.getDate(texto.find('p').first().text().trim(), 'DD/MM/YYYY');
 
-                    if (news.date === 'Invalid Date') 
+                    if (news.date === 'Invalid Date')
                     {
                         news.date = util.getDate(texto.find('p').first().text().trim(), 'D/MM/YYYY');
                     }
-                    
+
                     news.content = texto
                         .find('p, .sumilla')
                         .map((i, p) => {
@@ -55,4 +63,3 @@ module.exports = function scrapper($, config) {
         }).get()
 
 }
-

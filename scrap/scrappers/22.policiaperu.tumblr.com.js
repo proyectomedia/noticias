@@ -20,16 +20,16 @@ module.exports = function scrapper($, config) {
                 news.date = util.getDate(date.text().trim().split(',')[1], 'DD [de] MMMM [del] YYYY')
             }catch(e) {}
 
-            news.subtitle = date.next().find('b').text().trim();
-            news.content = $(post).find('div.copy p')                
+            news.subtitle = date.next().find('b').text().trim()+"...";
+            news.content = $(post).find('div.copy p')
                         .map((i, p) => {
 
-                            if(($(p).text().trim() != $(date).text().trim()) && $(p).text().trim().length > 0) 
+                            if(($(p).text().trim() != $(date).text().trim()) && $(p).text().trim().length > 0)
                             {
                                 return $(p).text().trim()
                             }
                             return "";
-                        })                        
+                        })
                         .get()
                         .filter(t => t)
                         .join("\n\n");
@@ -44,9 +44,8 @@ module.exports = function scrapper($, config) {
             news.imageUrl = "";
             news.files = [];
 
-            return news;       
+            return news;
 
         }).get()
 
 }
-

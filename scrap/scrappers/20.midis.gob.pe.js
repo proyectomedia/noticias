@@ -14,7 +14,7 @@ module.exports = function scrapper($, config) {
 
             news.title = title.text().trim();
             news.imageUrl = util.getAbsoluteUrl(config.url, $(post).find('p img').first().attr('src'));
-            news.subtitle = $(post).find('p.readmore').prev().text().trim();
+            news.subtitle = $(post).find('p.readmore').prev().text().trim()+"...";
             news.url = util.getAbsoluteUrl(config.url, title.attr('href'));
 
             return request
@@ -37,15 +37,15 @@ module.exports = function scrapper($, config) {
                         } catch(e) {}
                     });
 
-                     news.content = $('div.item-page p')                
+                     news.content = $('div.item-page p')
                         .map((i, p) => {
 
-                            if($(p).text().trim().length > 0) 
+                            if($(p).text().trim().length > 0)
                             {
                                 return $(p).text().trim()
                             }
                             return "";
-                        })                        
+                        })
                         .get()
                         .filter(t => t)
                         .join("\n\n");
@@ -54,9 +54,8 @@ module.exports = function scrapper($, config) {
 
                     return news;
                 })
-                .catch(console.error);         
+                .catch(console.error);
 
         }).get()
 
 }
-

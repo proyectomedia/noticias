@@ -7,6 +7,7 @@ var request = require("../lib/requestAsync");
 var config = require("../config");
 var scrapData = require("../lib/scrapData");
 var generateId = require('../lib/generateId');
+var util = require('../lib/util');
 
 var dbConfig = require('../lib/db');
 var mongodb = require("mongodb");
@@ -82,6 +83,7 @@ function invokeScrapper(url) {
 
 function* getRecentNews(limit, category)
 {
+  try{
         limit = limit || 5;
         category = category || "politica";
 
@@ -104,7 +106,7 @@ function* getRecentNews(limit, category)
                         .find({
                             $and: [
                                 categoriesQueryClause,
-                                publishedQueryClause                                
+                                publishedQueryClause
                             ]
                         })
                         .sort(sortIndex)
@@ -114,9 +116,16 @@ function* getRecentNews(limit, category)
         db.close();
 
         return news;
+      }
+      catch(err){
+
+         console.log(err);
+      }
 }
 
 function* markAsPublished(news, category) {
+
+   try{
         var db = yield MongoClient.connect(dbConfig.mongoUri);
 
         // Get the news collection
@@ -128,16 +137,31 @@ function* markAsPublished(news, category) {
             }
         };
 
-        updateObject.published[category] = (news.published && news.published[category]) ? (news.published[category] + 1) : 0;
 
-        var query = flatten(updateObject);
 
-        var operation = yield collection.updateOne({ _id: news._id }, query);
+       var valor=(news.published && (news.published[category]>=0))
+      // console.log(valor);
+        if(valor){
+         updateObject.published[category]=news.published[category] + 1;
+         var query = flatten(updateObject);
+         var operation = yield collection.updateOne({ _id: news._id }, query);
+
+       };
+
+
 
         db.close();
 }
+catch(err){
+
+   console.log(err);
+}
+
+}
 
 function* fetchAndSave(scrapperId) {
+
+try{
         var db = yield MongoClient.connect(dbConfig.mongoUri);
 
         // Get the news collection
@@ -150,6 +174,17 @@ function* fetchAndSave(scrapperId) {
         for(var i = 0; i < news.length; i++)
         {
             var newsItem = news[i];
+            var title=util.fixedparrafo(newsItem.title);
+            var subtitle=util.fixedparrafo(newsItem.subtitle);
+            var content=util.fixedparrafo(newsItem.content);
+
+            //console.log(title);
+          //  console.log(subtitle);
+          //  console.log(content);
+
+            newsItem.title=title;
+            newsItem.subtitle=subtitle;
+            newsItem.content=content;
 
             newsItem.published = {};
             newsItem.categories.forEach(e => newsItem.published[e] = op.$setOnInsert(0));
@@ -170,6 +205,14 @@ function* fetchAndSave(scrapperId) {
 
         db.close();
         return news;
+    }
+      catch(err){
+
+         console.log(err);
+      }
+
+
+
 }
 
 

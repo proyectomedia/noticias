@@ -24,7 +24,7 @@ module.exports = function scrapper($, config) {
                     var $ = cheerio.load(html.body);
 
                     news.title = $("div.conten div.txt1").text().trim();
-                    news.subtitle = $("div.conten div.txt2").text().trim();                    
+                    news.subtitle = $("div.conten div.txt2").text().trim()+"...";                    
                     news.date = util.getDate($("div.fecha").text().trim(), 'dddd, D [de] MMMM [del] YYYY');
                     news.url = postUrl;
                     news.content = $('div.cont_not').text().trim();
@@ -32,9 +32,8 @@ module.exports = function scrapper($, config) {
 
                     return news;
                 })
-                .catch(console.error); 
+                .catch(console.error);
 
         }).get()
 
 }
-

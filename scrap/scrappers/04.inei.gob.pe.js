@@ -20,6 +20,7 @@ module.exports = function scrapper($, config) {
 
             news.title = aTitle.text().trim();
             news.subtitle = $(post).find('.noticia').children().remove().end().text().trim();
+          //  news.subtitle= a.replace("a", "");
             news.date = util.getDate(titleNew.find('span[style]').text().trim(), 'DD/MM/YYYY');
             news.url = postUrl;
 
@@ -36,7 +37,7 @@ module.exports = function scrapper($, config) {
                         .each(function() {
                             content += $(this).text() + "\n";
                         })
-                    
+
                     news.content = content;
                     news.imageUrl = "";
                     news.files = [ util.resolveUrl(config.url, $("div#contenido").find('a.more').attr('href')) ]
@@ -47,4 +48,3 @@ module.exports = function scrapper($, config) {
 
         }).get()
 }
-

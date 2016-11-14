@@ -18,7 +18,7 @@ var config = {
                 "priority": 1,
                 "type": "link",
                 "source": "Ministerio Del trabajo",
-                "source_website": "http://www2.trabajo.gob.pe/",
+                "source_website": "Trabajo.gob.pe",
                 "fb_id": "",
                 "fb_source_username": ""
             },
@@ -26,9 +26,7 @@ var config = {
 
             "active": true,
 
-            "schedule": [
-                "0 */1 * * * *"
-            ]
+            "schedule": ["0 0 13,18 * * *"]
 
         },
         {
@@ -41,12 +39,12 @@ var config = {
                 "priority": 1,
                 "type": "link",
                 "source": "Superintendencia Nacional de Bienes Estatales",
-                "source_website": "http://www.sbn.gob.pe/",
+                "source_website": "sbn.gob.pe",
                 "fb_id": "",
                 "fb_source_username": ""
             },
 
-            "active": false,
+            "active": true,
             //"active": true
 
             "schedule": [
@@ -65,14 +63,12 @@ var config = {
                 "priority": 1,
                 "type": "link",
                 "source": "Comisión de Promoción del Perú para la Exportación y el Turismo",
-                "source_website": "http://www.promperu.gob.pe/",
+                "source_website": "Promperu.gob.pe",
                 "fb_id": "",
                 "fb_source_username": ""
             },
             "format": "json",
-            "schedule": [
-                { hour: 13 } //Runs at 12pm
-            ]
+            "schedule": ["0 0 13,18 * * *"]
         },
         {
             "url": "https://www.inei.gob.pe/prensa/noticias/",
@@ -84,14 +80,11 @@ var config = {
                 "priority": 1,
                 "type": "link",
                 "source": "Instituto Nacional de Estadística e Informática",
-                "source_website": "https://www.inei.gob.pe/",
+                "source_website": "inei.gob.pe",
                 "fb_id": "",
                 "fb_source_username": ""
             },
-            "schedule": [
-                { hour: 13 }, //Runs at 10am
-                { hour: 17 }  //Runs at 5pm
-            ]
+            "schedule": ["0 0 13,18 * * *"]
         },
         {
             "url": "https://www.indecopi.gob.pe/noticias",
@@ -103,13 +96,11 @@ var config = {
                 "priority": 1,
                 "type": "link",
                 "source": "Instituto Nacional de Defensa de la Competencia y de la Protección de la Propiedad Intelectual",
-                "source_website": "https://www.indecopi.gob.pe/",
+                "source_website": "Indecopi.gob.pe",
                 "fb_id": "",
                 "fb_source_username": ""
             },
-            "schedule": [
-                { hour: 13 }, //Runs at 12pm
-            ]
+            "schedule": ["0 0 13,18 * * *"]
         },
         {
             "url": "http://www.cultura.gob.pe/es/comunicacion/noticias",
@@ -121,14 +112,11 @@ var config = {
                 "priority": 1,
                 "type": "link",
                 "source": "Ministerio de Cultura",
-                "source_website": "http://www.cultura.gob.pe/",
+                "source_website": "cultura.gob.pe",
                 "fb_id": "",
                 "fb_source_username": ""
             },
-            "schedule": [
-                { hour: 13 }, //Runs at 10am
-                { hour: 17 }  //Runs at 5pm
-            ]
+            "schedule": ["0 0 13,18 * * *"]
         },
         {
             "url": "http://www.inaigem.gob.pe/NotasDePrensa",
@@ -140,14 +128,11 @@ var config = {
                 "priority": 1,
                 "type": "link",
                 "source": "Instituto Nacional de Investigación en Glaciares y Ecosistemas de Montaña",
-                "source_website": "http://www.inaigem.gob.pe/",
+                "source_website": "inaigem.gob.pe",
                 "fb_id": "",
                 "fb_source_username": ""
             },
-            "schedule": [
-                { hour: 13 }, //Runs at 10am
-                { hour: 17 }  //Runs at 5pm
-            ]
+            "schedule": ["0 0 13,18 * * *"]
         },
         {
             "url": "http://www.sernanp.gob.pe/noticias1",
@@ -159,15 +144,11 @@ var config = {
                 "priority": 1,
                 "type": "link",
                 "source": "Servicio Nacional de Áreas Naturales Protegidas por el Estado",
-                "source_website": "http://www.sernanp.gob.pe/",
+                "source_website": "sernanp.gob.pe",
                 "fb_id": "",
                 "fb_source_username": ""
             },
-            "schedule": [
-                { hour: 10 }, //Runs at 9am
-                { hour: 13 },  //Runs at 1pm
-                { hour: 17 }  //Runs at 5pm
-            ]
+            "schedule": ["0 0 13,18 * * *"]
         },
         {
             "url": "http://www.minam.gob.pe/notas-de-prensa/",
@@ -179,14 +160,11 @@ var config = {
                 "priority": 1,
                 "type": "link",
                 "source": "Ministerio del Ambiente",
-                "source_website": "http://www.minam.gob.pe/",
+                "source_website": "minam.gob.pe",
                 "fb_id": "",
                 "fb_source_username": ""
             },
-            "schedule": [
-                { hour: 13 }, //Runs at 10am
-                { hour: 17 }  //Runs at 5pm
-            ]
+              "schedule": ["0 0 13,18 * * *"]
         },
         {
             "url": "http://www.minam.gob.pe/medios/",
@@ -198,57 +176,63 @@ var config = {
                 "priority": 1,
                 "type": "link",
                 "source": "Ministerio del Ambiente",
-                "source_website": "http://www.minam.gob.pe/",
+                "source_website": "minam.gob.pe",
                 "fb_id": "",
                 "fb_source_username": ""
             },
-            "schedule": [
-                { hour: 8 }, //Runs at 8am
-                { hour: 11 },  //Runs at 11am
-                { hour: 14 },  //Runs at 2pm
-                { hour: 17 }  //Runs at 5pm
-            ]
+           "schedule": ["0 0 10,13,18 * * *"]
         },
         {
             "url": "http://www.elperuano.pe/seccion.aspx?sec=1",
             "scrapper": "10.elperuano.pe",
-            "limit": 9,
+            "limit": 3,
+            "images": [
+                "http://subirimagen.me/uploads/20161110132358.png",
+                "https://s18.postimg.org/ne7iteoix/87_t2_Gv2_Iz9_Og3_Et2_A.png",
+                "https://s16.postimg.org/rhbcuwdud/image.png"
+            ],
             "defaults": {
                 "category": "politica",
                 "categories": ["politica"],
                 "priority": 2,
                 "type": "link",
                 "source": "El Peruano",
-                "source_website": "http://www.elperuano.pe/",
+                "source_website": "elperuano.pe",
                 "fb_id": "",
                 "fb_source_username": ""
             },
-            "schedule": [
-                { hour: 12 }, //Runs at 12pm
-            ]
+             "schedule": ["0 0 8-18 * * *"]
         },
         {
             "url": "http://www.elperuano.pe/seccion.aspx?sec=3",
             "scrapper": "10.elperuano.pe",
-            "limit": 9,
+            "limit": 3,
+            "images": [
+                "http://subirimagen.me/uploads/20161110132358.png",
+                "https://s18.postimg.org/ne7iteoix/87_t2_Gv2_Iz9_Og3_Et2_A.png",
+                "https://s16.postimg.org/rhbcuwdud/image.png"
+            ],
             "defaults": {
                 "category": "economia",
                 "categories": ["economia"],
                 "priority": 2,
                 "type": "link",
                 "source": "El Peruano",
-                "source_website": "http://www.elperuano.pe/",
+                "source_website": "elperuano.pe",
                 "fb_id": "",
                 "fb_source_username": ""
             },
-            "schedule": [
-                { hour: 12 }, //Runs at 12pm
-            ]
+            "schedule": ["0 0 8-18 * * *"]
         },
         {
             "url": "http://www.elperuano.pe/seccion.aspx?sec=7",
             "scrapper": "10.elperuano.pe",
-            "limit": 8,
+            "limit": 3,
+            "images": [
+                "http://subirimagen.me/uploads/20161110132358.png",
+                "https://s18.postimg.org/ne7iteoix/87_t2_Gv2_Iz9_Og3_Et2_A.png",
+                "https://s16.postimg.org/rhbcuwdud/image.png"
+            ],
             "defaults": {
                 "category": "actualidad",
                 "categories": ["actualidad"],
@@ -259,118 +243,120 @@ var config = {
                 "fb_id": "",
                 "fb_source_username": ""
             },
-            "schedule": [
-                { hour: 12 }, //Runs at 12pm
-            ]
+            "schedule": ["0 0 8-18 * * *"]
         },
         {
             "url": "http://www.elperuano.pe/seccion.aspx?sec=2",
             "scrapper": "10.elperuano.pe",
             "limit": 8,
+            "images": [
+                "http://subirimagen.me/uploads/20161110132358.png",
+                "https://s18.postimg.org/ne7iteoix/87_t2_Gv2_Iz9_Og3_Et2_A.png",
+                "https://s16.postimg.org/rhbcuwdud/image.png"
+            ],
             "defaults": {
                 "category": "actualidad",
                 "categories": ["actualidad"],
                 "priority": 2,
                 "type": "link",
                 "source": "El Peruano",
-                "source_website": "http://www.elperuano.pe/",
+                "source_website": "elperuano.pe",
                 "fb_id": "",
                 "fb_source_username": ""
             },
-            "schedule": [
-                { hour: 12 }, //Runs at 12pm
-            ]
+            "schedule": ["0 0 8-18 * * *"]
         },
         {
             "url": "http://www.elperuano.pe/seccion.aspx?sec=5",
             "scrapper": "10.elperuano.pe",
-            "limit": 6,
+            "limit": 3,
+            "images": [
+                "http://subirimagen.me/uploads/20161110132358.png",
+                "https://s18.postimg.org/ne7iteoix/87_t2_Gv2_Iz9_Og3_Et2_A.png",
+                "https://s16.postimg.org/rhbcuwdud/image.png"
+            ],
             "defaults": {
                 "category": "actualidad",
                 "categories": ["actualidad"],
                 "priority": 2,
                 "type": "link",
                 "source": "El Peruano",
-                "source_website": "http://www.elperuano.pe/",
+                "source_website": "elperuano.pe",
                 "fb_id": "",
                 "fb_source_username": ""
             },
-            "schedule": [
-                { hour: 12 }, //Runs at 12pm
-            ]
+            "schedule": ["0 0 8-18 * * *"]
         },
         {
             "url": "http://www.elperuano.pe/seccion.aspx?sec=4",
             "scrapper": "10.elperuano.pe",
             "limit": 3,
+            "images": [
+                "http://subirimagen.me/uploads/20161110132358.png",
+                "https://s18.postimg.org/ne7iteoix/87_t2_Gv2_Iz9_Og3_Et2_A.png",
+                "https://s16.postimg.org/rhbcuwdud/image.png"
+            ],
             "defaults": {
                 "category": "actualidad",
                 "categories": ["actualidad"],
                 "priority": 2,
                 "type": "link",
                 "source": "El Peruano",
-                "source_website": "http://www.elperuano.pe/",
+                "source_website": "elperuano.pe",
                 "fb_id": "",
                 "fb_source_username": ""
             },
-            "schedule": [
-                { hour: 12 }, //Runs at 12pm
-            ]
+            "schedule": ["0 0 8-18 * * *"]
         },
         {
             "url": "http://diariooficial.elperuano.pe/Normas",
             "scrapper": "11.elperuanonormas.pe",
             "limit": 3,
+            "images": ["http://subirimagen.me/uploads/20161110132221.PNG", "https://s22.postimg.org/5cxpfbj69/Captura.png"],
             "defaults": {
                 "category": "politica",
                 "categories": ["politica"],
                 "priority": 0,
                 "type": "link",
                 "source": "El Peruano",
-                "source_website": "http://diariooficial.elperuano.pe/",
+                "source_website": "diariooficial.elperuano.pe",
                 "fb_id": "",
                 "fb_source_username": "",
                 "imageUrl": "https://k60.kn3.net/E/7/5/D/2/8/ABC.png"
             },
-            "schedule": [
-                { hour: 12 }, //Runs at 12pm
-            ]
+            "schedule": ["0 0 8,13,18 * * *"]
         },
         {
             "url": "http://www.pcm.gob.pe/seccion/noticias/notas-de-prensa/",
             "scrapper": "12.pcm.gob.pe",
-            "limit": 1,
+            "limit": 3,
             "defaults": {
                 "category": "politica",
                 "categories": ["politica"],
                 "priority": 2,
                 "type": "link",
                 "source": "Presidencia del consejo de ministros",
-                "source_website": "http://www.pcm.gob.pe/",
+                "source_website": "pcm.gob.pe",
                 "fb_id": "",
                 "fb_source_username": ""
             },
-            "schedule": [
-                { hour: 12 }, //Runs at 12pm
-            ]
+            "schedule": ["0 0 13,18 * * *"]
         },
         {
             "url": "http://www.presidencia.gob.pe/lista-notas-prensa",
             "scrapper": "13.presidencia.gob.pe",
-            "limit": 1,
+            "limit": 3,
             "defaults": {
                 "category": "politica",
                 "categories": ["politica"],
                 "priority": 2,
                 "type": "link",
                 "source": "Presidencia",
-                "source_website": "http://www.presidencia.gob.pe/",
+                "source_website": "presidencia.gob.pe",
                 "fb_id": "",
                 "fb_source_username": ""
             },
-            "schedule": [
-                { hour: 12 }, //Runs at 12pm
-            ]
+            "schedule": ["0 0 13,18 * * *"]
         },
         {
             "url": "http://www.andina.com.pe/agencia/seccion-politica-17.aspx?sec=17",
@@ -382,11 +368,11 @@ var config = {
                 "priority": 1,
                 "type": "link",
                 "source": "Andina",
-                "source_website": "http://www.andina.com.pe/",
+                "source_website": "andina.com.pe",
                 "fb_id": "",
                 "fb_source_username": ""
             },
-            "schedule": [ "*/20 * * * *" ] //cada media hora porque es un periodico
+            "schedule": [ "0 */20 * * * *" ] //cada media hora porque es un periodico
 
         },
         {
@@ -399,11 +385,11 @@ var config = {
                 "priority": 1,
                 "type": "link",
                 "source": "Andina",
-                "source_website": "http://www.andina.com.pe/",
+                "source_website": "andina.com.pe",
                 "fb_id": "",
                 "fb_source_username": ""
             },
-            "schedule": [ "*/20 * * * *" ]
+            "schedule": [ "0 */20 * * * *" ]
         },
         {
             "url": "http://www.andina.com.pe/agencia/seccion-locales-3.aspx",
@@ -415,11 +401,11 @@ var config = {
                 "priority": 1,
                 "type": "link",
                 "source": "Andina",
-                "source_website": "http://www.andina.com.pe/",
+                "source_website": "andina.com.pe",
                 "fb_id": "",
                 "fb_source_username": ""
             },
-            "schedule": [ "*/20 * * * *" ]
+            "schedule": [ "0 */20 * * * *" ]
         },
         {
             "url": "http://www.andina.com.pe/agencia/seccion-regionales-4.aspx",
@@ -431,11 +417,11 @@ var config = {
                 "priority": 1,
                 "type": "link",
                 "source": "Andina",
-                "source_website": "http://www.andina.com.pe/",
+                "source_website": "andina.com.pe",
                 "fb_id": "",
                 "fb_source_username": ""
             },
-            "schedule": [ "*/20 * * * *" ]
+            "schedule": [ "0 */20 * * * *" ]
         },
         {
             "url": "http://www.rree.gob.pe/noticias/Paginas/Notas_de_Prensa.aspx",
@@ -447,11 +433,11 @@ var config = {
                 "priority": 1,
                 "type": "link",
                 "source": "Ministerio de Relaciones Exteriores del Perú",
-                "source_website": "http://www.rree.gob.pe/",
+                "source_website": "rree.gob.pe",
                 "fb_id": "",
                 "fb_source_username": ""
             },
-            "schedule": [ "* */1 * * *" ]
+            "schedule": [ "0 0 13 * * *" ]
         },
         {
             "url": "https://www.ositran.gob.pe/publicaciones1/notas-de-prensa.html",
@@ -463,12 +449,12 @@ var config = {
                 "priority": 1,
                 "type": "link",
                 "source": "Organismo Supervisor de la Inversión en Infraestructura de Transporte de Uso Público",
-                "source_website": "https://www.ositran.gob.pe/",
+                "source_website": "ositran.gob.pe",
                 "fb_id": "",
                 "fb_source_username": ""
             },
             "schedule": [
-                { hour: 12 }, //Runs at 12pm
+                { hour: 13 }, //Runs at 12pm
             ]
         },
         {
@@ -481,7 +467,7 @@ var config = {
                 "priority": 1,
                 "type": "link",
                 "source": "Instituto de Gestión de Servicios de Salud",
-                "source_website": "http://www.igss.gob.pe/",
+                "source_website": "igss.gob.pe",
                 "fb_id": "",
                 "fb_source_username": ""
             },
@@ -497,25 +483,28 @@ var config = {
                 "priority": 1,
                 "type": "link",
                 "source": "Ministerio de Justicia y Derechos Humanos del Perú",
-                "source_website": "http://www.minjus.gob.pe/",
+                "source_website": "injus.gob.pe",
                 "fb_id": "",
                 "fb_source_username": ""
+
             },
+            "schedule": ['0 0 13,18 * * *']
         },
         {
             "url": "http://portal.osce.gob.pe/osce/noticias",
             "scrapper": "19.osce.gob.pe",
-            "limit": 1,
+            "limit": 3,
             "defaults": {
                 "category": "politica",
                 "categories": [ "politica", "actualidad" ],
                 "priority": 1,
                 "type": "link",
                 "source": "Organismo Supervisor de las Contrataciones del Estado",
-                "source_website": "http://portal.osce.gob.pe/",
+                "source_website": "portal.osce.gob.pe",
                 "fb_id": "",
                 "fb_source_username": ""
             },
+            "schedule": ['0 0 13,18 * * *']
         },
         {
             "url": "http://www.midis.gob.pe/index.php/es/centro-de-informacion",
@@ -526,71 +515,77 @@ var config = {
                 "categories": ["politica"],
                 "priority": 1,
                 "type": "link",
-                "source": "Organismo Supervisor de las Contrataciones del Estado",
-                "source_website": "http://portal.osce.gob.pe/",
+                "source": "Ministerio de Desarrollo e Inclusión Social",
+                "source_website": "midis.gob.pe",
                 "fb_id": "",
                 "fb_source_username": ""
             },
+            "schedule": ['0 0 13,18 * * *']
         },
         {
             "url": "http://www.minsa.gob.pe/index.asp?op=5#Prensa",
             "scrapper": "21.minsa.gob.pe",
-            "limit": 6,
+            "limit": 4,
             "defaults": {
                 "category": "salud",
                 "categories": ["salud"],
                 "priority": 1,
                 "type": "link",
                 "source": "Ministerio de Salud",
-                "source_website": "http://www.minsa.gob.pe/",
+                "source_website": "minsa.gob.pe",
                 "fb_id": "",
                 "fb_source_username": ""
             },
+            "schedule": ['0 0 10,12,13,15,18 * * *']
         },
+
         {
             "url": "http://policiaperu.tumblr.com/",
             "scrapper": "22.policiaperu.tumblr.com",
-            "limit": 1,
+            "limit": 2,
             "defaults": {
                 "category": "seguridad",
                 "categories": ["seguridad"],
                 "priority": 1,
                 "type": "link",
                 "source": "Policia Nacional del Perú",
-                "source_website": "http://policiaperu.tumblr.com/",
+                "source_website": "policiaperu.tumblr.com",
                 "fb_id": "",
                 "fb_source_username": ""
             },
+            "schedule": ['0 0 13,18 * * *']
         },
         {
             "url": "https://www.mininter.gob.pe/vista-listado-de-noticias",
             "scrapper": "23.mininter.gob.pe",
-            "limit": 4,
+            "limit": 2,
             "defaults": {
                 "category": "seguridad",
                 "categories": ["seguridad"],
                 "priority": 1,
                 "type": "link",
                 "source": "Ministerio del Interior del Perú",
-                "source_website": "https://www.mininter.gob.pe/",
+                "source_website": "mininter.gob.pe",
                 "fb_id": "",
                 "fb_source_username": ""
             },
+            "schedule": ['0 0 11,13,15,18 * * *']
         },
         {
             "url": "http://www.inpe.gob.pe/contenidosprensa_all.php?direccion=1",
             "scrapper": "24.inpe.gob.pe",
-            "limit": 4,
+            "limit": 2,
             "defaults": {
                 "category": "seguridad",
                 "categories": ["seguridad"],
                 "priority": 1,
                 "type": "link",
                 "source": "Instituto Nacional Penitenciario",
-                "source_website": "http://www.inpe.gob.pe/",
+                "source_website": "inpe.gob.pe",
                 "fb_id": "",
                 "fb_source_username": ""
             },
+            "schedule": ['0 0 13,18 * * *']
         }
 
     ]

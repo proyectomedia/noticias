@@ -13,10 +13,15 @@ module.exports = function scrapper($, config) {
 
             var ps = $(post).find('p');
             var title = ps.filter('.search-text-title').find('a');
-
-            news.title = title.text().trim();
+            var cadena =title.text().trim()
+            var cadena2 =  util.findAndReplace(cadena,"\u201c"," '");
+            var cadena3 =  util.findAndReplace(cadena2,"\u201d","' ");
+            news.title = util.fixedparrafo(cadena);
             news.date = util.getDate(ps.find('time').attr('datetime'), 'YYYY-MM-DD[T]HH:mm');
-            news.subtitle = ps.last().text().trim();
+            var string = ps.last().text().trim();
+            var string2=util.fixedparrafo(string);
+
+            news.subtitle=string2;
             news.url = title.attr('href');
             news.files = [];
 
@@ -26,25 +31,24 @@ module.exports = function scrapper($, config) {
 
                     var $ = cheerio.load(html.body);
 
-                    news.imageUrl = $('article.post-content img').first().attr('src');                    
-                    news.content = $('article.post-content p')                      
+                    news.imageUrl = $('article.post-content img').first().attr('src');
+                    news.content = $('article.post-content p')
                         .map((i, p) => {
 
-                            if($(p).find('script').length == 0 &&  $(p).text().trim().length > 0 && $(p).text().trim() != "0") 
+                            if($(p).find('script').length == 0 &&  $(p).text().trim().length > 0 && $(p).text().trim() != "0")
                             {
                                 return $(p).text().trim()
                             }
                             return "";
-                        })                        
+                        })
                         .get()
                         .filter(t => t)
                         .join("\n\n");
 
                     return news;
                 })
-                .catch(console.error);         
+                .catch(console.error);
 
         }).get()
 
 }
-

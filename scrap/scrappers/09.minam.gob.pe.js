@@ -9,7 +9,7 @@ module.exports = function scrapper($, config) {
         .slice(0, config.limit)
         .map((i, post) => {
 
-            var postUrl = $(post).find('div.span_14 h3 a').attr("href");   
+            var postUrl = $(post).find('div.span_14 h3 a').attr("href");
 
             return request
                 .getAsync(postUrl)
@@ -31,7 +31,11 @@ module.exports = function scrapper($, config) {
                         .filter(t => t)
                         .join("\n\n");
 
-                    news.subtitle = util.extractSummary(news.content, 50);
+                    var string = util.extractSummary(news.content, 30);
+
+                    var parts=[];
+                    parts= string.split(".");
+                   news.subtitle =parts[1]+"...";
                     news.url = postUrl;
                     news.files = [];
 
@@ -41,7 +45,6 @@ module.exports = function scrapper($, config) {
 
         }).get()
 
-        
+
 
 }
-

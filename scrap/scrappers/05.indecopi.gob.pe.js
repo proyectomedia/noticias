@@ -23,7 +23,14 @@ module.exports = function scrapper($, config) {
 
                     var news = {};
                     news.title = $(".header-title").text().trim();
-                    news.subtitle = $('div.Noticia_IntIntro').text().trim();
+                    var string = $('div.Noticia_IntIntro').text().trim();
+
+                   var string2= string.replace("\"", "");
+                   
+                    var string3= string2.replace("\"", "");
+
+                   news.subtitle=string3+"...";
+
                     news.date = util.getDate($('div.Noticia_IntDate').text().trim(), 'YYYY/MM/DD');
                     news.imageUrl = util.getAbsoluteUrl(config.url, $('div.Noticia_Int_ContImag').find('img').attr('src'));
                     news.content = $("div.Noticia_IntContenido").html();
@@ -37,4 +44,3 @@ module.exports = function scrapper($, config) {
         }).get()
 
 }
-

@@ -12,7 +12,7 @@ module.exports = function scrapper($, config) {
             var news = {};
             var postUrl = $(post).find('h2.title a').attr('href');
 
-            news.date = util.getDate($(post).find('div.excerpt.radius-bottom small').first().text().trim(), 'MMMM D, YYYY');            
+            news.date = util.getDate($(post).find('div.excerpt.radius-bottom small').first().text().trim(), 'MMMM D, YYYY');
 
             return request
                 .getAsync(postUrl)
@@ -23,15 +23,20 @@ module.exports = function scrapper($, config) {
                     news.title = $("h1.headline").text().trim();
                     //news.date = util.getDate($(".icon-time").parent().text().trim());
                     news.imageUrl = $('div.feature-img img').attr('src');
-                    news.url = postUrl;  
+                    news.url = postUrl;
                     news.content = $('div.postarea')
                         .find('p')
                         .map((i, p) => $(p).text().trim())
                         .get()
                         .filter(t => t)
                         .join("\n\n");
-                        
-                    news.subtitle = util.extractSummary(news.content);
+
+                  string  = util.extractSummary(news.content,30);
+                    var parts=[];
+                     parts= string.split("\n\n");
+                     console.log(parts);
+
+                   news.subtitle =parts[1]+"...";
                     news.files = [];
 
                     return news;
@@ -41,4 +46,3 @@ module.exports = function scrapper($, config) {
         }).get()
 
 }
-

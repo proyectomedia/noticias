@@ -9,7 +9,7 @@ module.exports = function scrapper($, config) {
         .slice(0, config.limit)
         .map((i, post) => {
 
-            var postUrl = util.resolveUrl(config.url,  $(post).find("div[property='dc:title']").find('a').attr("href"));      
+            var postUrl = util.resolveUrl(config.url,  $(post).find("div[property='dc:title']").find('a').attr("href"));
 
             return request
                 .getAsync(postUrl)
@@ -20,8 +20,12 @@ module.exports = function scrapper($, config) {
                     var news = {};
 
                     news.title = $("div[property='dc:title']").text().trim();
-                    news.subtitle = $('.field-name-field-bajada').text();
-                    news.date = new Date( $('span[property="dc:date"]').attr('content') ); 
+                    var string = $('.field-name-field-bajada').text();
+                    var string2= string.replace("\u2022\t", "");
+                     var string3= string2.replace(".", "...");
+                    news.subtitle=string3;
+
+                    news.date = new Date( $('span[property="dc:date"]').attr('content') );
                     news.imageUrl = $('img[typeof="foaf:Image"]').attr("src");
                     news.content = util.extractContent($('.field-name-body p'));
                     news.files = [];
@@ -31,7 +35,6 @@ module.exports = function scrapper($, config) {
                 })
                 .catch(console.error);
 
-        }).get() 
+        }).get()
 
 }
-

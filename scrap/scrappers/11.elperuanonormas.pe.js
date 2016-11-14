@@ -2,11 +2,18 @@ var cheerio = require("cheerio");
 var moment = require('moment');
 var Promise = require('bluebird');
 
+var _ = require('lodash');
 var request = require("../../lib/requestAsync");
 var util = require('../../lib/util');
 
 module.exports = function scrapper($, config) {
     
+    if(!config.images || !config.images.length)
+    {
+        config.images = [];
+    }
+    var defaultImageUrl = config.images[_.random(config.images.length - 1)]
+
     return [request.postAsync({
             url: `${config.url}/Filtro`,
             form: {
@@ -33,7 +40,7 @@ module.exports = function scrapper($, config) {
                 news.date = util.getDate($(post).find('p b').first().text().trim(), 'DD/MM/YYYY');
                 news.subtitle = $(post).find('p').last().text().trim();
                 news.content = "";
-                news.imageUrl = "https://s22.postimg.org/5cxpfbj69/Captura.png";
+                news.imageUrl = defaultImageUrl;
                 news.files = [ $(".ediciones_botones ul li a").first().attr("href"), $(".ediciones_botones ul li a").last().attr("href") ];
 
                 return news;

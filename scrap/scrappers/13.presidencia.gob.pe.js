@@ -20,7 +20,8 @@ module.exports = function scrapper($, config, html) {
                     var news = {};
 
                     news.title = $("h1").text().trim();
-                    news.subtitle = $('div.noticia_contenido p em').first().text().trim();
+                    var string = $('div.noticia_contenido p em').first().text().trim();
+                    news.subtitle=string + "...";
                     news.date = util.getDate($('span[property="dc:date"]').attr('content'));
                     news.imageUrl = $('div.noticia_imagen img').attr('src');
                     news.url = postUrl;
@@ -34,4 +35,3 @@ module.exports = function scrapper($, config, html) {
         }).get()
 
 }
-

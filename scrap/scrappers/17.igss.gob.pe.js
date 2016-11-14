@@ -24,16 +24,20 @@ module.exports = function scrapper($, config) {
                     var content = $('article div.contenidoportal');
 
                     news.date = new Date(); //CHANGE THIS TO EXTRACT DATE IF POSIBLE
-                    news.imageUrl = util.getAbsoluteUrl(config.url, content.find('img').first().attr('src'));                    
-                    news.subtitle = content.find('p span strong').first().text().trim();
-                    news.content = content.text();
+                    news.imageUrl = util.getAbsoluteUrl(config.url, content.find('img').first().attr('src'));
+                    //arreglar el subtitulo no funciona
+                    //news.subtitle = content.find('p span strong').first().text().trim();
+                    var string=content.text();
+                    //por el moment-timezon
+                    var string2=util.fixedparrafo(string);
+                    news.subtitle=util.extractSummary(string2);
+                    news.content = string2;
                     news.files = [];
 
                     return news;
                 })
-                .catch(console.error);         
+                .catch(console.error);
 
         }).get()
 
 }
-

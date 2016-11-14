@@ -1,7 +1,7 @@
 /*
     Review Date: 2016-11-07
     Reviewer: Kellerman Rivero.
-    Improvements: 
+    Improvements:
         2016-11-07: Resolve absolute url of attached files.
 */
 
@@ -18,17 +18,20 @@ module.exports = function scrapper($, config) {
 
             var childTable = $(table).find('table');
             var news = {};
-        
-            news.title = $(childTable).find(".texto_arial_plomo_n_11").text().trim();     
+
+            news.title = $(childTable).find(".texto_arial_plomo_n_11").text().trim();
             news.date = $(childTable).find(".texto_arial_plomo_x3_10_negrita").text().trim();
             news.content = $(childTable).find(".contenido1").text().trim();
             news.imageUrl = $(table).find("img.TABLE_border4").attr('src');
-            news.files = [ util.resolveUrl(config.url, $(childTable).find("a.texto_arial_plomo_x2_11_negrita").attr('href')) ];       
-            news.subtitle = util.extractSummary(news.content);
+            news.files = [ util.resolveUrl(config.url, $(childTable).find("a.texto_arial_plomo_x2_11_negrita").attr('href')) ];
+            var string = util.extractSummary(news.content,30);
+
+            var parts=[];
+            parts= string.split(".- ");
+             news.subtitle =parts[1]+ " Descargar pdf del sitio oficial dando click en la imagen";
             news.url = util.resolveUrl(config.url, $(childTable).find("a.texto_arial_plomo_x2_11_negrita").attr('href'));
 
             return Promise.resolve(news);
 
         }).get();
 }
-
