@@ -37,13 +37,11 @@ var scraperfacebook=require('./facebook/index');
  });
 //
 //
-// //Scraper web
- var pages = config.pages.filter(page => page.active && page.schedule);
- pages.forEach(page => {
-     page.schedule.forEach(pageSchedule => schedule.scheduleJob(pageSchedule, () => scrapping.fetchAndSave(page.url)))
- });
-//
-//
+// // //Scraper web
+//  var pages = config.pages.filter(page => page.active && page.schedule);
+//  pages.forEach(page => {
+//      page.schedule.forEach(pageSchedule => schedule.scheduleJob(pageSchedule, () => scrapping.fetchAndSave(page.url)))
+//  });
 //
 //
 //Publicar noticias
@@ -59,7 +57,32 @@ var scraperfacebook=require('./facebook/index');
   });
 })
 
+
+
+
+
+
+
+
+//}
+
 //Pruebas aca abajo
+
+
+// scrapping.getRecentNews(50, "politica")
+// .then(function(news){
+//   console.log(news.toString());
+//   for (i in news){
+//     console.log(news[i].source);
+//       console.log(news[i].title);
+//       console.log(news[i].priority);
+//      console.log(news[i].date);
+//      console.log(news[i].published["politica"]);
+//       console.log("");
+//     }
+// });
+
+
 // scrapping.getRecentNews(1, 'seguridad')
 // .then(news => {
 //                   news.forEach(n => {

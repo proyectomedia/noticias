@@ -92,8 +92,12 @@ function* getRecentNews(limit, category)
         // Get the news collection
         var collection = db.collection(dbConfig.collection);
 
-        var sortIndex = { priority: -1, date: -1  };
-        sortIndex['published.' + category] = 1;
+        var sortIndex = { };
+         sortIndex['published.' + category] = 1;
+        var sort={ priority: -1, date: -1  };
+      //  sortIndex = { priority: -1, date: -1  };
+         _.assign(sortIndex,sort)
+        console.log(sortIndex);
 
         collection.createIndex(sortIndex);
 

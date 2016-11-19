@@ -19,6 +19,8 @@ function* sacarpostyguardar(paginas){
   console.log("Periodicos :");
   for (i in paginas){
 
+    try{
+
        ide=paginas[i].id.toString();
 
 
@@ -116,6 +118,10 @@ function* sacarpostyguardar(paginas){
         }
 
 
+    }catch(err){
+
+       console.log(err);
+    }
 
 
   };

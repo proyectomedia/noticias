@@ -42,48 +42,58 @@ var paginas60minutos =[{id:1105050716183235, urlface:"https://www.facebook.com/s
 // {id:909439029189405,tipo:"obras"},
 // {id:909439029189405,tipo:"gastronomia"}];
 
+
+
 var page =[
 {
 "id":"909439029189405",
-"tipo":"actualidad",
-"schedule":  '0 */4 * * * *'
-},
-{
-"id":"909439029189405",
 "tipo":"politica",
-"schedule":   '0 */7 * * * *'
-},
-{
-"id":"909439029189405",
-"tipo":"economia",
-"schedule": '0 */8 * * * *'
-},
-{
-"id":"909439029189405",
-"tipo":"empresas",
-"schedule":  '0 */15 * * * *'
-},
-{
-"id":"909439029189405",
-"tipo":"tec",
-"schedule":  '0 */15 * * * *'
-},
-{
-"id":"909439029189405",
-"tipo":"denuncias",
-"schedule":  '0 */30 * * * *'
-},
-{
-"id":"909439029189405",
-"tipo":"obras",
-"schedule":  '0 */30 * * * *'
-},
-{
-"id":"909439029189405",
-"tipo":"gastronomia",
-"schedule":  '0 */40 * * * *'
+"schedule":  '0 */4 * * * *'
 }
-];
+]
+
+// var page =[
+// {
+// "id":"909439029189405",
+// "tipo":"actualidad",
+// "schedule":  '0 */4 * * * *'
+// },
+// {
+// "id":"909439029189405",
+// "tipo":"politica",
+// "schedule":   '0 */7 * * * *'
+// },
+// {
+// "id":"909439029189405",
+// "tipo":"economia",
+// "schedule": '0 */8 * * * *'
+// },
+// {
+// "id":"909439029189405",
+// "tipo":"empresas",
+// "schedule":  '0 */15 * * * *'
+// },
+// {
+// "id":"909439029189405",
+// "tipo":"tec",
+// "schedule":  '0 */15 * * * *'
+// },
+// {
+// "id":"909439029189405",
+// "tipo":"denuncias",
+// "schedule":  '0 */30 * * * *'
+// },
+// {
+// "id":"909439029189405",
+// "tipo":"obras",
+// "schedule":  '0 */30 * * * *'
+// },
+// {
+// "id":"909439029189405",
+// "tipo":"gastronomia",
+// "schedule":  '0 */40 * * * *'
+// }
+// ];
 
 
 
