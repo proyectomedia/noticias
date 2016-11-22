@@ -148,12 +148,12 @@ var config = {
                 "fb_id": "",
                 "fb_source_username": ""
             },
-            "schedule": ["0 0 13,18 * * *"]
+            "schedule": ["0 0 10,13 * * *"]
         },
         {
             "url": "http://www.minam.gob.pe/notas-de-prensa/",
             "scrapper": "09.minam.gob.pe",
-            "limit": 2,
+            "limit": 3,
             "defaults": {
                 "category": "politica",
                 "categories": ["politica"],
@@ -169,7 +169,7 @@ var config = {
         {
             "url": "http://www.minam.gob.pe/medios/",
             "scrapper": "09.1.minam-medios.gob.pe",
-            "limit": 4,
+            "limit": 2,
             "defaults": {
                 "category": "politica",
                 "categories": ["politica"],
@@ -180,7 +180,7 @@ var config = {
                 "fb_id": "",
                 "fb_source_username": ""
             },
-           "schedule": ["0 0 10,13,18 * * *"]
+           "schedule": ["0 0 13 * * *"]
         },
         {
             "url": "http://www.elperuano.pe/seccion.aspx?sec=1",
@@ -329,7 +329,7 @@ var config = {
         {
             "url": "http://www.pcm.gob.pe/seccion/noticias/notas-de-prensa/",
             "scrapper": "12.pcm.gob.pe",
-            "limit": 3,
+            "limit": 1,
             "defaults": {
                 "category": "politica",
                 "categories": ["politica"],
@@ -361,7 +361,7 @@ var config = {
         {
             "url": "http://www.andina.com.pe/agencia/seccion-politica-17.aspx?sec=17",
             "scrapper": "14.andina.com.pe",
-            "limit": 1,
+            "limit": 0,
             "defaults": {
                 "category": "politica",
                 "categories": ["politica"],
@@ -378,7 +378,7 @@ var config = {
         {
             "url": "http://www.andina.com.pe/agencia/seccion-economia-2.aspx",
             "scrapper": "14.andina.com.pe",
-            "limit": 1,
+            "limit": 0,
             "defaults": {
                 "category": "economia",
                 "categories": ["economia"],
@@ -394,7 +394,7 @@ var config = {
         {
             "url": "http://www.andina.com.pe/agencia/seccion-locales-3.aspx",
             "scrapper": "14.andina.com.pe",
-            "limit": 1,
+            "limit": 0,
             "defaults": {
                 "category": "actualidad",
                 "categories": ["actualidad", "locales"],
@@ -410,7 +410,7 @@ var config = {
         {
             "url": "http://www.andina.com.pe/agencia/seccion-regionales-4.aspx",
             "scrapper": "14.andina.com.pe",
-            "limit": 1,
+            "limit": 0,
             "defaults": {
                 "category": "actualidad",
                 "categories": ["actualidad"],
@@ -525,7 +525,7 @@ var config = {
         {
             "url": "http://www.minsa.gob.pe/index.asp?op=5#Prensa",
             "scrapper": "21.minsa.gob.pe",
-            "limit": 4,
+            "limit": 2,
             "defaults": {
                 "category": "salud",
                 "categories": ["salud"],
@@ -536,7 +536,7 @@ var config = {
                 "fb_id": "",
                 "fb_source_username": ""
             },
-            "schedule": ['0 0 10,12,13,15,18 * * *']
+            "schedule": ['0 0 10,13,15,18 * * *']
         },
 
         {

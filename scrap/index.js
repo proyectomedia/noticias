@@ -8,6 +8,7 @@ var config = require("../config");
 var scrapData = require("../lib/scrapData");
 var generateId = require('../lib/generateId');
 var util = require('../lib/util');
+var moment = require('moment-timezone');
 
 var dbConfig = require('../lib/db');
 var mongodb = require("mongodb");
@@ -81,6 +82,66 @@ function invokeScrapper(url) {
     });
 }
 
+function* updatecategories(limit){
+try{
+  limit = limit || 5;
+  var db = yield MongoClient.connect(dbConfig.mongoUri);
+
+  var collection = db.collection(dbConfig.collection);
+  var sortIndex = { };
+  //sortIndex['published.' + 'actualidad'] = 1;
+  var sort={ 'published.actualidad':1, priority: -1, date: -1  };
+  _.assign(sortIndex,sort)
+ collection.createIndex(sortIndex);
+ var categoriesQueryClause = { categories: { $in: [ 'actualidad' ]}};
+ var isalgoritmo = { algorithm: {$exists:'true'} };
+ var news = yield collection
+                 .find({
+                     $and: [
+                         categoriesQueryClause,
+                         isalgoritmo
+
+                     ]
+                 })
+                 .sort(sortIndex)
+                 .limit(limit)
+                 .toArray();
+
+  for (i in news){
+    var text = news[i].title+news[i].content;
+    var categoria=yield util.findcategory(text);
+    console.log("entro a monkeylearn:"+news[i].title+", Monkeylearn selecciono : "+categoria);
+    var categorias= categoria.split("-");
+    console.log("insertar en categoria:"+categorias[0]);
+    var updatecategory={categories:{}};
+  console.log("falta registrar en bd");
+
+
+    // var operation = yield collection.find({
+    //   $and: [
+    //    {_id: news[i]._id},
+    //    {categories:{$nin:[categorias[0]]}}
+    //     ]
+    //   })
+    //  .update({ $push:updatecategory)};
+    //   .toArray();
+    // console.log(JSON.stringify(operation.title, {indent: true}));
+
+
+
+
+
+  };
+
+ db.close();
+
+
+}
+catch(err){
+   console.log(err);
+}
+}
+
 function* getRecentNews(limit, category)
 {
   try{
@@ -100,7 +161,10 @@ function* getRecentNews(limit, category)
         console.log(sortIndex);
 
         collection.createIndex(sortIndex);
-
+        var b=moment().format();
+        var c=moment().add(1, 'days').format();
+        var d=moment().add(-1, 'days').format();
+        var rangedate = { date: {$gte:d,$lt:c}}
         var categoriesQueryClause = { categories: { $in: [ category ]}};
 
         var publishedQueryClause = { };
@@ -110,7 +174,8 @@ function* getRecentNews(limit, category)
                         .find({
                             $and: [
                                 categoriesQueryClause,
-                                publishedQueryClause
+                                publishedQueryClause,
+                                rangedate
                             ]
                         })
                         .sort(sortIndex)
@@ -147,7 +212,10 @@ function* markAsPublished(news, category) {
       // console.log(valor);
         if(valor){
          updateObject.published[category]=news.published[category] + 1;
+      //   console.log("");
+      //    console.log(updateObject);
          var query = flatten(updateObject);
+      //   console.log(JSON.stringify(query));
          var operation = yield collection.updateOne({ _id: news._id }, query);
 
        };
@@ -221,6 +289,7 @@ try{
 
 
 module.exports = {
+   updatecategories: bluebird.coroutine(updatecategories),
     fetchAndSave: bluebird.coroutine(fetchAndSave),
     getRecentNews: bluebird.coroutine(getRecentNews),
     markAsPublished: bluebird.coroutine(markAsPublished)

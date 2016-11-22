@@ -48,7 +48,7 @@ var page =[
 {
 "id":"909439029189405",
 "tipo":"politica",
-"schedule":  '0 */4 * * * *'
+"schedule":  '0 */10 * * * *'
 }
 ]
 
