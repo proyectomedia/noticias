@@ -14,7 +14,7 @@ var config = {
             "limit": 1,
             "defaults": {
                 "category": "politica",
-                "categories": ["politica"],
+                "categories": ["politica","empresas"],
                 "priority": 1,
                 "type": "link",
                 "source": "Ministerio Del trabajo",
@@ -58,14 +58,15 @@ var config = {
             "scrapper": "03.promperu.gob.pe",
             "limit": 1,
             "defaults": {
-                "category": "empresas",
-                "categories": ["empresas"],
+                "category": "actualidad",
+                "categories": ["actualidad"],
                 "priority": 1,
                 "type": "link",
                 "source": "Comisión de Promoción del Perú para la Exportación y el Turismo",
                 "source_website": "Promperu.gob.pe",
                 "fb_id": "",
-                "fb_source_username": ""
+                "fb_source_username": "",
+                "algorithm":"true"
             },
             "format": "json",
             "schedule": ["0 0 13,18 * * *"]
@@ -82,7 +83,8 @@ var config = {
                 "source": "Instituto Nacional de Estadística e Informática",
                 "source_website": "inei.gob.pe",
                 "fb_id": "",
-                "fb_source_username": ""
+                "fb_source_username": "",
+                "algorithm":"true"
             },
             "schedule": ["0 0 13,18 * * *"]
         },
@@ -194,7 +196,7 @@ var config = {
             "defaults": {
                 "category": "politica",
                 "categories": ["politica"],
-                "priority": 2,
+                "priority": 0,
                 "type": "link",
                 "source": "El Peruano",
                 "source_website": "elperuano.pe",
@@ -215,7 +217,7 @@ var config = {
             "defaults": {
                 "category": "economia",
                 "categories": ["economia"],
-                "priority": 2,
+                "priority": 0,
                 "type": "link",
                 "source": "El Peruano",
                 "source_website": "elperuano.pe",
@@ -236,12 +238,13 @@ var config = {
             "defaults": {
                 "category": "actualidad",
                 "categories": ["actualidad"],
-                "priority": 2,
+                "priority": 0,
                 "type": "link",
                 "source": "El Peruano",
                 "source_website": "http://www.elperuano.pe/",
                 "fb_id": "",
-                "fb_source_username": ""
+                "fb_source_username": "",
+                "algorithm":"true"
             },
             "schedule": ["0 0 8-18 * * *"]
         },
@@ -257,12 +260,13 @@ var config = {
             "defaults": {
                 "category": "actualidad",
                 "categories": ["actualidad"],
-                "priority": 2,
+                "priority": 0,
                 "type": "link",
                 "source": "El Peruano",
                 "source_website": "elperuano.pe",
                 "fb_id": "",
-                "fb_source_username": ""
+                "fb_source_username": "",
+                "algorithm":"true"
             },
             "schedule": ["0 0 8-18 * * *"]
         },
@@ -278,12 +282,13 @@ var config = {
             "defaults": {
                 "category": "actualidad",
                 "categories": ["actualidad"],
-                "priority": 2,
+                "priority": 0,
                 "type": "link",
                 "source": "El Peruano",
                 "source_website": "elperuano.pe",
                 "fb_id": "",
-                "fb_source_username": ""
+                "fb_source_username": "",
+                "algorithm":"true"
             },
             "schedule": ["0 0 8-18 * * *"]
         },
@@ -299,19 +304,20 @@ var config = {
             "defaults": {
                 "category": "actualidad",
                 "categories": ["actualidad"],
-                "priority": 2,
+                "priority": 0,
                 "type": "link",
                 "source": "El Peruano",
                 "source_website": "elperuano.pe",
                 "fb_id": "",
-                "fb_source_username": ""
+                "fb_source_username": "",
+                "algorithm":"true"
             },
             "schedule": ["0 0 8-18 * * *"]
         },
         {
             "url": "http://diariooficial.elperuano.pe/Normas",
             "scrapper": "11.elperuanonormas.pe",
-            "limit": 3,
+            "limit": 5,
             "images": ["http://subirimagen.me/uploads/20161110132221.PNG", "https://s22.postimg.org/5cxpfbj69/Captura.png"],
             "defaults": {
                 "category": "politica",
@@ -324,7 +330,7 @@ var config = {
                 "fb_source_username": "",
                 "imageUrl": "https://k60.kn3.net/E/7/5/D/2/8/ABC.png"
             },
-            "schedule": ["0 0 8,13,18 * * *"]
+            "schedule": ["0 0 8 * * *"]
         },
         {
             "url": "http://www.pcm.gob.pe/seccion/noticias/notas-de-prensa/",
@@ -333,7 +339,7 @@ var config = {
             "defaults": {
                 "category": "politica",
                 "categories": ["politica"],
-                "priority": 2,
+                "priority": 1,
                 "type": "link",
                 "source": "Presidencia del consejo de ministros",
                 "source_website": "pcm.gob.pe",
@@ -349,7 +355,7 @@ var config = {
             "defaults": {
                 "category": "politica",
                 "categories": ["politica"],
-                "priority": 2,
+                "priority": 0,
                 "type": "link",
                 "source": "Presidencia",
                 "source_website": "presidencia.gob.pe",
@@ -361,11 +367,11 @@ var config = {
         {
             "url": "http://www.andina.com.pe/agencia/seccion-politica-17.aspx?sec=17",
             "scrapper": "14.andina.com.pe",
-            "limit": 0,
+            "limit": 3,
             "defaults": {
                 "category": "politica",
                 "categories": ["politica"],
-                "priority": 1,
+                "priority": 0,
                 "type": "link",
                 "source": "Andina",
                 "source_website": "andina.com.pe",
@@ -378,11 +384,11 @@ var config = {
         {
             "url": "http://www.andina.com.pe/agencia/seccion-economia-2.aspx",
             "scrapper": "14.andina.com.pe",
-            "limit": 0,
+            "limit": 3,
             "defaults": {
                 "category": "economia",
                 "categories": ["economia"],
-                "priority": 1,
+                "priority": 0,
                 "type": "link",
                 "source": "Andina",
                 "source_website": "andina.com.pe",
@@ -394,32 +400,34 @@ var config = {
         {
             "url": "http://www.andina.com.pe/agencia/seccion-locales-3.aspx",
             "scrapper": "14.andina.com.pe",
-            "limit": 0,
+            "limit": 4,
             "defaults": {
                 "category": "actualidad",
                 "categories": ["actualidad", "locales"],
-                "priority": 1,
+                "priority": 0,
                 "type": "link",
                 "source": "Andina",
                 "source_website": "andina.com.pe",
                 "fb_id": "",
-                "fb_source_username": ""
+                "fb_source_username": "",
+                "algorithm":"true"
             },
             "schedule": [ "0 */20 * * * *" ]
         },
         {
             "url": "http://www.andina.com.pe/agencia/seccion-regionales-4.aspx",
             "scrapper": "14.andina.com.pe",
-            "limit": 0,
+            "limit": 4,
             "defaults": {
                 "category": "actualidad",
                 "categories": ["actualidad"],
-                "priority": 1,
+                "priority": 0,
                 "type": "link",
                 "source": "Andina",
                 "source_website": "andina.com.pe",
                 "fb_id": "",
-                "fb_source_username": ""
+                "fb_source_username": "",
+                "algorithm":"true"
             },
             "schedule": [ "0 */20 * * * *" ]
         },
@@ -451,7 +459,8 @@ var config = {
                 "source": "Organismo Supervisor de la Inversión en Infraestructura de Transporte de Uso Público",
                 "source_website": "ositran.gob.pe",
                 "fb_id": "",
-                "fb_source_username": ""
+                "fb_source_username": "",
+                "algorithm":"true"
             },
             "schedule": [
                 { hour: 13 }, //Runs at 12pm
@@ -496,7 +505,7 @@ var config = {
             "limit": 3,
             "defaults": {
                 "category": "politica",
-                "categories": [ "politica", "actualidad" ],
+                "categories": [ "politica", "actualidad","empresas" ],
                 "priority": 1,
                 "type": "link",
                 "source": "Organismo Supervisor de las Contrataciones del Estado",
@@ -528,7 +537,7 @@ var config = {
             "limit": 2,
             "defaults": {
                 "category": "salud",
-                "categories": ["salud"],
+                "categories": ["salud","actualidad"],
                 "priority": 1,
                 "type": "link",
                 "source": "Ministerio de Salud",
@@ -544,8 +553,8 @@ var config = {
             "scrapper": "22.policiaperu.tumblr.com",
             "limit": 2,
             "defaults": {
-                "category": "seguridad",
-                "categories": ["seguridad"],
+                "category": "denuncias",
+                "categories": ["denuncias"],
                 "priority": 1,
                 "type": "link",
                 "source": "Policia Nacional del Perú",
@@ -560,8 +569,8 @@ var config = {
             "scrapper": "23.mininter.gob.pe",
             "limit": 2,
             "defaults": {
-                "category": "seguridad",
-                "categories": ["seguridad"],
+                "category": "denuncias",
+                "categories": ["denuncias"],
                 "priority": 1,
                 "type": "link",
                 "source": "Ministerio del Interior del Perú",
@@ -576,8 +585,8 @@ var config = {
             "scrapper": "24.inpe.gob.pe",
             "limit": 2,
             "defaults": {
-                "category": "seguridad",
-                "categories": ["seguridad"],
+                "category": "denuncias",
+                "categories": ["denuncias"],
                 "priority": 1,
                 "type": "link",
                 "source": "Instituto Nacional Penitenciario",

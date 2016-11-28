@@ -25,7 +25,8 @@ module.exports = function scrapper($, config) {
                     news.imageUrl = $('article.fotoportada img').attr('src');
                     news.date = util.getDate($('section.cuerpo_cont section font').text().trim(), 'HH:mm, MMM DD.');
                     news.url = postUrl;
-
+                //      console.log(news.title);
+                //  console.log(news.date);
                     news.content = $('section.cuerpo_cont section div:not(.social-detalle)')
                         .map((i, div) => {
 

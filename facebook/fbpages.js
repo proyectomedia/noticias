@@ -28,7 +28,7 @@ var paginas60minutos =[{id:1105050716183235, urlface:"https://www.facebook.com/s
                     {id:671367792939507, urlface:"https://www.facebook.com/OjoPublico",url:"http://ojo-publico.com",pais:"Peru",nombre:"Ojo Público", hastag:"@OjoPúblico", username:"OjoPublico" },//cada dia
                     {id:293890978996, urlface:"https://www.facebook.com/IDLReporteros",url:"https://idl-reporteros.pe",pais:"Peru",nombre:"IDL-Reporteros", hastag:"@IDL-Reporteros", username:"IDLReporteros" },//cada dia
                     {id:561717720516148, urlface:"https://www.facebook.com/ASBANCPeru",url:"http://www.asbanc.com.pe",pais:"Peru",nombre:"Asbanc", hastag:"@Asbanc - Asociación de Bancos del Perú", username:"ASBANCPeru" },//cada hora
-                    {id:611091235574314, urlface:"https://www.facebook.com/RumboEconomicoGlobal",url:"http://rumboeconomico.com",pais:"Peru",nombre:"Rumbo Economico", hastag:"@Rumbo Económico", username:"RumboEconomicoGlobal" } //por verse
+                   {id:611091235574314, urlface:"https://www.facebook.com/RumboEconomicoGlobal",url:"http://rumboeconomico.com",pais:"Peru",nombre:"Rumbo Economico", hastag:"@Rumbo Económico", username:"RumboEconomicoGlobal" } //por verse
 
 
                   ];
@@ -46,10 +46,62 @@ var paginas60minutos =[{id:1105050716183235, urlface:"https://www.facebook.com/s
 
 var page =[
 {
-"id":"909439029189405",
+"id":"641309022718145",
 "tipo":"politica",
-"schedule":  '0 */10 * * * *'
+"schedule":  '0 */10 * * * *',
+"nrepublish":1,
+"token":'EAAOWC0VaRVwBAEFdujnFBTbi87AayueX2dDVQPoGjEFJaiqRrMKn43b2mkSdTBnqhvLrZA5V2cuvMcbXnOXj6R7o6OmAyKpZBUW9dnH3ZBS9LMwG7peRIVgaLtXM5kW8QP1c4SHb5hItzjlPftrdM4J8ma8ApUZD'
+},
+{
+"id":"909439029189405",
+"tipo":"economia",
+"schedule":  '0 */10 * * * *',
+"nrepublish":1,
+"token":'EAAOWC0VaRVwBAO5qElu5eq8NXkjlLCCrFwefq7haZC08hQ7emZCT9cQPiajXx0O7stZC8lyn810Ik9Tf8LLnSkZC1t7bHkRk0fzCxQm4yL9F9FyntDif010ZCx7cfKZBWRTkzHLmx1b95eEC9Su7hXbX2dZB5pSAs4ZD'
+},
+{
+"id":"566067936916534",
+"tipo":"actualidad",
+"schedule":  '0 */3 * * * *',
+"nrepublish":1,
+"token":'EAAOWC0VaRVwBACXqDoPmLUklmzR4ZA9ZANVMfilCFZArspfysVHaZC16yP1MH4bjuU1MkSl6i9KPZBBEs1ZCiHYQsIHjmNuKUAFHslmc82c5QKA9ZARZB2iNvd5tERG6zpZBvZCFumnVt3C4QEp7gBdu0LySuxRD3H5ZB25eys3U0xQdQZDZD'
+},
+{
+"id":"595235467327694",
+"tipo":"denuncias",
+"schedule":  '0 */15 * * * *',
+"nrepublish":1,
+"token":'EAAOWC0VaRVwBANN8HAGYCLhZC2zr95Y7UnIZA84gZCZBNBraLbc34Tyu3KxpNxbCEsBdCkg3ZCEYoOfKdXdEevLwIZCk19RmJjPNl1SYGB5pnC65W1Yx226UTUiSgI2x7NvVHnnJ59l3d2NU88qyY7Mf2ZBJIDsVg4ZD'
+},
+{
+"id":"363127497371759",
+"tipo":"empresas",
+"schedule":  '0 */15 * * * *',
+"nrepublish":1,
+"token":'EAAOWC0VaRVwBAJ47y7xpLkdYAVfv2rWcjpbNaIs2isoR02cZBzkYNBdrcywnMTvVrSZA08F9uiss98qmDYqDZAmTPISvN8CUW0boWaVfZC3cBB8qQTijy8KZCqpYVkIxqkbI2tgWucy2ybzGZBuUJEZCMTOpdyZBHlUBpuZCuASnG0wZDZD'
+},
+{
+"id":"562563743945226",
+"tipo":"tec",
+"schedule":  '0 */20 * * * *',
+"nrepublish":1,
+"token":'EAAOWC0VaRVwBAGZAW3ZAiAk7HVkZAjUR9ZAmeXmoKNdotq069p1nnSIs2m2KU3u9jZB6HAFfmdA2iMVPu1pWiABAzamBYGICoHre1I8ZCKfTZCE34J6lhO1yPaUUvMaaYu7sBtSRLD9YabBtONE1zQamX8U8d6oJR7mlzAsPWlclAZDZD'
+},
+{
+"id":"346627049040747",
+"tipo":"obras",
+"schedule":  '0 */30 * * * *',
+"nrepublish":1,
+"token":'EAAOWC0VaRVwBAJTTMQMfXMIdX5K0C1Irp2ZCgPPb81ZBn1rXe7D3VXZAWf8db3tV638sC9UmTJ3PbDMdI8CuvYVUCxKFehUItbaV16zHUcsBJwcvjUu3hOeOvQpFlYFG6oWmp9YGEBkIgOGJdHhJ6h5ib8aYeoj9OMZCCh8mkAZDZD'
+},
+{
+"id":"1801843223364344",
+"tipo":"gastronomia",
+"schedule":  '0 */30 * * * *',
+"nrepublish":1,
+"token":'EAAOWC0VaRVwBAGQQr18OqfqyOBPvDcOfUgPpab9NZCt9ZADVcKPzQ7pNM0I8xmPV2YgeZBvKsiGDUjAovNqvrz8sZCxk0dEgZANMEkVEqPxCZBLbS54j8ChJH3VE8NfEFWepeawtdCQjMYZBZBGOliHFoDlNHrI8yJ530qlXpWv09wZDZD'
 }
+
 ]
 
 // var page =[

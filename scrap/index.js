@@ -2,6 +2,7 @@ var cheerio = require('cheerio');
 var bluebird = require('bluebird');
 var Promise = bluebird;
 var _ = require('lodash');
+var moment = require('moment-timezone');
 
 var request = require("../lib/requestAsync");
 var config = require("../config");
@@ -17,7 +18,8 @@ var MongoClient = mongodb.MongoClient;
 var dot = require('mongo-dot-notation');
 var flatten = dot.flatten;
 var op = dot.Operators;
-
+var fs = require('fs');
+var wstream = fs.createWriteStream(__dirname + '/../monkeylearn.log', {flags : 'a'});
 function invokeScrapper(url) {
 
     var promises = [];
@@ -46,9 +48,11 @@ function invokeScrapper(url) {
 
                 }
 
-                var scrapper = require(`./scrappers/${configPage.scrapper}`);
 
-                return scrapData(scrapper($, configPage, html.body))
+                var scrapper = require(`./scrappers/${configPage.scrapper}`);
+                var aux=scrapper($, configPage, html.body);
+            //    console.log("\n[antes de Scrapp data]\n"+ aux);
+                return scrapData(aux)
                     .then(data => data.reduce((news, pageNews) => {
 
                                         if(pageNews.length) //Array of news
@@ -94,46 +98,79 @@ try{
   _.assign(sortIndex,sort)
  collection.createIndex(sortIndex);
  var categoriesQueryClause = { categories: { $in: [ 'actualidad' ]}};
- var isalgoritmo = { algorithm: {$exists:'true'} };
+ var isalgoritmo = { algorithm: {$exists:'true'}, algorithm:"true"};
+
  var news = yield collection
                  .find({
                      $and: [
-                         categoriesQueryClause,
+
                          isalgoritmo
 
                      ]
                  })
-                 .sort(sortIndex)
+              //   .sort(sortIndex)
                  .limit(limit)
                  .toArray();
+wstream.write("ingreso a las:"+ moment().format('LLL')+"\n");
+for (i in news){
+  wstream.write(news[i].source+"\n noticia_titulo:"+news[i].title+"\n")
 
-  for (i in news){
-    var text = news[i].title+news[i].content;
-    var categoria=yield util.findcategory(text);
+  var text = news[i].title+news[i].content;
+  if (text.length>10){
+  var categoria=yield util.findcategory(text);
+  if (categoria!=""){
+
     console.log("entro a monkeylearn:"+news[i].title+", Monkeylearn selecciono : "+categoria);
     var categorias= categoria.split("-");
+    var cat=categorias[0];
     console.log("insertar en categoria:"+categorias[0]);
-    var updatecategory={categories:{}};
-  console.log("falta registrar en bd");
+     console.log("");
+     var operation = yield collection.update(
+         {
+           $and: [
+            {_id: news[i]._id}
+             ]
+           },
+           {
+            $set:{algorithm:"done"}
+            }
+         );
 
 
-    // var operation = yield collection.find({
-    //   $and: [
-    //    {_id: news[i]._id},
-    //    {categories:{$nin:[categorias[0]]}}
-    //     ]
-    //   })
-    //  .update({ $push:updatecategory)};
-    //   .toArray();
-    // console.log(JSON.stringify(operation.title, {indent: true}));
-
-
-
-
-
+// var formar={
+//   categories:{cat},
+//   published:{
+//     cat:0
+//   }
+// };
+// var format2 = { };
+// format2['published.' + cat] = 0;
+// var sort={ algorithm: "done" };
+// //  sortIndex = { priority: -1, date: -1  };
+//  _.assign(format2,sort)
+// console.log(format2);
+// var instructions = dot.flatten(formar);
+//
+//   var operation = yield collection.update(
+//     {
+//       $and: [
+//        {_id: news[i]._id},
+//        {categories:{$nin:[categorias[0]]}}
+//         ]
+//       },
+//       {
+//         $push: { categories: cat },
+//
+//        $set:format2
+//        }
+//     );
+//     console.log(JSON.stringify(operation, {indent: true}));
+//
   };
-
- db.close();
+};
+};
+ wstream.end();
+  db.close();
 
 
 }
@@ -142,7 +179,7 @@ catch(err){
 }
 }
 
-function* getRecentNews(limit, category)
+function* getRecentNews(limit, category, nrepublish)
 {
   try{
         limit = limit || 5;
@@ -158,8 +195,8 @@ function* getRecentNews(limit, category)
         var sort={ priority: -1, date: -1  };
       //  sortIndex = { priority: -1, date: -1  };
          _.assign(sortIndex,sort)
+        console.log("obtiene getrecentnews :");
         console.log(sortIndex);
-
         collection.createIndex(sortIndex);
         var b=moment().format();
         var c=moment().add(1, 'days').format();
@@ -168,7 +205,7 @@ function* getRecentNews(limit, category)
         var categoriesQueryClause = { categories: { $in: [ category ]}};
 
         var publishedQueryClause = { };
-        publishedQueryClause['published.' + category] = { $lte: 3 };
+        publishedQueryClause['published.' + category] = { $lte: nrepublish };
 
         var news = yield collection
                         .find({
@@ -245,6 +282,22 @@ try{
 
         for(var i = 0; i < news.length; i++)
         {
+           var a="";
+
+           if (news[i].date===undefined){
+             a=moment().format();
+             console.log("Es un scraper sin fecha");
+             console.log(news[i].source);
+             console.log("se le puso la fecha del momento");
+
+           }else{
+          //   console.log("Diario: "+news[i].source+"-   -fecha:"+news[i].date);
+             a=moment(news[i].date).format();
+           }
+
+           var b=moment().add(-1, 'days').format();
+
+          if(a>b){
             var newsItem = news[i];
             var title=util.fixedparrafo(newsItem.title);
             var subtitle=util.fixedparrafo(newsItem.subtitle);
@@ -273,12 +326,17 @@ try{
             {
                 console.log("[FetchAndSave] Scrapper: " + scrapperId + ", Document: " + newsItem._id + " cannot be saved in DB");
             }
+          }else{
+              console.log("[FetchAndSave] Scrapper: " + scrapperId + ", Document: " + news._id + " no saved for out dates range :" +news.date + " and date is:" +moment().format());
+          }
         }
 
         db.close();
         return news;
     }
       catch(err){
+
+        console.log("Se cayo en scrap/index");
 
          console.log(err);
       }
