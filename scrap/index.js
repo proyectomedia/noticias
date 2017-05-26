@@ -205,7 +205,8 @@ function* getRecentNews(limit, category, nrepublish)
         var categoriesQueryClause = { categories: { $in: [ category ]}};
 
         var publishedQueryClause = { };
-        publishedQueryClause['published.' + category] = { $lte: nrepublish };
+        //$lte
+        publishedQueryClause['published.' + category] = { $lt: nrepublish };
 
         var news = yield collection
                         .find({
@@ -225,7 +226,7 @@ function* getRecentNews(limit, category, nrepublish)
       }
       catch(err){
 
-         console.log(err);
+         console.log("Error en get recent news"+err);
       }
 }
 

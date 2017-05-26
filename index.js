@@ -45,7 +45,8 @@ console.log("comenzo a correr a las :"+ moment().format());
      console.log("Error:"+ err)
     })
  });
- //
+ //dd
+
  schedule.scheduleJob('0 0 */1 * * *',()=>{
    console.log("");
    console.log("Entro a 60minutos");
@@ -53,6 +54,7 @@ console.log("comenzo a correr a las :"+ moment().format());
    .catch(function (err) {
      console.log("Error:"+ err)
     })
+   
  });
  //
  //Scraper web
@@ -64,6 +66,7 @@ console.log("comenzo a correr a las :"+ moment().format());
 
 // Publicar noticias
  f.page.forEach(page => {
+  if (page.active=="true"){
   schedule.scheduleJob(page.schedule, () => {
       scrapping
               .getRecentNews(1, page.tipo, page.nrepublish)
@@ -73,6 +76,7 @@ console.log("comenzo a correr a las :"+ moment().format());
                    })
               });
   });
+};
 });
 
 //Monkeylearn
@@ -170,7 +174,10 @@ console.log("comenzo a correr a las :"+ moment().format());
 // var bb=moment().tz('America/Los_Angeles').format();
 // var C=moment().add(7, 'days').format();
 // var D=moment('2016-11-18T20:58:48+0000').add(-1, 'days').format();
-// console.log(a);
+ // var b=new Date('16 de Diciembre 2016');
+ // console.log(b);
+ // var a=moment('16 de Diciembre 2016','dd-mm-yyyy').format();
+ // console.log(a);
 // console.log(b);
 // console.log(bb);
 // console.log(D);
@@ -228,7 +235,7 @@ console.log("comenzo a correr a las :"+ moment().format());
 //scrapping.fetchAndSave("http://www.inpe.gob.pe/contenidosprensa_all.php?direccion=1");
 //scrapping.fetchAndSave("http://www.minjus.gob.pe/categoria/ultimas-noticias/"");
 // scrapping.fetchAndSave("http://www.minsa.gob.pe/index.asp?op=5#Prensa");
-// scrapping.fetchAndSave("http://www.andina.com.pe/agencia/seccion-regionales-4.aspx");
+ // scrapping.fetchAndSave("http://www.sbn.gob.pe/noticias_hist.php");
 
 //scrapping.markAsPublished(1, page.tipo)
 

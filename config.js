@@ -189,9 +189,9 @@ var config = {
             "scrapper": "10.elperuano.pe",
             "limit": 3,
             "images": [
-                "http://subirimagen.me/uploads/20161110132358.png",
-                "https://s18.postimg.org/ne7iteoix/87_t2_Gv2_Iz9_Og3_Et2_A.png",
-                "https://s16.postimg.org/rhbcuwdud/image.png"
+
+                "https://s18.postimg.org/ne7iteoix/87_t2_Gv2_Iz9_Og3_Et2_A.png"
+
             ],
             "defaults": {
                 "category": "politica",
@@ -210,9 +210,9 @@ var config = {
             "scrapper": "10.elperuano.pe",
             "limit": 3,
             "images": [
-                "http://subirimagen.me/uploads/20161110132358.png",
-                "https://s18.postimg.org/ne7iteoix/87_t2_Gv2_Iz9_Og3_Et2_A.png",
-                "https://s16.postimg.org/rhbcuwdud/image.png"
+
+                "https://s18.postimg.org/ne7iteoix/87_t2_Gv2_Iz9_Og3_Et2_A.png"
+
             ],
             "defaults": {
                 "category": "economia",
@@ -231,9 +231,9 @@ var config = {
             "scrapper": "10.elperuano.pe",
             "limit": 3,
             "images": [
-                "http://subirimagen.me/uploads/20161110132358.png",
-                "https://s18.postimg.org/ne7iteoix/87_t2_Gv2_Iz9_Og3_Et2_A.png",
-                "https://s16.postimg.org/rhbcuwdud/image.png"
+
+                "https://s18.postimg.org/ne7iteoix/87_t2_Gv2_Iz9_Og3_Et2_A.png"
+
             ],
             "defaults": {
                 "category": "actualidad",
@@ -253,9 +253,9 @@ var config = {
             "scrapper": "10.elperuano.pe",
             "limit": 8,
             "images": [
-                "http://subirimagen.me/uploads/20161110132358.png",
-                "https://s18.postimg.org/ne7iteoix/87_t2_Gv2_Iz9_Og3_Et2_A.png",
-                "https://s16.postimg.org/rhbcuwdud/image.png"
+
+                "https://s18.postimg.org/ne7iteoix/87_t2_Gv2_Iz9_Og3_Et2_A.png"
+
             ],
             "defaults": {
                 "category": "actualidad",
@@ -275,9 +275,9 @@ var config = {
             "scrapper": "10.elperuano.pe",
             "limit": 3,
             "images": [
-                "http://subirimagen.me/uploads/20161110132358.png",
-                "https://s18.postimg.org/ne7iteoix/87_t2_Gv2_Iz9_Og3_Et2_A.png",
-                "https://s16.postimg.org/rhbcuwdud/image.png"
+
+                "https://s18.postimg.org/ne7iteoix/87_t2_Gv2_Iz9_Og3_Et2_A.png"
+
             ],
             "defaults": {
                 "category": "actualidad",
@@ -297,9 +297,9 @@ var config = {
             "scrapper": "10.elperuano.pe",
             "limit": 3,
             "images": [
-                "http://subirimagen.me/uploads/20161110132358.png",
-                "https://s18.postimg.org/ne7iteoix/87_t2_Gv2_Iz9_Og3_Et2_A.png",
-                "https://s16.postimg.org/rhbcuwdud/image.png"
+
+                "https://s18.postimg.org/ne7iteoix/87_t2_Gv2_Iz9_Og3_Et2_A.png"
+
             ],
             "defaults": {
                 "category": "actualidad",
